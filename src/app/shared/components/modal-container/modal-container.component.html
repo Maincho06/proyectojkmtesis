@@ -1,0 +1,12 @@
+<ng-container>
+    <div class="title-container">
+        <ng-content select="[title]"></ng-content>
+    </div>
+    <ng-content select="[body]"></ng-content>
+    <div class="actions-container">
+        <hr class="line" />
+        <div class="actions">
+            <ng-content select="[action-button]"></ng-content>
+        </div>
+    </div>
+</ng-container>

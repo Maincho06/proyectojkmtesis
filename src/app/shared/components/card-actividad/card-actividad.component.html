@@ -1,0 +1,61 @@
+<!-- <table mat-table [dataSource]="dataSource" class="table-bordered">
+    <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef>
+            <span [style.paddingLeft.px]="40"> Descripcion </span>
+        </th>
+        <td mat-cell *matCellDef="let data">
+            <button mat-icon-button [style.visibility]="!data.expandable ? 'hidden' : ''"
+                [style.marginLeft.px]="data.level * 20" (click)="treeControl.toggle(data)">
+                <mat-icon class="mat-icon-rtl-mirror">
+                    {{treeControl.isExpanded(data) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+            </button>
+            {{data.descripcion + 
+                (data.hijo && data.hijo.length > 0 
+                    ? " (" + data.hijo.length + ")"
+                    : '')}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="start">
+        <th mat-header-cell *matHeaderCellDef> Fecha Inicio </th>
+        <td mat-cell *matCellDef="let data"> {{data.fechaInicio ? (data.fechaInicio | date:'dd/MM/yyyy') : '-'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="end">
+        <th mat-header-cell *matHeaderCellDef> Fecha Fin </th>
+        <td mat-cell *matCellDef="let data"> {{data.fechaFin ? (data.fechaFin | date:'dd/MM/yyyy') : '-'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="peso">
+        <th mat-header-cell *matHeaderCellDef> Prioridad </th>
+        <td mat-cell *matCellDef="let data"> {{data.prioridad}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let data">
+            <div id="icon">
+                <ng-container *ngIf="isCotizacion; else actionProyecto">
+                    <button class="icon-accent" mat-raised-button *ngIf="data.level == 0" (click)="dispatchEvent(data, 'ADD', index)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button class="icon-edit" mat-raised-button (click)="dispatchEvent(data, 'UPDATE')">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button class="icon-delete" mat-raised-button *ngIf="!data.expandable" (click)="dispatchEvent(data, 'DELETE')">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </ng-container>
+                <ng-template #actionProyecto>
+                    <button class="icon-edit" mat-raised-button (click)="dispatchEvent(data, 'UPDATE')">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </ng-template>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let index = index;"></tr>
+</table> -->

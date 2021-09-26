@@ -2,7 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -13,7 +13,25 @@
     "target": "es2015",
     "module": "es2020",
     "paths": {
-      "primeng/*": ["node_modules/primeng-lts/*"]
+      "primeng/*": ["node_modules/primeng-lts/*"],
+      "@utils/*": [
+        "app/utils/*"
+      ],
+      "@components/*": [
+        "app/shared/components/*"
+      ],
+      "@directives/*": [
+        "app/shared/directives/*"
+      ],
+      "@models/*": [
+        "app/shared/models/*"
+      ],
+      "@services/*": [
+        "app/services/*"
+      ],
+      "@modulos/*": [
+        "app/pages/modulos/*"
+      ],
     },
     "lib": [
       "es2018",

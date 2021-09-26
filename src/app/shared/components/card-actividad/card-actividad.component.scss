@@ -1,0 +1,19 @@
+#actividad {
+    height: 2.5rem;
+    width: 100%;
+    background-color: #DFDFDF;
+    border-radius: 10px;
+}
+
+.mat-tree-node:hover {
+    background-color: #DFDFDF !important;
+}
+
+table {
+    width: 100%;
+    th, td {
+        &:nth-child(n+2) {
+            text-align: center;
+        }
+    }
+}
