@@ -1,30 +1,22 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { PagesComponent } from "app/pages/pages.component";
+import { GestionarTrabajadorComponent } from './gestionar-trabajador/gestionar-trabajador.component';
 
 const routes: Routes =
     [
         {
             path: '',
             component: PagesComponent,
-            // children: [
-            //     { 
-            //         path: 'gestionarProyecto',
-            //         children: [
-            //             { path: '',   component: GestionarProyectoComponent },
-            //             { path: 'dashboard/:id', component: DashboardProyectoComponent },
-            //         ]
-            //     },
-            //     { 
-            //         path: 'gestionarTrabajadores',
-            //         children: [
-            //             { path: '', component: GestionarTrabajadoresComponent},
-            //             { path: 'editar/:id', component: GestionarTrabajadorComponent },
-            //             { path: 'agregar', component: GestionarTrabajadorComponent }
-            //         ]
-            //     },
-            //     { path: '**', redirectTo: 'gestionarProyecto' },
-            // ]
+            children: [
+                { 
+                    path: 'gestionarTrabajadores',
+                    children: [
+                        { path: '', component: GestionarTrabajadorComponent}
+                    ]
+                },
+                { path: '**', redirectTo: 'gestionarProyecto' },
+            ]
         },
     ];
 
