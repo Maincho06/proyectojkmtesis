@@ -1,34 +1,14 @@
-<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
-    <p style="color: white"> Loading... </p>
-</ngx-spinner>
-<app-sidebar></app-sidebar>
-<app-navbar></app-navbar> -->
-<!-- <h1>Template</h1>
-<router-outlet></router-outlet> -->
-<!-- <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div> -->
-<!-- <div class="wrapper">
-    <div class="sidebar" data-color="colorProject" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
-    </div>
-    <div class="main-panel">
-        <app-navbar></app-navbar>
-        <div class="main-content">
-            <div class="container-fluid">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
 <div class="wrapper">
     <div class="sidebar" data-color="white" data-active-color="danger">
         <app-sidebar></app-sidebar>
     </div>
     <div class="main-panel">
-        <app-navbar></app-navbar>
+        <!-- <app-navbar></app-navbar> -->
         <div class="content">
-            <router-outlet></router-outlet>
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+
         </div>
-        <app-footer></app-footer>
     </div>
 </div>
