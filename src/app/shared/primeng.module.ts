@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 const PRIMENG = [
   SidebarModule,
-  ButtonModule
+  ButtonModule,
+  InputTextModule
 ];
 
 @NgModule({
