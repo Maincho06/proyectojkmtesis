@@ -1,6 +1,41 @@
 <div class="row">
-    <!-- <app-vertical-bar-charts class="col-md-6" style="display:inline-table"></app-vertical-bar-charts>
-    <app-advance-pie-charts class="col-md-6"  style="display:inline-table"></app-advance-pie-charts> -->
+    <!-- Buttons -->
     <h1>Hola Mundo</h1>
-    <p-button label="Submit"></p-button>
+    <h2>Hola Mundo</h2>
+    <h3>Hola Mundo</h3>
+    <h4>Hola Mundo</h4>
+    <h5>Hola Mundo</h5>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis maiores laudantium nemo dignissimos et sequi consequuntur molestias aliquid, facere dolore qui assumenda quod ea eum ducimus soluta in iure quos.</p>
+    <!-- <a>Hola</a> -->
+
+    <p-button label="Submit" styleClass="p-button-sm"></p-button>
+    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-text"></button>
 </div>
+
+<input type="text" pInputText />
+
+<!-- Table -->
+
+<h1>Table Basic</h1>
+
+<p-table [value]="products" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{product.code}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.quantity}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<h2>Prueba Prueba</h2>
+<h3>Purbea pDASDA</h3>
