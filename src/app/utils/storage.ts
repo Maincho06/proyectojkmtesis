@@ -1,21 +1,27 @@
-const TOKEN_KEY     = 'OAuthToken';
-const PERMISO_KEY   = 'Permisos'
-const USER_DATA_KEY = 'UserData'
-const MODULOS_KEY   = 'Modulos'
+export const TOKEN_KEY = 'OAuthToken';
+export const PERMISO_KEY = 'Permisos'
+export const USER_DATA_KEY = 'UserData'
+export const MODULOS_KEY = 'Modulos'
 
-export function removeSession() {
-    window.localStorage.clear();
+
+// 
+export const getState = (name: string) => {
+    try {
+        const state = localStorage.getItem(name)
+        if (state === null) return undefined
+        const isObject = /^{.{1,}}/
+        return isObject.test(state) ? JSON.parse(state) : state
+    } catch (err) {
+        return undefined
+    }
 }
 
-export function removeToken() {
-    window.localStorage.removeItem(TOKEN_KEY);
-}
-
-export function saveToken(token: string) {
-    removeToken()
-    window.localStorage.setItem(TOKEN_KEY, token);
-}
-
-export function getToken(): string {
-    return localStorage.getItem(TOKEN_KEY);
+export const setState = (name: string, value: any) => {
+    try {
+        let state = value
+        if (typeof value === 'object') state = JSON.stringify(value)
+        localStorage.setItem(name, state)
+    } catch (err) {
+        console.log('Error saving localStorage')
+    }
 }
