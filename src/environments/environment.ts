@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL   : "https://localhost:44312/api/", 
+  API_URL   : "https://jkmapi.azurewebsites.net/api/", 
 };
 
 /*
