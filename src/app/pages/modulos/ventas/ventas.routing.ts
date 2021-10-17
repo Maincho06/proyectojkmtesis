@@ -1,34 +1,28 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { PagesComponent } from "app/pages/pages.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { PagesComponent } from 'app/pages/pages.component';
 import { GestionarCotizacionComponent } from './gestionar-cotizacion/gestionar-cotizacion.component';
 import { GestionarVentaComponent } from './gestionar-venta/gestionar-venta.component';
 
-const routes: Routes =
-    [
-        {
-            path: '',
-            component: PagesComponent,
-            children: [
-                {
-                    path: 'gestionarCotizacion',
-                    children: [
-                        { path: '', component: GestionarCotizacionComponent }
-                    ]
-
-                },
-                {
-                    path: 'gestionarVenta',
-                    children: [
-                        { path: '', component: GestionarVentaComponent },
-                    ]
-                },
-
-            ]
-        },
-    ];
+const routes: Routes = [
+  {
+    path: '',
+    component: PagesComponent,
+    children: [
+      {
+        path: 'gestionarCotizacion',
+        children: [{ path: '', component: GestionarCotizacionComponent }],
+      },
+      {
+        path: 'gestionarVenta',
+        children: [{ path: '', component: GestionarVentaComponent }],
+      },
+    ],
+    data: { breadcrumb: 'Gestionar Venta' },
+  },
+];
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class VentasRoutingModule { }
+export class VentasRoutingModule {}

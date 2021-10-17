@@ -14,7 +14,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { CardModule } from 'primeng/card';
-import {PasswordModule} from 'primeng/password';
+import { PasswordModule } from 'primeng/password';
+import { MenuModule } from 'primeng/menu';
 
 const PRIMENG = [
   SidebarModule,
@@ -33,6 +34,7 @@ const PRIMENG = [
   InputSwitchModule,
   CardModule,
   PasswordModule,
+  MenuModule,
 ];
 
 @NgModule({
