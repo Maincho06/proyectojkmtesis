@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   API_URL   : "https://jkmapi.azurewebsites.net/api/", 
+  // API_URL   : "https://localhost:44316/api/", 
 };
 
 /*
