@@ -44,8 +44,8 @@
                     <td>{{cliente.razonSocial}}</td>
                     <td>{{cliente.telefono}}</td>
                     <td>
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
-                            pTooltip="Editar"></button>
+                        <button (click)="mostrarDialogUpdate(cliente)" pButton pRipple icon="pi pi-pencil"
+                            class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
                     </td>
                 </tr>
             </ng-template>

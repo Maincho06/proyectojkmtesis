@@ -3,6 +3,7 @@ import { IClienteModel } from '@models/clientemodel';
 import { ClienteService } from '@services/cliente.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { GestionarClientRegisterComponent } from './components/gestionar-client-register/gestionar-client-register.component';
+import { GestionarClientUpdateComponent } from './components/gestionar-client-update/gestionar-client-update.component';
 
 @Component({
   selector: 'app-gestionar-cliente',
@@ -37,6 +38,21 @@ export class GestionarClienteComponent implements OnInit {
       header: 'Registrar cliente',
       width: '50%'
     });
+
+    ref.onClose.subscribe(async (data) => {
+      await this.listarCliente()
+    })
   }
 
+  mostrarDialogUpdate(cliente: IClienteModel) {
+    const ref = this._dialogService.open(GestionarClientUpdateComponent, {
+      header: 'Actualizar cliente',
+      width: '50%',
+      data: cliente
+    });
+
+    ref.onClose.subscribe(async (data) => {
+      await this.listarCliente()
+    })
+  }
 }
