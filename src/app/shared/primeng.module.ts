@@ -11,6 +11,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ToastModule} from 'primeng/toast';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 const PRIMENG = [
   SidebarModule,
@@ -22,8 +24,10 @@ const PRIMENG = [
   DynamicDialogModule,
   DropdownModule,
   ConfirmDialogModule,
+  BreadcrumbModule,
   ToastModule,
-  BreadcrumbModule
+  MessagesModule,
+  MessageModule
 ];
 
 @NgModule({
