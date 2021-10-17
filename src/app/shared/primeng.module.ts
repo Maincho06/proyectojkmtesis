@@ -13,6 +13,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import { ToastModule } from "primeng/toast";
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 const PRIMENG = [
   SidebarModule,
@@ -29,7 +30,8 @@ const PRIMENG = [
   DropdownModule,
   ToastModule,
   MessagesModule,
-  MessageModule
+  MessageModule,
+  DynamicDialogModule
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { PagesComponent } from "app/pages/pages.component";
+import { GestionarClienteComponent } from "./gestionar-cliente/gestionar-cliente.component";
 import { GestionarCotizacionDetalleComponent } from "./gestionar-cotizacion/components/gestionar-cotizacion-detalle/gestionar-cotizacion-detalle.component";
 import { GestionarCotizacionComponent } from './gestionar-cotizacion/gestionar-cotizacion.component';
 import { GestionarVentaComponent } from './gestionar-venta/gestionar-venta.component';
@@ -26,7 +27,12 @@ const routes: Routes =
                         { path: '', component: GestionarVentaComponent },
                     ]
                 },
-
+                {
+                    path: 'gestionarCliente',
+                    children: [
+                        { path: '', component: GestionarClienteComponent },
+                    ]
+                },
             ]
         },
     ];
