@@ -7,3 +7,7 @@
 .navbar.navbar-transparent .nav-item .nav-link:not(.btn){
     color: #ffffff;
 }
+
+.navbar.navbar-absolute {
+    z-index: 900;
+}

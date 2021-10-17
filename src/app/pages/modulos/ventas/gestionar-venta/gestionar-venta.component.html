@@ -13,24 +13,30 @@
 
     <!-- Ventas Table -->
     <div class="card p-mb-4 p-shadow-6">
-        <p-table [value]="ventas" responsiveLayout="scroll">
+        <p-table [value]="listaVentas" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Codigo Venta</th>
                     <th>Precio Total</th>
+                    <th>Fecha Registro</th>
                     <th>Ruc</th>
                     <th>Razon Social</th>
-                    <th>Fecha Registro</th>
+                    <th>Estado</th>
                     <th>Opciones</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-ventas>
                 <tr>
                     <td>{{ventas.idVenta}}</td>
-                    <td>{{ventas.precioTotal}}</td>
-                    <td>{{ventas.ruc}}</td>
-                    <td>{{ventas.razonSocial}}</td>
+                    <td>{{ventas.precio}}</td>
                     <td>{{ventas.fechaRegistro}}</td>
+                    <td>{{ventas.razonSocial}}</td>
+                    <td>{{ventas.ruc}}</td>
+                    <td>
+                        <span
+                            [class]="'venta-badge status-' + (ventas.estado.descripcion ? ventas.estado.descripcion.toLowerCase() : '')">{{ventas.estado.descripcion}}
+                        </span>
+                    </td>
                     <td>
                         <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
                             pTooltip="Ver" (click)="detalleVenta()"></button>
