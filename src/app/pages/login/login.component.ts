@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ILogin } from '@models/authmodel';
 import { AuthService } from '@services/auth.service';
+import { ObvsService } from '@services/obvs.service';
 import { getState, setState, TOKEN_KEY, USER_DATA_KEY } from '@utils/storage';
 import { toast } from '@utils/toast';
 import { MessageService } from 'primeng/api';
@@ -18,13 +19,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _messageService: MessageService,
-    private _router: Router
+    private _router: Router,
+    private _obvsService: ObvsService
   ) {
     this.formLogin = new FormGroup({
       username: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
     });
   }
+
   ngOnInit(): void {
     const token = getState(TOKEN_KEY);
     if (token) this._router.navigate(['/dashboard']);
@@ -32,6 +35,7 @@ export class LoginComponent implements OnInit {
 
   async login() {
     try {
+      this._obvsService.toogleSpinner();
       const { data, message }: ILogin = await this._authService.login(
         this.formLogin.value
       );
@@ -47,6 +51,8 @@ export class LoginComponent implements OnInit {
       });
     } catch (err) {
       console.log(err);
+    } finally {
+      this._obvsService.toogleSpinner();
     }
   }
 }
