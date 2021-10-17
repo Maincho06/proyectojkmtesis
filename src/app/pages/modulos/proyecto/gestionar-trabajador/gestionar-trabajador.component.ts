@@ -34,7 +34,7 @@ export class GestionarTrabajadorComponent implements OnInit {
       console.info("DATA: ", data);
       
     } catch (error) {  
-      console.log("CONSOLE: ",error);     
+      console.log("Error: ",error);     
     }
   }
 
