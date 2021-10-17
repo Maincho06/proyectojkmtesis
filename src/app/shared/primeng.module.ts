@@ -10,7 +10,9 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CardModule} from 'primeng/card';
 import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
-
+import { ToastModule } from "primeng/toast";
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 const PRIMENG = [
   SidebarModule,
@@ -24,7 +26,10 @@ const PRIMENG = [
   InputTextareaModule,
   CardModule,
   DialogModule,
-  DropdownModule
+  DropdownModule,
+  ToastModule,
+  MessagesModule,
+  MessageModule
 ];
 
 @NgModule({
