@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { PagesComponent } from "app/pages/pages.component";
+import { GestionarCotizacionDetalleComponent } from "./gestionar-cotizacion/components/gestionar-cotizacion-detalle/gestionar-cotizacion-detalle.component";
 import { GestionarCotizacionComponent } from './gestionar-cotizacion/gestionar-cotizacion.component';
 import { GestionarVentaComponent } from './gestionar-venta/gestionar-venta.component';
 
@@ -13,7 +14,9 @@ const routes: Routes =
                 {
                     path: 'gestionarCotizacion',
                     children: [
-                        { path: '', component: GestionarCotizacionComponent }
+                        { path: '', component: GestionarCotizacionComponent },
+                        { path:'crear', component: GestionarCotizacionDetalleComponent},
+                        { path:':id', component: GestionarCotizacionDetalleComponent}
                     ]
 
                 },

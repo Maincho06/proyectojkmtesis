@@ -1,0 +1,42 @@
+<form [formGroup]="formDatos" class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-4">
+        <label>Solicitante</label>
+        <input formControlName="solicitante" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-4">
+        <label>Empresa</label>
+        <input formControlName="empresa" type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="basic">Fecha de Solicitud</label>
+        <p-calendar formControlName="fechaSolicitud" dateFormat="dd/mm/yy" inputId="basic"></p-calendar>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label>Estado</label>
+        <input readonly formControlName="estado" type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label>Correo</label>
+        <input formControlName="correo" type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label>Precio</label>
+        <input formControlName="precio" type="number" pInputText>
+    </div>
+    <div class="p-field p-col-12">
+        <label>Descripción</label>
+        <textarea formControlName="descripcion" pInputTextarea></textarea>
+    </div>
+
+    <div class="p-field p-col-6">
+        <button pButton type="button" label="Salir" routerLink="/ventas/gestionarCotizacion"
+            class="p-button-danger"></button>
+    </div>
+    <div class="p-field p-col-6">
+        <button pButton type="button" label="Guardar"></button>
+    </div>
+</form>

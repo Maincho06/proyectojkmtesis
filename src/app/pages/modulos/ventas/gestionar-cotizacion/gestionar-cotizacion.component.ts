@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionarCotizacionComponent implements OnInit {
 
+  cotizaciones: any[] = [];
+
+  cols: any[];
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {
 
+    this.cols = [
+      { field: 'nombre', header: 'Nombre' },
+      { field: 'empresa', header: 'Empresa/Organización' },
+      { field: 'fechaSolicitud', header: 'Fecha de Solicitud' },
+      { field: 'estado', header: 'Estado' },
+      { field: 'acciones', header: 'Acciones' }
+    ];
+  }
 }

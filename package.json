@@ -28,8 +28,9 @@
         "ngx-spinner": "^11.0.1",
         "perfect-scrollbar": "^1.5.1",
         "popper.js": "^1.16.1",
-        "primeng": "^10.0.0",
+        "primeflex": "2.0.0",
         "primeicons": "^4.1.0",
+        "primeng": "^10.0.0",
         "rxjs": "~6.6.0",
         "tslib": "^2.0.0",
         "zone.js": "~0.10.2"

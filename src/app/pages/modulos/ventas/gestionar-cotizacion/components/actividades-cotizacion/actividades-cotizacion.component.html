@@ -1,0 +1,52 @@
+<p-treeTable [value]="files" [columns]="cols">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns; let i = index">
+                <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+                {{rowData[col.field]}}
+            </td>
+            <td>
+                <p-button icon="pi pi-search" styleClass="p-button-success" [style]="{'margin-right': '.5em'}">
+                </p-button>
+                <p-button icon="pi pi-pencil" styleClass="p-button-warning"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-treeTable>
+
+<div class="p-fluid p-grid">
+    <div class="p-field p-col-12">
+        <button (click)="mostrarModal=true" pButton pRipple type="button" icon="pi pi-plus" style="float: right;"
+            class="alinear-button p-button-rounded p-button-text"></button>
+    </div>
+</div>
+
+
+<p-dialog header="Agregar actividad" [(visible)]="mostrarModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+    [resizable]="false">
+    <form [formGroup]="formActividad" class="p-fluid p-formgrid p-grid">
+
+        <div class="p-field p-col-12">
+            <label>Descripcion</label>
+            <input formControlName="descripcion" type="text" pInputText>
+        </div>
+        <div class="p-field p-col-12">
+            <label>Prioridad</label>
+            <p-dropdown appendTo="body" [options]="prioridades" formControlName="prioridad" placeholder="Seleccione una" optionLabel="descripcion"
+                optionValue="valor" [showClear]="true"></p-dropdown>
+        </div>
+    </form>
+    <!-- <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="mostrarModal=false" label="Cerrar" styleClass="p-button-text"></p-button>
+    </ng-template> -->
+</p-dialog>
