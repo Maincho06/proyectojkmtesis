@@ -3,13 +3,27 @@ import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
+import {TooltipModule} from 'primeng/tooltip';
+import {DialogModule} from 'primeng/dialog';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DropdownModule} from 'primeng/dropdown';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ToastModule} from 'primeng/toast';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 
 
 const PRIMENG = [
   SidebarModule,
   ButtonModule,
   TableModule,
-  InputTextModule
+  InputTextModule,
+  TooltipModule,
+  DialogModule,
+  DynamicDialogModule,
+  DropdownModule,
+  ConfirmDialogModule,
+  ToastModule,
+  BreadcrumbModule
 ];
 
 @NgModule({

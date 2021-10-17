@@ -1,0 +1,9 @@
+.navbar.navbar-transparent {
+    background-color: #271e78 !important;
+    box-shadow: none;
+    border-bottom: 1px solid #fff;
+}
+
+.navbar.navbar-transparent .nav-item .nav-link:not(.btn){
+    color: #ffffff;
+}
