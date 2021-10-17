@@ -5,32 +5,11 @@ import { setState, TOKEN_KEY } from '@utils/storage';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'projectjkm';
-
   constructor(
     private _authService: AuthService
   ) {}
-
-  ngOnInit() {
-
-    this.login();
-
-  }
-
-  async login(): Promise<void> {
-
-    try {
-      const data: ILogin =  await this._authService.login({ username: 'cesarfb', password: 'facil123' }) ;
-      // console.log('LOGIN', data);
-      setState(TOKEN_KEY, data.data);
-    } catch (error) {
-      console.log("Error: ",error);
-    }
-
-  }
-
 }

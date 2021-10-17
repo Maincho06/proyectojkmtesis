@@ -5,28 +5,31 @@ import { BaseService } from './base.service';
 import { Observable } from 'rxjs';
 import { ILogin } from '@models/authmodel';
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService extends BaseService {
+  constructor(private http: HttpClient) {
+    super();
+  }
 
-    constructor(
-        private http: HttpClient,
-    ) {
-        super();
-    }
+  login({ username, password }): Promise<any> {
+    const body = {
+      username: username,
+      password: password,
+    };
 
-    login({
-        username = 'cesarfb',
-        password = 'facil123'
-    }): Promise<any> {
-        
-        const body = {
-            username: username,
-            password: password,
-        };
+    return this.http
+      .post<ILogin>(`${AUTH_URL}/Login`, body, {
+        headers: this.obtenerHeaders(),
+      })
+      .toPromise();
+  }
 
-        return this.http.post<ILogin>(`${AUTH_URL}/Login`, body, { headers: this.obtenerHeaders() }).toPromise();
-
-    }
-
+  getPerfil(): Promise<any> {
+    return this.http
+      .get(`${AUTH_URL}/Perfil`, {
+        headers: this.obtenerHeaders(),
+      })
+      .toPromise();
+  }
 }

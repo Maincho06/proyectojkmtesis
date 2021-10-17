@@ -14,6 +14,7 @@ import { InterceptorService } from '@services/interceptor.service';
 
 import { MessageService } from "primeng/api";
 import { SharedModule } from 'app/shared/shared.module';
+import { LoginModule } from './pages/login/login.module';
 
 
 
@@ -31,10 +32,12 @@ import { SharedModule } from 'app/shared/shared.module';
     HttpClientModule,
     SharedModule,
     NgxChartsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    LoginModule
   ],
   exports: [
-    VerticalBarChartComponent
+    VerticalBarChartComponent,
+    SharedModule
   ],
   providers: [
     {
