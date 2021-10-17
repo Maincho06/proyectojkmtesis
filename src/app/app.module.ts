@@ -4,13 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { VerticalBarChartComponent } from './pages/dashboard/vertical-bar-charts/vertical-bar-charts.component';
 import { AdvancePieChartComponent } from './pages/dashboard/advance-pie-charts/advance-pie-charts.component';
 import { PagesModule } from './pages/pages.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { InterceptorService } from '@services/interceptor.service';
+
+import { MessageService } from "primeng/api";
+import { SharedModule } from 'app/shared/shared.module';
 
 
 @NgModule({
@@ -25,13 +28,21 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     BrowserAnimationsModule,
     PagesModule,
     HttpClientModule,
+    SharedModule,
     NgxChartsModule,
     NgxSpinnerModule
   ],
   exports: [
     VerticalBarChartComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    },
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
