@@ -36,8 +36,10 @@
           &.active > a[data-toggle="collapse"] i,
           &.active > a[data-toggle="collapse"] ~ div > ul > li.active .sidebar-mini-icon,
           &.active > a[data-toggle="collapse"] ~ div > ul > li.active > a {
-            color: $font-color;
+            // color: $font-color;
+            color: #271e78;
             opacity: 1;
+            font-weight: 600;
           }
         }
     }
@@ -204,7 +206,8 @@
         color: $text-color;
       }
       &:after {
-        background-color: $text-color;
+        // background-color: $text-color;
+        background-color: #d2d2d2;
         opacity: .4;
       }
     }

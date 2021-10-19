@@ -3,7 +3,14 @@ import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
-import { ToastModule } from "primeng/toast";
+import {TooltipModule} from 'primeng/tooltip';
+import {DialogModule} from 'primeng/dialog';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DropdownModule} from 'primeng/dropdown';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ToastModule} from 'primeng/toast';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 
@@ -12,6 +19,12 @@ const PRIMENG = [
   ButtonModule,
   TableModule,
   InputTextModule,
+  TooltipModule,
+  DialogModule,
+  DynamicDialogModule,
+  DropdownModule,
+  ConfirmDialogModule,
+  BreadcrumbModule,
   ToastModule,
   MessagesModule,
   MessageModule

@@ -1,0 +1,29 @@
+<!-- Modal Detalle Venta -->
+<div class="p-grid">
+    <div class="p-col-12">
+        <form [formGroup]="formVentas" class="p-fluid p-formgrid p-grid">
+
+            <div class="p-field p-col-12 p-md-6 p-lg-6">
+                <label>Descripcion</label>
+                <input formControlName="descripcion" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6 p-lg-6">
+                <label>Precio</label>
+                <input formControlName="precio" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6 p-lg-6">
+                <label>Tipo Venta</label>
+                <p-dropdown formControlName="tipoVenta"></p-dropdown>
+            </div>
+            <div class="p-field p-col-12 p-md-6 p-lg-6">
+                <label>Tipo Cotización</label>
+                <p-dropdown formControlName="tipoCotizacion"></p-dropdown>
+            </div>
+        </form>
+    </div>
+
+    <div class="p-col-12 p-text-right">
+        <button pButton pRipple type="button" label="Registrar" icon="pi pi-check"></button>
+        <!-- class="p-button-text" -->
+    </div>
+</div>

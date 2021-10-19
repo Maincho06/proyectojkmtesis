@@ -18,6 +18,7 @@
     left: 0;
     z-index: 1030;
     border-right: 1px solid #ddd;
+    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
     .sidebar-wrapper {
         position: relative;
         height: calc(100vh - 75px);
@@ -70,7 +71,7 @@
                 display: block;
                 text-decoration: none;
                 position: relative;
-                text-transform: uppercase;
+                // text-transform: uppercase;
                 cursor: pointer;
                 font-size: 12px;
                 padding: 10px 8px;
@@ -259,7 +260,7 @@
     position: relative;
     float: right;
     width: $sidebar-width;
-    background-color: #f4f3ef;
+    background-color: #f8f9fa;
     @include transition (0.50s, cubic-bezier(0.685, 0.0473, 0.346, 1));
     .content {
         // padding: 0 30px 30px;
