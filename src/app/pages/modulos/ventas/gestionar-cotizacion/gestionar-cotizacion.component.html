@@ -16,23 +16,21 @@
         <p-table [value]="cotizaciones" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Nombre</th>
                     <th>Empresa/Organización</th>
+                    <th>Precio</th>
                     <th>Fecha de Solicitud</th>
-                    <th>Razon Social</th>
                     <th>Estado</th>
                     <th>Opciones</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-ventas>
+            <ng-template pTemplate="body" let-cotizacion>
                 <tr>
-                    <td>{{ventas.nombre}}</td>
-                    <td>{{ventas.empresa}}</td>
-                    <td>{{ventas.ruc}}</td>
-                    <td>{{ventas.fechaSolicitud}}</td>
-                    <td>{{ventas.estado}}</td>
+                    <td>{{cotizacion.razonSocial}}</td>
+                    <td>{{cotizacion.precioCotizacion}}</td>
+                    <td>{{cotizacion.fechaSolicitudString}}</td>
+                    <td>{{cotizacion.estado.descripcion}}</td>
                     <td>
-                        <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
+                        <button [routerLink]="[cotizacion.idCotizacion]" pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
                             pTooltip="Ver"></button>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
                             pTooltip="Editar"></button>

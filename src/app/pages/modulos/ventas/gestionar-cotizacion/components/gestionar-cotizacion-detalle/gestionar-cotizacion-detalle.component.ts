@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -8,7 +9,15 @@ import { MenuItem } from 'primeng/api';
 })
 export class GestionarCotizacionDetalleComponent implements OnInit {
 
+  idCliente: number;
+  constructor(
+    private _activatedRoute: ActivatedRoute
+  ){}
   ngOnInit() {
+    
+    this._activatedRoute.paramMap.subscribe(params => {
+      this.idCliente = Number(params.get('id'));
+    })
   }
 
 }

@@ -18,7 +18,7 @@ export class ClienteService extends BaseService {
 
   getClientePaginado({
     pages = 1,
-    rows = 10
+    rows = 100
   }): Promise<any> {
     let params = new HttpParams();
     params = params.append('Pages', pages.toString());

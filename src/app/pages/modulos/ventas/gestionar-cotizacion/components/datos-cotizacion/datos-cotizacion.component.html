@@ -4,8 +4,11 @@
         <input formControlName="solicitante" type="text" pInputText>
     </div>
     <div class="p-field p-col-4">
-        <label>Empresa</label>
-        <input formControlName="empresa" type="text" pInputText>
+        <div class="p-field p-col-12">
+            <label>Empresa</label>
+            <p-dropdown appendTo="body" [options]="cliente" formControlName="empresa" placeholder="Seleccione una empresa"
+                optionLabel="razonSocial" optionValue="idCliente" [showClear]="true"></p-dropdown>
+        </div>
     </div>
 
     <div class="p-field p-col-4">
@@ -37,6 +40,6 @@
             class="p-button-danger"></button>
     </div>
     <div class="p-field p-col-6">
-        <button pButton type="button" label="Guardar"></button>
+        <button pButton type="button" (click)="guardarCotizacion()" label="Guardar"></button>
     </div>
 </form>

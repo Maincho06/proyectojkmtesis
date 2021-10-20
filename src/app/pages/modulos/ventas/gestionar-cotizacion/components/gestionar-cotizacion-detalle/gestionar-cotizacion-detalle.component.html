@@ -2,10 +2,10 @@
     <p-tabPanel header="Datos cotizacion">
         <app-datos-cotizacion></app-datos-cotizacion>
     </p-tabPanel>
-     <p-tabPanel header="Trabajadores">
+    <p-tabPanel *ngIf="idCliente" header="Trabajadores">
         <app-trabajadores-cotizacion></app-trabajadores-cotizacion>
     </p-tabPanel>
-     <p-tabPanel header="Actividades">
+    <p-tabPanel *ngIf="idCliente" header="Actividades">
         <app-actividades-cotizacion></app-actividades-cotizacion>
     </p-tabPanel>
 </p-tabView>

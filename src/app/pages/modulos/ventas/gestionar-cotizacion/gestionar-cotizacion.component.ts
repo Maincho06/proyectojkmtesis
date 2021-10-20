@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ICotizacionModel } from '@models/cotizacionmodel';
+import { CotizacionService } from '@services/cotizacion.service';
 
 @Component({
   selector: 'app-gestionar-cotizacion',
@@ -7,20 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionarCotizacionComponent implements OnInit {
 
-  cotizaciones: any[] = [];
+  cotizaciones: ICotizacionModel[] = [];
 
   cols: any[];
 
-  constructor() { }
+  constructor(
+    private _cotizacionService: CotizacionService
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.listarCliente();
+  }
 
-    this.cols = [
-      { field: 'nombre', header: 'Nombre' },
-      { field: 'empresa', header: 'Empresa/Organización' },
-      { field: 'fechaSolicitud', header: 'Fecha de Solicitud' },
-      { field: 'estado', header: 'Estado' },
-      { field: 'acciones', header: 'Acciones' }
-    ];
+  async listarCliente() {
+    try {
+      let data = await this._cotizacionService.getCotizacionPaginado({ pages: 1, rows: 100 });
+      this.cotizaciones = data.data;
+    } catch (error) {
+      console.error(error);
+      this.cotizaciones = [];
+    }
   }
 }
