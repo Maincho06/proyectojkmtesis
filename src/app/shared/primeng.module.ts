@@ -11,6 +11,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ToastModule} from 'primeng/toast';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 
+import {InputMaskModule} from 'primeng/inputmask';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 
@@ -27,7 +28,8 @@ const PRIMENG = [
   BreadcrumbModule,
   ToastModule,
   MessagesModule,
-  MessageModule
+  MessageModule,
+  InputMaskModule
 ];
 
 @NgModule({

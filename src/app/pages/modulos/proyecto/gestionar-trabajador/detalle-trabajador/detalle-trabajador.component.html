@@ -1,0 +1,57 @@
+<!-- Modal Trabajador -->
+<div class="p-grid">
+    <div class="p-col-12">
+        <form [formGroup]="formTrabajador" class="p-fluid p-formgrid p-grid">
+
+            <div class="p-field p-lg-4">
+                <label>Nombre</label>
+                <input formControlName="nombre" type="text" pInputText>
+            </div>
+
+            <div class="p-field p-lg-4">
+                <label>Apellido Paterno</label>
+                <input formControlName="apellidoPaterno" type="text" pInputText>
+            </div>
+
+            <div class="p-field p-lg-4">
+                <label>Apellido Materno</label>
+                <input formControlName="apellidoMaterno" type="text" pInputText>
+            </div>
+
+            <!-- <div class="p-field p-lg-4">
+                <label>Fecha Nacimiento</label>
+                <input formControlName="fechaNacimiento" type="text" pInputText>
+            </div> -->
+
+            <div class="p-field p-lg-4">
+                <label>Date</label>
+                <p-inputMask mask="99/99/9999" formControlName="fechaNacimiento" placeholder="99/99/9999" slotChar="mm/dd/yyyy"></p-inputMask>
+            </div>
+
+            <div class="p-field p-lg-4">
+                <label>Tipo</label>
+                <p-dropdown [options]="listTipoTrabajador" optionLabel="descripcion" [showClear]="true" placeholder="Tipo" formControlName="tipo"></p-dropdown>
+            </div>
+
+
+
+            <div class="p-field p-lg-4" *ngIf="!isRegistrar">
+                <label>Estado</label>
+                <p-dropdown [options]="listaEstadoTrabajador" optionLabel="descripcion" placeholder="Estado" [showClear]="true" appendTo="body" [baseZIndex]="10000" formControlName="estado"></p-dropdown>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<button pButton type="button" label="Registrar" (click)="registrarTrabajador()"></button>
+
+<pre>
+    Estado del formulario {{formTrabajador.valid}}
+  <br />
+    Status: {{formTrabajador.status}}
+  </pre>
+
+<pre>
+  {{ formTrabajador.value | json }}
+  </pre>
