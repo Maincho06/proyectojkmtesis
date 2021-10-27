@@ -11,6 +11,9 @@ import {CardModule} from 'primeng/card';
 import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
 import { ToastModule } from "primeng/toast";
+import {TooltipModule} from 'primeng/tooltip';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {InputMaskModule} from 'primeng/inputmask';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
@@ -19,7 +22,6 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 const PRIMENG = [
   SidebarModule,
   ButtonModule,
-  TableModule,
   InputTextModule,
   TableModule,
   TabViewModule,
@@ -34,6 +36,9 @@ const PRIMENG = [
   MessageModule,
   DynamicDialogModule,
   ConfirmDialogModule,
+  TooltipModule,
+  BreadcrumbModule,
+  InputMaskModule
 ];
 
 @NgModule({

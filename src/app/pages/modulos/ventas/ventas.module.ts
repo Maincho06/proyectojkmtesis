@@ -4,6 +4,7 @@ import { SharedModule } from '../../../shared/shared.module';
 
 import { VentasRoutingModule } from './ventas.routing';
 import { GestionarCotizacionComponent } from './gestionar-cotizacion/gestionar-cotizacion.component';
+
 import { GestionarVentaComponent } from './gestionar-venta/gestionar-venta.component';
 import { GestionarCotizacionDetalleComponent } from './gestionar-cotizacion/components/gestionar-cotizacion-detalle/gestionar-cotizacion-detalle.component';
 import { DatosCotizacionComponent } from './gestionar-cotizacion/components/datos-cotizacion/datos-cotizacion.component';
@@ -12,23 +13,23 @@ import { ActividadesCotizacionComponent } from './gestionar-cotizacion/component
 import { GestionarClienteComponent } from './gestionar-cliente/gestionar-cliente.component';
 import { GestionarClientRegisterComponent } from './gestionar-cliente/components/gestionar-client-register/gestionar-client-register.component';
 import { GestionarClientUpdateComponent } from './gestionar-cliente/components/gestionar-client-update/gestionar-client-update.component';
+import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-venta.component';
 
 
 
 @NgModule({
   declarations: [
-
-  GestionarCotizacionComponent,
-
-  GestionarVentaComponent,
-
-  GestionarCotizacionDetalleComponent,
-  DatosCotizacionComponent,
-  TrabajadoresCotizacionComponent,
-  ActividadesCotizacionComponent,
-  GestionarClienteComponent,
-  GestionarClientRegisterComponent,
-  GestionarClientUpdateComponent],
+    GestionarCotizacionComponent,
+    GestionarVentaComponent,
+    GestionarCotizacionDetalleComponent,
+    DatosCotizacionComponent,
+    TrabajadoresCotizacionComponent,
+    ActividadesCotizacionComponent,
+    GestionarClienteComponent,
+    GestionarClientRegisterComponent,
+    GestionarClientUpdateComponent,
+    DetalleVentaComponent,
+  ],
   imports: [
     CommonModule,
     VentasRoutingModule,

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { TRABAJADOR_URL } from '@utils/url_constants';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
+import { IEstadoTrabajador, IRequestRegisterTrabajador, ITipoTrabajador } from '@models/trabajadormodel';
+
 
 
 @Injectable({
@@ -35,4 +37,24 @@ export class TrabajadorService extends BaseService {
     ): Promise<any> {
         return this.http.get<any>(`${TRABAJADOR_URL}/Tipo`, { headers: this.obtenerHeaders() }).toPromise();
     }
+    obtenerEstadoTrabajador(): Promise<IEstadoTrabajador[]> {
+        return this.http.get<IEstadoTrabajador[]>(`${TRABAJADOR_URL}/Estado`).toPromise();
+    }
+
+    obtenerTipoTrabajador(): Promise<ITipoTrabajador[]> {
+        return this.http.get<ITipoTrabajador[]>(`${TRABAJADOR_URL}/Tipo`).toPromise();
+    }
+
+    registrarTrabajador(body: IRequestRegisterTrabajador): Promise<any> {
+        return this.http.post<any>(`${TRABAJADOR_URL}`, body).toPromise();
+    }
+
+    updateTrabajador(body: IRequestRegisterTrabajador, idTrabajador: number) {
+        return this.http.put<any>(`${TRABAJADOR_URL}/${idTrabajador}`, body).toPromise();
+    }
+
+    eliminarTrabajador(idTrabajador: number) {
+        return this.http.delete<any>(`${TRABAJADOR_URL}/${idTrabajador}`).toPromise();
+    }
+
 }
