@@ -3,20 +3,22 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './client/home/home.component';
 import { NopagefoundComponent } from '@components/nopagefound/nopagefound.component';
 import { PagesRoutingModule } from './pages/pages.routing';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthGuardService as AuthGuard } from '@services/auth.guard';
 
 const routes: Routes = [
-
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent},
-  { path: '**', component: NopagefoundComponent}
-
+  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full',
+  },
+  { path: 'home', component: HomeComponent },
+  { path: '**', component: NopagefoundComponent },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes), 
-    PagesRoutingModule
-  ],
+  imports: [RouterModule.forRoot(routes), PagesRoutingModule],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

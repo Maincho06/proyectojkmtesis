@@ -1,0 +1,26 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="banner-background">
+    <p-card>
+        <img class="p-4" src="assets/img/logoJKM.png" width="300px" />
+        <form action="" [formGroup]="formLogin" (ngSubmit)="login()">
+            <div class="p-field flex-column flex">
+                <label for="usuario">Usuario</label>
+                <input id="usuario" type="username" pInputText placeholder="Ingrese su usuario"
+                    formControlName="username" />
+            </div>
+            <div class="p-field flex-column flex">
+                <label for="password">Contraseña</label>
+                <input pPassword type="password" [feedback]="false" placeholder="Ingresa su contraseña"
+                    formControlName="password" />
+            </div>
+            <div class="flex align-items-center">
+                <p-inputSwitch id="remember" class="pr-2"></p-inputSwitch>
+                <label for="remember">Recuerdame</label>
+            </div>
+            <button pButton pRipple type="submit" label="Iniciar sesion" class="p-button-raised w-full my-3"
+                [disabled]="formLogin.invalid"></button>
+        </form>
+    </p-card>
+</div>

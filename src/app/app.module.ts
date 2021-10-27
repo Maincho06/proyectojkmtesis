@@ -14,8 +14,8 @@ import { InterceptorService } from '@services/interceptor.service';
 
 import { MessageService } from "primeng/api";
 import { SharedModule } from 'app/shared/shared.module';
-
-
+import { LoginModule } from './pages/login/login.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -29,12 +29,15 @@ import { SharedModule } from 'app/shared/shared.module';
     BrowserAnimationsModule,
     PagesModule,
     HttpClientModule,
+    JwtModule,
     SharedModule,
     NgxChartsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    LoginModule
   ],
   exports: [
-    VerticalBarChartComponent
+    VerticalBarChartComponent,
+    SharedModule
   ],
   providers: [
     {

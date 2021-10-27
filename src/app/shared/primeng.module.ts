@@ -18,6 +18,9 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { PasswordModule } from 'primeng/password';
+import { MenuModule } from 'primeng/menu';
 
 const PRIMENG = [
   SidebarModule,
@@ -38,15 +41,14 @@ const PRIMENG = [
   ConfirmDialogModule,
   TooltipModule,
   BreadcrumbModule,
-  InputMaskModule
+  InputMaskModule,
+  InputSwitchModule,
+  PasswordModule,
+  MenuModule,
 ];
 
 @NgModule({
-  imports: [
-    PRIMENG
-  ],
-  exports: [
-    PRIMENG
-  ]
+  imports: [PRIMENG],
+  exports: [PRIMENG],
 })
-export class PrimengModule { }
+export class PrimengModule {}

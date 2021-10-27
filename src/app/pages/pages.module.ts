@@ -8,7 +8,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PrimengModule } from 'app/shared/primeng.module';
 
 
 
@@ -19,7 +18,6 @@ import { PrimengModule } from 'app/shared/primeng.module';
   ],
   imports: [
     CommonModule,
-    // PrimengModule,
     SharedModule,
     RouterModule,
     PagesRoutingModule,

@@ -1,0 +1,30 @@
+.banner-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  &::after {
+    content: "";
+    background-image: url(../../../assets/img/login-logo.png);
+    background-color: #153e75;
+    height: 50%;
+    display: block;
+    width: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+.card {
+  min-height: 300px;
+  background: white;
+  z-index: 1;
+  max-height: 500px;
+  align-self: center;
+  border-radius: 8px;
+}
