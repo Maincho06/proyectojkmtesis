@@ -1,6 +1,28 @@
 .card{
     background: var(--surface-e);
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 15px;
     margin-bottom: 2rem;
+}
+
+.venta-badge.status-activo {
+    background: #689F38;
+    color: #ffffff;
+}
+
+.venta-badge.status-inactivo {
+    background: #D32F2F;
+    color: #ffffff;
+}
+
+.venta-badge {
+    border-radius: 13px;
+    padding: 0.4em 0.7rem;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+.p-datatable .p-datatable-tbody > tr > td{
+    text-align: center !important;
 }
