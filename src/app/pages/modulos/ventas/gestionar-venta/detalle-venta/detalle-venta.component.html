@@ -1,29 +1,122 @@
-<!-- Modal Detalle Venta -->
 <div class="p-grid">
+
+    <!-- Cabecera Venta -->
     <div class="p-col-12">
         <form [formGroup]="formVentas" class="p-fluid p-formgrid p-grid">
 
+            <!-- Input Ruc -->
             <div class="p-field p-col-12 p-md-6 p-lg-6">
-                <label>Descripcion</label>
-                <input formControlName="descripcion" type="text" pInputText>
+                <label>Ruc</label>
+                <input formControlName="ruc" type="text" pInputText readonly>
             </div>
+
+            <!-- Input Razon Social -->
+            <div class="p-field p-col-12 p-md-6 p-lg-6">
+                <label>Razon Social</label>
+                <input formControlName="razonSocial" type="text" pInputText readonly>
+            </div>
+
+            <!-- Input Precio -->
             <div class="p-field p-col-12 p-md-6 p-lg-6">
                 <label>Precio</label>
-                <input formControlName="precio" type="text" pInputText>
+                <p-inputNumber formControlName="precio" mode="currency" currency="PEN" locale="es-PE"></p-inputNumber>
             </div>
+
+            <!-- Input Tipo Venta -->
             <div class="p-field p-col-12 p-md-6 p-lg-6">
                 <label>Tipo Venta</label>
-                <p-dropdown formControlName="tipoVenta"></p-dropdown>
+                <input formControlName="tipoVenta" type="text" pInputText readonly>
             </div>
-            <div class="p-field p-col-12 p-md-6 p-lg-6">
-                <label>Tipo Cotización</label>
-                <p-dropdown formControlName="tipoCotizacion"></p-dropdown>
-            </div>
+
         </form>
     </div>
 
-    <div class="p-col-12 p-text-right">
-        <button pButton pRipple type="button" label="Registrar" icon="pi pi-check"></button>
-        <!-- class="p-button-text" -->
+    <!-- Detalle Venta Table -->
+    <div class="card p-shadow-6">
+
+        <p-toolbar styleClass="p-mb-4">
+            <ng-template pTemplate="left">
+            </ng-template>
+
+            <ng-template pTemplate="right">
+                <button pButton pRipple label="Agregar Cuota" icon="pi pi-plus" class="p-button-success p-mr-2"
+                    (click)="abrirDialog()"></button>
+            </ng-template>
+        </p-toolbar>
+
+        <p-table #dt [value]="listaCuotas" [rows]="10" [paginator]="true" responsive="stack"
+            [globalFilterFields]="['idDetalleVenta','pagoParcial','fechaCuotaString']"
+            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+            [showCurrentPageReport]="true">
+
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <h5 class="p-m-0">Cuotas</h5>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Buscar..." />
+                    </span>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="idDetalleVenta">Codigo Cuota<p-sortIcon field="idDetalleVenta"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="pagoParcial">Precio<p-sortIcon field="pagoParcial"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="fechaCuotaString">Fecha<p-sortIcon field="fechaCuotaString"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-cuotas>
+                <tr>
+                    <td>C-00{{cuotas.idDetalleVenta}}</td>
+                    <td>{{cuotas.pagoParcial}}</td>
+                    <td>{{cuotas.fechaCuotaString}}</td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="summary">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    Total: {{listaCuotas ? listaCuotas.length : 0 }} cuotas
+                </div>
+            </ng-template>
+        </p-table>
     </div>
+
 </div>
+
+<!-- Dialog Cuotas -->
+<p-dialog [(visible)]="cuotaDialog" [style]="{width: '40vw'}" header="Cuotas" [modal]="true" styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <form [formGroup]="formCuotas">
+
+            <div class="p-field">
+                <label>Precio</label>
+                <p-inputNumber mode="currency" currency="PEN" locale="es-PE" formControlName="precioCuota"></p-inputNumber>
+            </div>
+
+            <div class="p-field">
+                <label>Fecha</label>
+                <p-calendar appendTo="body" formControlName="fechaCuota"></p-calendar>
+            </div>
+
+            <div class="p-field">
+                <label class="p-mr-2">¿Pago en 2 cuotas?</label>
+                <p-inputSwitch></p-inputSwitch>
+            </div>
+
+        </form>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+            (click)="cerrarDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"
+            (click)="registrarCuota()"></button>
+    </ng-template>
+</p-dialog>
