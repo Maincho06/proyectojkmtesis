@@ -1,0 +1,39 @@
+<!-- Modal Pedido -->
+
+<div class="p-grid">
+    <div class="p-col-12">
+        <form [formGroup]="formPedido" class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-lg-2">
+                <label>Codigo</label>
+                <input formControlName="codigo" type="text" pInputText>
+            </div>
+
+            <div class="p-field p-lg-5">
+                <label>Solicitante</label>
+                <input formControlName="codigo" type="text" pInputText readonly>
+            </div>
+
+            <div class="p-field p-lg-5">
+                <label>Cliente</label>
+                <input formControlName="codigo" type="text" pInputText readonly>
+            </div>
+
+            <div class="p-field p-col-4">
+                <label for="range">Fecha Solicitud</label>
+                <p-calendar appendTo="body" [baseZIndex]="10000" formControlName="fechaSolicitud" inputId="basic"></p-calendar>
+            </div>
+
+            <div class="p-field p-col-4">
+                <label for="range">Fecha Entrega</label>
+                <p-calendar appendTo="body" [baseZIndex]="10000" formControlName="fechaEntrega" inputId="basic"></p-calendar>
+            </div>
+
+            <div class="p-field p-lg-4">
+                <label>Tipo</label>
+                <p-dropdown [options]="[]" optionLabel="estado" [showClear]="true" placeholder="Tipo" formControlName="tipo"></p-dropdown>
+            </div>
+
+
+        </form>
+    </div>
+</div>

@@ -13,6 +13,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/ventas/gestionarVenta',          title: 'Gestionar Venta',              icon:'nc-bank',      class: '' },
   { path: '/ventas/gestionarCliente',          title: 'Gestionar Cliente',              icon:'nc-bank',      class: '' },
   { path: '/proyecto/gestionarTrabajadores', title: 'Gestionar Trabajadores',     icon:'nc-bank',    class: '' },
+  { path: '/ventas/gestionarPedidos', title: 'Gestionar Pedido', icon: 'nc-bank', class: ''}
   // { path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' },
 ];
 

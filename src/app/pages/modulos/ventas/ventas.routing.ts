@@ -5,6 +5,7 @@ import { GestionarClienteComponent } from "./gestionar-cliente/gestionar-cliente
 import { GestionarCotizacionDetalleComponent } from "./gestionar-cotizacion/components/gestionar-cotizacion-detalle/gestionar-cotizacion-detalle.component";
 import { GestionarCotizacionComponent } from './gestionar-cotizacion/gestionar-cotizacion.component';
 import { GestionarVentaComponent } from './gestionar-venta/gestionar-venta.component';
+import { GestionarPedidosComponent } from './gestionar-pedidos/gestionar-pedidos.component';
 
 const routes: Routes =
     [
@@ -33,6 +34,12 @@ const routes: Routes =
                         { path: '', component: GestionarClienteComponent },
                     ]
                 },
+                {
+                    path: 'gestionarPedidos',
+                    children: [
+                        { path: '', component: GestionarPedidosComponent}
+                    ]
+                }
             ]
         },
     ];
