@@ -1,4 +1,6 @@
-<div class="card p-mb-4 p-shadow-6">
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<div class="card p-mb-4">
     <p-table [value]="trabajadores" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
@@ -11,30 +13,30 @@
         </ng-template>
         <ng-template pTemplate="body" let-tipotrabajador>
             <tr>
-                <td>{{tipotrabajador.rol}}</td>
+                <td>{{tipotrabajador.descripcion}}</td>
                 <td>{{tipotrabajador.cantidad}}</td>
                 <td>{{tipotrabajador.precio}}</td>
-                <td>{{tipotrabajador.cantidad * tipotrabajador.precio}</td>
+                <td>{{tipotrabajador.cantidad * tipotrabajador.precio}}</td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
-                        pTooltip="Editar"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                        pTooltip="Eliminar"></button>
+                    <button (click)="modificar(tipotrabajador)" pButton pRipple icon="pi pi-pencil"
+                        class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
+                    <button (click)="deleteTipoTrabajador(tipotrabajador)" pButton pRipple icon="pi pi-trash"
+                        class="p-button-rounded p-button-danger" pTooltip="Eliminar"></button>
                 </td>
             </tr>
         </ng-template>
     </p-table>
-</div>
-
-<div class="p-fluid p-grid">
-    <div class="p-field p-col-12">
-        <button (click)="mostrarModal=true" pButton pRipple type="button" icon="pi pi-plus" style="float: right;"
-            class="alinear-button p-button-rounded p-button-text"></button>
+    <div class="p-fluid p-grid">
+        <div class="p-field p-col-12">
+            <button (click)="nuevo()" pButton pRipple type="button" icon="pi pi-plus" style="float: right;"
+                class="alinear-button p-button-rounded p-button-text"></button>
+        </div>
     </div>
+
 </div>
 
 
-<p-dialog header="Agregar rol" [(visible)]="mostrarModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+<p-dialog header="Rol" [(visible)]="mostrarModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
     [resizable]="false">
     <form [formGroup]="formRol" class="p-fluid p-formgrid p-grid">
 
@@ -50,7 +52,7 @@
         </div>
         <div class="p-field p-col-6">
             <label>Precio</label>
-            <input formControlName="precio" type="precio" pInputText>
+            <input formControlName="precio" type="number" pInputText>
         </div>
     </form>
 
@@ -59,7 +61,4 @@
             class="p-button-danger"></button>
         <button pButton type="button" (click)="guardarTipoTrabajador()" label="Guardar"></button>
     </ng-template>
-    <!-- <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="mostrarModal=false" label="Cerrar" styleClass="p-button-text"></p-button>
-    </ng-template> -->
 </p-dialog>

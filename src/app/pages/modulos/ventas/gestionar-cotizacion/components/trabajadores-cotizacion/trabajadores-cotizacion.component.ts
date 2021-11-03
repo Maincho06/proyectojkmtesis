@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IRegisterTrabajadorCotizacion } from '@models/cotizacionmodel';
+import { IRegisterTrabajadorCotizacion, ITipoTrabajadorModel, IUpdateTrabajadorCotizacion } from '@models/cotizacionmodel';
 import { ITipoTrabajador } from '@models/trabajadormodel';
 import { CotizacionService } from '@services/cotizacion.service';
 import { TrabajadorService } from '@services/trabajador.service';
@@ -23,9 +23,7 @@ export class TrabajadoresCotizacionComponent implements OnInit {
   mostrarModal = false;
 
   tipoTrabajadores: ITipoTrabajador[] = [];
-  trabajadores: any[] = [];
-
-  cols: any[];
+  trabajadores: ITipoTrabajadorModel[] = [];
 
   modificando = false;
 
@@ -43,9 +41,21 @@ export class TrabajadoresCotizacionComponent implements OnInit {
   async ngOnInit() {
     await this.listarTipoTrabajadores();
 
-    this._activatedRoute.paramMap.subscribe(params => {
+    this._activatedRoute.paramMap.subscribe(async params => {
       this.idCotizacion = Number(params.get('id'));
+      await this.listarTrabajadoresPorCotizacionId(this.idCotizacion);
     })
+  }
+
+
+  async listarTrabajadoresPorCotizacionId(idCotizacion: number) {
+    try {
+      let data = await this._cotizacionService.getTrabajadoresByCotizacion(idCotizacion);
+      this.trabajadores = data;
+    } catch (error) {
+      console.error(error);
+      this.trabajadores = [];
+    }
   }
 
   async listarTipoTrabajadores() {
@@ -66,9 +76,29 @@ export class TrabajadoresCotizacionComponent implements OnInit {
     })
   }
 
+  nuevo() {
+    this.mostrarModal = true;
+    this.modificando = false;
+    this.formRol.reset();
+    this.formRol.controls.rol.enable();
+  }
+
+  modificar(trabajador: ITipoTrabajadorModel) {
+    this.mostrarModal = true;
+    this.modificando = true;
+
+    this.formRol.patchValue({
+      rol: this.tipoTrabajadores.find(item => item.id == trabajador.idTipoTrabajador),
+      cantidad: trabajador.cantidad,
+      precio: trabajador.precio
+    })
+
+    this.formRol.controls.rol.disable();
+  }
+
   guardarTipoTrabajador() {
     if (this.modificando) {
-
+      this.actualizarTipoTrabajador();
     } else {
       this.registrarTipoTrabajador();
     }
@@ -103,8 +133,70 @@ export class TrabajadoresCotizacionComponent implements OnInit {
         messageService: this._messageService
       });
 
+      this.formRol.reset();
+      await this.listarTrabajadoresPorCotizacionId(this.idCotizacion);
+
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async actualizarTipoTrabajador() {
+    if (this.formRol.invalid) {
+      // Mostrar el snackbar
+      toast({
+        title: "Advertencia",
+        message: 'Revise los campos ingresados',
+        type: 'warn',
+        messageService: this._messageService
+      });
+      return;
+    }
+
+    let form = this.formRol.getRawValue();
+    let tipoTrabajador: IUpdateTrabajadorCotizacion = {
+      IdCotizacion: this.idCotizacion,
+      IdTipoTrabajador: form.rol.id,
+      Cantidad: form.cantidad,
+      Precio: form.precio
+    }
+
+    try {
+      let data = await this._cotizacionService.updateTipoTrabajadorCotizacion(tipoTrabajador);
+      toast({
+        title: "Correcto",
+        message: 'Se actualizó correctamente',
+        type: 'success',
+        messageService: this._messageService
+      });
+
+      await this.listarTrabajadoresPorCotizacionId(this.idCotizacion);
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  deleteTipoTrabajador(tipo: ITipoTrabajadorModel) {
+    this._confirmationService.confirm({
+      message: '¿Desea eliminar el tipo de trabajador?',
+      accept: async () => {
+        try {
+          await this._cotizacionService.deleteTipoTrabajadorCotizacion(this.idCotizacion, tipo.idTipoTrabajador);
+
+          toast({
+            title: "Correcto",
+            message: 'Se eliminó correctamente',
+            type: 'success',
+            messageService: this._messageService
+          });
+
+          await this.listarTrabajadoresPorCotizacionId(this.idCotizacion);
+
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    });
   }
 }

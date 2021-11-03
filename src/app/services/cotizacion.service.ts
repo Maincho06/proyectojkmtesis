@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IRegisterCotizacion, IRegisterTrabajadorCotizacion, IUpdateCotizacion } from '@models/cotizacionmodel';
+import { IAceptarCotizacion, IRegisterActividadCotizacion, IRegisterCotizacion, IRegisterTrabajadorCotizacion, IUpdateActividadCotizacion, IUpdateCotizacion, IUpdateTrabajadorCotizacion } from '@models/cotizacionmodel';
 import { COTIZACION_URL } from '@utils/url_constants';
 import { BaseService } from './base.service';
 
@@ -15,15 +15,9 @@ export class CotizacionService extends BaseService {
     super();
   }
 
-  getCotizacionPaginado({
-    pages = 1,
-    rows = 100
-  }): Promise<any> {
-    let params = new HttpParams();
-    params = params.append('Pages', pages.toString());
-    params = params.append('Rows', rows.toString());
+  getCotizacionPaginado(): Promise<any> {
 
-    return this.http.get<any>(`${COTIZACION_URL}`, { params, headers: this.obtenerHeaders() }).toPromise();
+    return this.http.get<any>(`${COTIZACION_URL}`, { headers: this.obtenerHeaders() }).toPromise();
   }
 
   getCotizacionById(
@@ -50,5 +44,67 @@ export class CotizacionService extends BaseService {
   ): Promise<any> {
     return this.http.post<any>(`${COTIZACION_URL}/${tipoTrabajador.IdCotizacion}/Trabajadores`,
       tipoTrabajador, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  getTrabajadoresByCotizacion(
+    idCotizacion: number
+  ): Promise<any> {
+
+    return this.http.get<any>(`${COTIZACION_URL}/${idCotizacion}/Trabajadores`, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  updateTipoTrabajadorCotizacion(
+    cotizacion: IUpdateTrabajadorCotizacion
+  ): Promise<any> {
+    return this.http.put<any>(`${COTIZACION_URL}/${cotizacion.IdCotizacion}/Trabajadores/${cotizacion.IdTipoTrabajador}`,
+      cotizacion, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  deleteTipoTrabajadorCotizacion(
+    idCotizacion: number,
+    idTipo: number
+  ): Promise<any> {
+    return this.http.delete<any>(`${COTIZACION_URL}/${idCotizacion}/Trabajadores/${idTipo}`, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+
+  getActividadByCotizacion(
+    idCotizacion: number
+  ): Promise<any> {
+    return this.http.get<any>(`${COTIZACION_URL}/${idCotizacion}/Actividades`, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  registerActividadByCotizacion(
+    actividad: IRegisterActividadCotizacion
+  ): Promise<any> {
+    return this.http.post<any>(`${COTIZACION_URL}/${actividad.IdCotizacion}/Actividades`,
+      actividad, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  updateActividadByCotizacion(
+    cotizacion: IUpdateActividadCotizacion
+  ): Promise<any> {
+    return this.http.put<any>(`${COTIZACION_URL}/${cotizacion.IdCotizacion}/Actividades/${cotizacion.IdActividad}`,
+      cotizacion, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  deleteActividadCotizacion(
+    idCotizacion: number,
+    idActividad: number
+  ): Promise<any> {
+    return this.http.delete<any>(`${COTIZACION_URL}/${idCotizacion}/Actividades/${idActividad}`, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+
+  rechazarCotizacion(
+    idCotizacion: number
+  ): Promise<any> {
+    return this.http.put<any>(`${COTIZACION_URL}/${idCotizacion}/rechazar`, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  aceptarCotizacion(
+    cotizacion: IAceptarCotizacion
+  ): Promise<any> {
+    return this.http.put<any>(`${COTIZACION_URL}/${cotizacion.IdCotizacion}/aceptar`, cotizacion, { headers: this.obtenerHeaders() }).toPromise();
   }
 }

@@ -1,10 +1,13 @@
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
 <div>
     <h5>Buscar:</h5>
 
     <!-- Input Filtro -->
     <div class="p-grid p-mb-4">
         <div class="p-col-6">
-            <input id="tFiltro" type="text" pInputText placeholder="Ingresa tu búsqueda">
+            <input (input)="dt.filterGlobal($event.target.value, 'contains')" id="tFiltro" type="text" pInputText
+                placeholder="Ingresa tu búsqueda">
         </div>
         <div class="p-col-6 p-text-right">
             <button pButton pRipple type="button" label="Registrar Cotización" routerLink="crear"></button>
@@ -13,13 +16,21 @@
 
     <!-- Cotizacion Table -->
     <div class="card p-mb-4 p-shadow-6">
-        <p-table [value]="cotizaciones" responsiveLayout="scroll">
+        <p-table #dt [rows]="10" [paginator]="true" responsive="stack"
+            [globalFilterFields]="['razonSocial','precioCotizacion','fechaSolicitudString']"
+            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+            [showCurrentPageReport]="true" [value]="cotizaciones" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Empresa/Organización</th>
-                    <th>Precio</th>
-                    <th>Fecha de Solicitud</th>
-                    <th>Estado</th>
+                    <th pSortableColumn="razonSocial">Empresa/Organización<p-sortIcon field="razonSocial"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="precioCotizacion">Precio<p-sortIcon field="precioCotizacion"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="fechaSolicitudString">Fecha de Solicitud<p-sortIcon
+                            field="fechaSolicitudString"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="estado.descripcion">Estado<p-sortIcon field="estado.descripcion"></p-sortIcon>
+                    </th>
                     <th>Opciones</th>
                 </tr>
             </ng-template>
@@ -30,12 +41,14 @@
                     <td>{{cotizacion.fechaSolicitudString}}</td>
                     <td>{{cotizacion.estado.descripcion}}</td>
                     <td>
-                        <button [routerLink]="[cotizacion.idCotizacion]" pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
-                            pTooltip="Ver"></button>
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
+                        <button *ngIf="cotizacion.canCotizar" (click)="modalAceptarCotizacion(cotizacion)" pButton
+                            pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2"
+                            pTooltip="Cotizar"></button>
+                        <button *ngIf="cotizacion.canEdit" [routerLink]="[cotizacion.idCotizacion]" pButton pRipple
+                            icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
                             pTooltip="Editar"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                            pTooltip="Eliminar"></button>
+                        <button *ngIf="cotizacion.canDelete" (click)="rechazarCotizacion(cotizacion)" pButton pRipple
+                            icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Eliminar"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -43,3 +56,23 @@
     </div>
 
 </div>
+
+
+<p-dialog header="Proyecto a generar" [(visible)]="mostrarModal" [modal]="true" [style]="{width: '50vw'}"
+    [draggable]="false" [resizable]="false">
+    <form [formGroup]="formAceptarCotizacion" class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12">
+            <label>Nombre Proyecto</label>
+            <input formControlName="nombreProyecto" type="text" pInputText>
+        </div>
+        <div class="p-field p-col-12">
+            <label>Descripción Proyecto</label>
+            <textarea formControlName="descripcionProyecto" type="text" pInputTextarea></textarea>
+        </div>
+    </form>
+
+    <ng-template pTemplate="footer">
+        <button pButton type="button" label="Cerrar" (click)="mostrarModal=false" class="p-button-danger"></button>
+        <button pButton type="button" (click)="aceptarCotizacion()" label="Guardar"></button>
+    </ng-template>
+</p-dialog>

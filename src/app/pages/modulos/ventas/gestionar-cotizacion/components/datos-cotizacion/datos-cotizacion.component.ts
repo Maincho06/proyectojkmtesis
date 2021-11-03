@@ -171,8 +171,6 @@ export class DatosCotizacionComponent implements OnInit {
         messageService: this._messageService
       });
 
-      this._route.navigate(['/ventas', 'gestionarCotizacion', data.data])
-
     } catch (error) {
       console.error(error);
     }
