@@ -2,25 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlmacenRoutingModule } from './almacen.routing';
 import { GestionarAlmacenComponent } from './gestionar-almacen/gestionar-almacen.component';
-import { SharedModule } from 'app/shared/shared.module';
+
 import { GestionarAlmacenRegisterComponent } from './gestionar-almacen/components/gestionar-almacen-register/gestionar-almacen-register.component';
-import { GestionarAlmacenUpdate } from './gestionar-almacen/components/gestionar-almacen-update/gestionar-almacen-update.component';
 
 // Dialog
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { SharedModule } from '../../../shared/shared.module';
+import { GestionarAlmacenUpdateComponent } from './gestionar-almacen/components/gestionar-almacen-update/gestionar-almacen-update.component';
 
 const COMPONENTS = [
   GestionarAlmacenComponent,
   GestionarAlmacenRegisterComponent,
-  GestionarAlmacenUpdate
+  GestionarAlmacenUpdateComponent
 ];
 
 @NgModule({
   declarations: [
-    GestionarAlmacenComponent,
-    GestionarAlmacenRegisterComponent,
-    GestionarAlmacenUpdate],
+    ...COMPONENTS
+  ],
   imports: [
     CommonModule,
     AlmacenRoutingModule,
@@ -29,7 +29,7 @@ const COMPONENTS = [
   providers: [
     DialogService,
     ConfirmationService, 
-    MessageService
+    MessageService,
   ],
 })
 export class AlmacenModule { }

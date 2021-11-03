@@ -15,7 +15,7 @@ const routes: Routes = [
                     { path: '', component: GestionarAlmacenComponent}
                 ]
             },
-            { path: '**', redirectTo: 'gestionarProyecto' },
+            { path: '**', redirectTo: 'gestionarAlmacen' },
         ]
     },
 

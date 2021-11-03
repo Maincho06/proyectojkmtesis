@@ -29,7 +29,7 @@ const routes: Routes = [
     path: 'almacen',
     loadChildren: () =>
       import('./modulos/almacen/almacen.module').then((m) => m.AlmacenModule),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
 ];
 

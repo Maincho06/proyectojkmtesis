@@ -5,13 +5,13 @@ import { ClienteService } from '@services/cliente.service';
 import { toast } from '@utils/toast';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-
 @Component({
   selector: 'app-gestionar-almacen-update',
   templateUrl: './gestionar-almacen-update.component.html',
   styleUrls: ['./gestionar-almacen-update.component.scss']
 })
-export class GestionarAlmacenUpdate implements OnInit {
+export class GestionarAlmacenUpdateComponent implements OnInit {
+
   formCliente: FormGroup;
 
   constructor(
@@ -71,4 +71,5 @@ export class GestionarAlmacenUpdate implements OnInit {
     }
 
   }
+
 }

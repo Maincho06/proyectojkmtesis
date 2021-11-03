@@ -5,7 +5,6 @@ import { AlmacenService } from '@services/almacen.service';
 import { toast } from '@utils/toast';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
-
 @Component({
   selector: 'app-gestionar-almacen-register',
   templateUrl: './gestionar-almacen-register.component.html',
@@ -18,7 +17,6 @@ export class GestionarAlmacenRegisterComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     public ref: DynamicDialogRef,
-    public config: DynamicDialogConfig,
     private _almacenService: AlmacenService,
     private _messageService: MessageService
   ) {
@@ -63,7 +61,7 @@ export class GestionarAlmacenRegisterComponent implements OnInit {
         type: 'success',
         messageService: this._messageService
       });
-      this.ref.close(data);
+      // this.ref.close(data);
     } catch (error) {
       console.error(error);
     }

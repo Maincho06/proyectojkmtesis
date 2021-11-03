@@ -3,14 +3,17 @@ import { IAlmaceModel } from '@models/almacenmodel';
 import { IClienteModel } from '@models/clientemodel';
 import { AlmacenService } from '@services/almacen.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import { GestionarAlmacenRegisterComponent } from './components/gestionar-almacen-register/gestionar-almacen-register.component';
+
 
 
 @Component({
   selector: 'app-gestionar-almacen',
   templateUrl: './gestionar-almacen.component.html',
-  styleUrls: ['./gestionar-almacen.component.scss'],
+  styleUrls: ['./gestionar-almacen.component.scss']
 })
 export class GestionarAlmacenComponent implements OnInit {
+
   almacen: IAlmaceModel[] = [];
 
   constructor(
@@ -33,10 +36,10 @@ export class GestionarAlmacenComponent implements OnInit {
   }
 
   mostrarDialogRegister() {
-    // const ref = this._dialogService.open(GestionarAlmacenRegisterComponent, {
-    //   header: 'Registrar almacen',
-    //   width: '50%'
-    // });
+    const ref = this._dialogService.open(GestionarAlmacenRegisterComponent, {
+      header: 'Registrar almacen',
+      width: '50%'
+    });
 
     // ref.onClose.subscribe(async (data) => {
     //   await this.listarAlmacen()
@@ -55,14 +58,4 @@ export class GestionarAlmacenComponent implements OnInit {
     // })
   }
 
-
-
-
-
-
-
-
-
 }
-
-
