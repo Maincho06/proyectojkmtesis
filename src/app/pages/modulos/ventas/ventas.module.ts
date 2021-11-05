@@ -30,7 +30,7 @@ import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-v
     GestionarClientRegisterComponent,
     GestionarClientUpdateComponent,
     ProductosCotizacionComponent,
-    DetalleVentaComponent
+    DetalleVentaComponent,
   ],
   imports: [
     CommonModule,
