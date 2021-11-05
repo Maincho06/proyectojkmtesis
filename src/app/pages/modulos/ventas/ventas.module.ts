@@ -13,6 +13,7 @@ import { ActividadesCotizacionComponent } from './gestionar-cotizacion/component
 import { GestionarClienteComponent } from './gestionar-cliente/gestionar-cliente.component';
 import { GestionarClientRegisterComponent } from './gestionar-cliente/components/gestionar-client-register/gestionar-client-register.component';
 import { GestionarClientUpdateComponent } from './gestionar-cliente/components/gestionar-client-update/gestionar-client-update.component';
+import { ProductosCotizacionComponent } from './gestionar-cotizacion/components/productos-cotizacion/productos-cotizacion.component';
 import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-venta.component';
 
 
@@ -28,7 +29,8 @@ import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-v
     GestionarClienteComponent,
     GestionarClientRegisterComponent,
     GestionarClientUpdateComponent,
-    DetalleVentaComponent,
+    ProductosCotizacionComponent,
+    DetalleVentaComponent
   ],
   imports: [
     CommonModule,
