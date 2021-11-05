@@ -71,47 +71,27 @@ export class GestionarCotizacionComponent implements OnInit {
     });
   }
 
-  modalAceptarCotizacion(cotizacion: ICotizacionModel) {
-    this.formAceptarCotizacion.reset()
-    this.mostrarModal = true;
-    this.formAceptarCotizacion.patchValue({
-      idCotizacion: cotizacion.idCotizacion
-    })
-  }
+  async aceptarCotizacion(cotizacion: ICotizacionModel) {
+    this._confirmationService.confirm({
+      message: '¿Desea aceptar la cotización?',
+      accept: async () => {
+        try {
+          await this._cotizacionService.aceptarCotizacion(cotizacion.idCotizacion);
 
-  async aceptarCotizacion() {
-    if (this.formAceptarCotizacion.invalid) {
-      // Mostrar el snackbar
-      toast({
-        title: "Advertencia",
-        message: 'Revise los campos ingresados',
-        type: 'warn',
-        messageService: this._messageService
-      });
-      return;
-    }
+          toast({
+            title: "Correcto",
+            message: 'Se aceptó correctamente',
+            type: 'success',
+            messageService: this._messageService
+          });
 
-    let form = this.formAceptarCotizacion.value;
-    let cotizacion: IAceptarCotizacion = {
-      IdCotizacion: form.idCotizacion,
-      Descripcion: form.descripcionProyecto,
-      Nombre: form.nombreProyecto
-    }
-    try {
-      let data = await this._cotizacionService.aceptarCotizacion(cotizacion);
-      toast({
-        title: "Correcto",
-        message: 'Se aceptó correctamente',
-        type: 'success',
-        messageService: this._messageService
-      });
+          await this.listarCotizacion();
 
-      this.mostrarModal = false;
-      await this.listarCotizacion();
-
-    } catch (error) {
-      console.error(error);
-    }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    });
   }
 
 }

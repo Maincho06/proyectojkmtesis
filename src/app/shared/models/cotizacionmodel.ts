@@ -12,6 +12,7 @@ export interface ICotizacionModel {
     idCliente: number;
     descripcionEstado: string;
     precioCotizacion: number;
+    tipoCotizacion: Identifier;
     canCotizar: boolean;
     canDelete: boolean;
     canEdit: boolean;
@@ -24,6 +25,7 @@ export interface IRegisterCotizacion {
     Email: string;
     IdCliente: number;
     PrecioCotizacion: number;
+    IdTipoCotizacion: number;
 }
 
 export interface IUpdateCotizacion {
@@ -34,6 +36,7 @@ export interface IUpdateCotizacion {
     Email: string;
     IdCliente: number;
     PrecioCotizacion: number;
+    IdTipoCotizacion: number;
 }
 
 export interface IRegisterTrabajadorCotizacion {
@@ -98,4 +101,28 @@ export interface IAceptarCotizacion {
     IdCotizacion: number;
     Descripcion: string;
     Nombre: string;
+}
+
+
+export interface IRegisterDetalleOrdenCotizacion {
+    IdCotizacion: number;
+    IdProducto: number;
+    Cantidad: number;
+    Precio: number;
+}
+
+export interface IUpdateDetalleOrdenCotizacion{
+    IdCotizacion: number;
+    IdDetalleOrden: number;
+    Cantidad: number;
+    Precio: number;
+}
+export interface IDetalleOrdenModel {
+    idDetalleOrden: number;
+    idCotizacion: number;
+    idProducto: number;
+    codigoProducto: string;
+    nombreProducto: string;
+    cantidad: number;
+    precio: number;
 }

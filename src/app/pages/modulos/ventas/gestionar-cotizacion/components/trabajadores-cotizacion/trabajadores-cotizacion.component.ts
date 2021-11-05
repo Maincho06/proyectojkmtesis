@@ -51,7 +51,7 @@ export class TrabajadoresCotizacionComponent implements OnInit {
   async listarTrabajadoresPorCotizacionId(idCotizacion: number) {
     try {
       let data = await this._cotizacionService.getTrabajadoresByCotizacion(idCotizacion);
-      this.trabajadores = data;
+      this.trabajadores = data ?? [];
     } catch (error) {
       console.error(error);
       this.trabajadores = [];
@@ -198,5 +198,10 @@ export class TrabajadoresCotizacionComponent implements OnInit {
         }
       }
     });
+  }
+
+  get precioReferencial() {
+    return 'Precio Referencial: ' + (this.formRol?.controls?.rol?.value?.precio_referencial ?? 0)
+
   }
 }

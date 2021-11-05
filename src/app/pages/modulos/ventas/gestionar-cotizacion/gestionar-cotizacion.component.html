@@ -41,7 +41,7 @@
                     <td>{{cotizacion.fechaSolicitudString}}</td>
                     <td>{{cotizacion.estado.descripcion}}</td>
                     <td>
-                        <button *ngIf="cotizacion.canCotizar" (click)="modalAceptarCotizacion(cotizacion)" pButton
+                        <button *ngIf="cotizacion.canCotizar" (click)="aceptarCotizacion(cotizacion)" pButton
                             pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2"
                             pTooltip="Cotizar"></button>
                         <button *ngIf="cotizacion.canEdit" [routerLink]="[cotizacion.idCotizacion]" pButton pRipple
@@ -56,23 +56,3 @@
     </div>
 
 </div>
-
-
-<p-dialog header="Proyecto a generar" [(visible)]="mostrarModal" [modal]="true" [style]="{width: '50vw'}"
-    [draggable]="false" [resizable]="false">
-    <form [formGroup]="formAceptarCotizacion" class="p-fluid p-formgrid p-grid">
-        <div class="p-field p-col-12">
-            <label>Nombre Proyecto</label>
-            <input formControlName="nombreProyecto" type="text" pInputText>
-        </div>
-        <div class="p-field p-col-12">
-            <label>Descripción Proyecto</label>
-            <textarea formControlName="descripcionProyecto" type="text" pInputTextarea></textarea>
-        </div>
-    </form>
-
-    <ng-template pTemplate="footer">
-        <button pButton type="button" label="Cerrar" (click)="mostrarModal=false" class="p-button-danger"></button>
-        <button pButton type="button" (click)="aceptarCotizacion()" label="Guardar"></button>
-    </ng-template>
-</p-dialog>

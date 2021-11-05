@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IClienteModel } from '@models/clientemodel';
 import { ICotizacionModel, IRegisterCotizacion, IUpdateCotizacion } from '@models/cotizacionmodel';
+import { Identifier } from '@models/identifiermodel';
 import { ClienteService } from '@services/cliente.service';
 import { CotizacionService } from '@services/cotizacion.service';
 import { toast } from '@utils/toast';
@@ -22,6 +23,7 @@ export class DatosCotizacionComponent implements OnInit {
   idCotizacion: number;
 
   cotizacion: ICotizacionModel;
+  tipos: Identifier[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,11 +38,14 @@ export class DatosCotizacionComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.listarCliente();
+    await this.listarTipos();
 
     this._activatedRoute.paramMap.subscribe(params => {
       this.idCotizacion = Number(params.get('id'));
       if (this.idCotizacion) {
         this.listarCotizacionId(this.idCotizacion);
+      } else {
+        this.formDatos.controls.precio.disable()
       }
     })
   }
@@ -66,10 +71,21 @@ export class DatosCotizacionComponent implements OnInit {
     }
   }
 
+  async listarTipos() {
+    try {
+      let data = await this._cotizacionService.getTiposCotizacion();
+      this.tipos = data;
+    } catch (error) {
+      console.error(error);
+      this.cliente = [];
+    }
+  }
+
   llenarForm(cotizacion: ICotizacionModel) {
 
     let fecha = moment(cotizacion.fechaSolicitudString, 'DD-MM-YYYY');
     this.formDatos.patchValue({
+      tipoCotizacion: this.tipos.find(item => item.id == cotizacion.tipoCotizacion.id),
       solicitante: cotizacion.solicitante,
       fechaSolicitud: fecha.toDate(),
       empresa: this.cliente.find(item => item.idCliente == cotizacion.idCliente),
@@ -82,6 +98,7 @@ export class DatosCotizacionComponent implements OnInit {
 
   inicializarForm() {
     this.formDatos = this.formBuilder.group({
+      tipoCotizacion: [null, Validators.required],
       solicitante: ['', Validators.required],
       empresa: ['', Validators.required],
       fechaSolicitud: ['', Validators.required],
@@ -119,7 +136,8 @@ export class DatosCotizacionComponent implements OnInit {
       FechaSolicitud: form.fechaSolicitud,
       Email: form.correo,
       IdCliente: form.empresa.idCliente,
-      PrecioCotizacion: form.precio
+      PrecioCotizacion: form.precio,
+      IdTipoCotizacion: form.tipoCotizacion.id
     }
 
     try {
@@ -158,7 +176,8 @@ export class DatosCotizacionComponent implements OnInit {
       Email: form.correo,
       IdCliente: form.empresa.idCliente,
       PrecioCotizacion: form.precio,
-      IdCotizacion: this.idCotizacion
+      IdCotizacion: this.idCotizacion,
+      IdTipoCotizacion: form.tipoCotizacion.id
     }
 
 

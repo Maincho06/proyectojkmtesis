@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IAceptarCotizacion, IRegisterActividadCotizacion, IRegisterCotizacion, IRegisterTrabajadorCotizacion, IUpdateActividadCotizacion, IUpdateCotizacion, IUpdateTrabajadorCotizacion } from '@models/cotizacionmodel';
+import { IAceptarCotizacion, IRegisterActividadCotizacion, IRegisterCotizacion, IRegisterDetalleOrdenCotizacion, IRegisterTrabajadorCotizacion, IUpdateActividadCotizacion, IUpdateCotizacion, IUpdateDetalleOrdenCotizacion, IUpdateTrabajadorCotizacion } from '@models/cotizacionmodel';
 import { COTIZACION_URL } from '@utils/url_constants';
 import { BaseService } from './base.service';
 
@@ -103,8 +103,40 @@ export class CotizacionService extends BaseService {
   }
 
   aceptarCotizacion(
-    cotizacion: IAceptarCotizacion
+    idCotizacion: number
   ): Promise<any> {
-    return this.http.put<any>(`${COTIZACION_URL}/${cotizacion.IdCotizacion}/aceptar`, cotizacion, { headers: this.obtenerHeaders() }).toPromise();
+    return this.http.put<any>(`${COTIZACION_URL}/${idCotizacion}/aceptar`, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  getTiposCotizacion(){
+    return this.http.get<any>(`${COTIZACION_URL}/Tipos`, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+
+  getDetalleOrdenByCotizacion(
+    idCotizacion: number
+  ): Promise<any> {
+    return this.http.get<any>(`${COTIZACION_URL}/${idCotizacion}/DetalleOrden`, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  registerDetalleOrdenCotizacion(
+    detalleOrden: IRegisterDetalleOrdenCotizacion
+  ): Promise<any> {
+    return this.http.post<any>(`${COTIZACION_URL}/${detalleOrden.IdCotizacion}/DetalleOrden`,
+    detalleOrden, { headers: this.obtenerHeaders() }).toPromise();
+  }
+
+  updateDetalleOrdenCotizacion(
+    detalleOrden: IUpdateDetalleOrdenCotizacion
+  ): Promise<any> {
+    return this.http.put<any>(`${COTIZACION_URL}/${detalleOrden.IdCotizacion}/DetalleOrden/${detalleOrden.IdDetalleOrden}`,
+    detalleOrden, { headers: this.obtenerHeaders() }).toPromise();
+  }
+  
+  deleteDetalleOrdenCotizacion(
+    idCotizacion: number,
+    idDetalleOrden: number
+  ): Promise<any> {
+    return this.http.delete<any>(`${COTIZACION_URL}/${idCotizacion}/DetalleOrden/${idDetalleOrden}`, { headers: this.obtenerHeaders() }).toPromise();
   }
 }

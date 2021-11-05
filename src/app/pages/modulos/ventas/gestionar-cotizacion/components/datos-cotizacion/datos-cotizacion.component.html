@@ -1,36 +1,41 @@
 <form [formGroup]="formDatos" class="p-fluid p-formgrid p-grid">
     <div class="p-field p-col-4">
-        <label>Solicitante</label>
-        <input formControlName="solicitante" type="text" pInputText>
-    </div>
-    <div class="p-field p-col-4">
-        <div class="p-field p-col-12">
-            <label>Empresa</label>
-            <p-dropdown appendTo="body" [options]="cliente" formControlName="empresa"
-                placeholder="Seleccione una empresa" optionLabel="razonSocial" optionValue="idCliente"
-                [showClear]="true"></p-dropdown>
-        </div>
+        <label>Tipo Cotización</label>
+        <p-dropdown appendTo="body" [options]="tipos" formControlName="tipoCotizacion" placeholder="Seleccione un tipo"
+            optionLabel="descripcion" optionValue="id"></p-dropdown>
     </div>
 
     <div class="p-field p-col-4">
+        <label>Solicitante</label>
+        <input formControlName="solicitante" type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label>Empresa</label>
+        <p-dropdown appendTo="body" [options]="cliente" formControlName="empresa" placeholder="Seleccione una empresa"
+            optionLabel="razonSocial" optionValue="idCliente" [showClear]="true"></p-dropdown>
+    </div>
+
+    <div class="p-field p-col-3">
         <label for="basic">Fecha de Solicitud</label>
         <p-calendar formControlName="fechaSolicitud" dateFormat="dd/mm/yy" inputId="basic"></p-calendar>
     </div>
 
-    <div class="p-field p-col-4">
+    <div class="p-field p-col-3">
         <label>Estado</label>
         <input readonly formControlName="estado" type="text" pInputText>
     </div>
 
-    <div class="p-field p-col-4">
+    <div class="p-field p-col-3">
         <label>Correo</label>
         <input formControlName="correo" type="text" pInputText>
     </div>
 
-    <div class="p-field p-col-4">
+    <div class="p-field p-col-3">
         <label>Precio</label>
         <input formControlName="precio" type="number" pInputText>
     </div>
+
     <div class="p-field p-col-12">
         <label>Descripción</label>
         <textarea formControlName="descripcion" pInputTextarea></textarea>
