@@ -32,7 +32,7 @@ export class GestionarPedidosComponent implements OnInit {
 
     dialogConfig.width = '80vw';
     dialogConfig.baseZIndex = BASE_INDEX_MODAL;
-    dialogConfig.header = 'Venta';
+    dialogConfig.header = 'Pedido';
     // dialogConfig.data = { 
 
     // }

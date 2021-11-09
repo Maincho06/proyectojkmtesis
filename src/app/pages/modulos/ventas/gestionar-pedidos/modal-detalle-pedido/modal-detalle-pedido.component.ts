@@ -10,6 +10,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 export class ModalDetallePedidoComponent implements OnInit {
 
   formPedido: FormGroup;
+  products: any[];
+
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -30,7 +32,8 @@ export class ModalDetallePedidoComponent implements OnInit {
       'cliente'       : [null,[Validators.required]],
       'fechaSolicitud': [null,[Validators.required]],
       'fechaEntrega'  : [null, [Validators.required]],
-      'estado'        : [null,[Validators.required]]
+      'estado'        : [null,[Validators.required]],
+      'tipo'        : [null,[Validators.required]]
     });
   }
 
