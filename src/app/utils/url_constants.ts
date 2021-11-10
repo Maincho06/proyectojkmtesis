@@ -7,4 +7,5 @@ export const COTIZACION_URL   = `${environment.API_URL}Cotizacion`
 export const PRODUCTO_URL   = `${environment.API_URL}Producto`
 export const VENTA_URL = `${environment.API_URL}Venta`;
 export const CLIENTE_URL = `${environment.API_URL}Cliente`;
+export const NOTIFICATION_URL = `${environment.API_URL}Notification`;
 

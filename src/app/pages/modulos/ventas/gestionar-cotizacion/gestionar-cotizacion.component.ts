@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAceptarCotizacion, ICotizacionModel } from '@models/cotizacionmodel';
 import { CotizacionService } from '@services/cotizacion.service';
+import { NotificationService } from '@services/notification.service';
 import { toast } from '@utils/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -22,6 +23,7 @@ export class GestionarCotizacionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _confirmationService: ConfirmationService,
     private _messageService: MessageService,
+    private _notificationService: NotificationService
   ) {
     this.inicializarForm();
   }
@@ -86,6 +88,16 @@ export class GestionarCotizacionComponent implements OnInit {
           });
 
           await this.listarCotizacion();
+          
+          await this._notificationService.aceptarCotizacion(cotizacion.idCotizacion);
+
+          toast({
+            title: "Correcto",
+            message: 'Se envió el correo',
+            type: 'success',
+            messageService: this._messageService
+          });
+
 
         } catch (err) {
           console.error(err);
@@ -93,5 +105,4 @@ export class GestionarCotizacionComponent implements OnInit {
       }
     });
   }
-
 }
