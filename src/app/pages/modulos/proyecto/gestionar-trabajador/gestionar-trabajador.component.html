@@ -1,7 +1,13 @@
 <div>
     <h5>Gestionar Trabajador</h5>
-    <div class="pb-4">
-        <button pButton type="button" label="Registrar" (click)="detalleTrabajador(true, null)"></button>
+    <div class="p-grid p-mb-4">
+        <div class="p-col-6">
+            <input id="tFiltro" type="text" pInputText placeholder="Ingresa tu búsqueda">
+        </div>
+        <div class="p-col-6 p-text-right">
+            <button pButton pRipple type="button" label="Registrar Cotización" (click)="detalleTrabajador(true, null)"></button>
+        </div>
+        <!-- <button pButton type="button" label="Registrar" (click)="detalleTrabajador(true, null)"></button> -->
 
     </div>
 
