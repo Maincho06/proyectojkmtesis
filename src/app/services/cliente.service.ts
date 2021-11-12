@@ -16,15 +16,9 @@ export class ClienteService extends BaseService {
     super();
   }
 
-  getClientePaginado({
-    pages = 1,
-    rows = 100
-  }): Promise<any> {
-    let params = new HttpParams();
-    params = params.append('Pages', pages.toString());
-    params = params.append('Rows', rows.toString());
+  getClientes(): Promise<any> {
 
-    return this.http.get<any>(`${CLIENTE_URL}`, { params, headers: this.obtenerHeaders() }).toPromise();
+    return this.http.get<any>(`${CLIENTE_URL}`, { headers: this.obtenerHeaders() }).toPromise();
   }
 
   registerCliente(

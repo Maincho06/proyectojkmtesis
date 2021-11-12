@@ -63,8 +63,8 @@ export class DatosCotizacionComponent implements OnInit {
 
   async listarCliente() {
     try {
-      let data = await this._clienteService.getClientePaginado({ pages: 1, rows: 100 });
-      this.cliente = data.data;
+      let data = await this._clienteService.getClientes();
+      this.cliente = data;
     } catch (error) {
       console.error(error);
       this.cliente = [];

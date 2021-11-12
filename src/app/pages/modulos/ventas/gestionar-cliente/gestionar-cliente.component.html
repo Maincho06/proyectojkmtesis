@@ -4,37 +4,27 @@
     <!-- Input Filtro -->
     <div class="p-grid p-mb-4">
         <div class="p-col-6">
-            <!-- (input)="dt.filterGlobal($event.target.value, 'contains')" -->
-            <input type="text" pInputText placeholder="Ingresa tu búsqueda">
+            <input (input)="dt.filterGlobal($event.target.value, 'contains')" type="text" pInputText
+                placeholder="Ingresa tu búsqueda">
         </div>
         <div class="p-col-6 p-text-right">
             <button (click)="mostrarDialogRegister()" pButton pRipple type="button" label="Registrar Cliente"></button>
         </div>
     </div>
-
     <!-- Cliente Table -->
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{col.header}}
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
     <div class="card p-mb-4 p-shadow-6">
-        <p-table #dt [value]="cliente" responsiveLayout="scroll">
+        <p-table #dt [rows]="10" [paginator]="true" responsive="stack"
+            [globalFilterFields]="['ruc','razonSocial','telefono']"
+            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+            [showCurrentPageReport]="true" [value]="cliente" responsiveLayout="scroll">
             <ng-template pTemplate="header">
-
                 <tr>
-                    <th>RUC</th>
-                    <th>Razon Social</th>
-                    <th>Teléfono</th>
+                    <th pSortableColumn="ruc">RUC<p-sortIcon field="ruc"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="razonSocial">Razon Social<p-sortIcon field="razonSocial"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="telefono">Teléfono<p-sortIcon field="telefono"></p-sortIcon>
+                    </th>
                     <th>Opciones</th>
                 </tr>
             </ng-template>
