@@ -83,7 +83,7 @@ export class DatosCotizacionComponent implements OnInit {
 
   llenarForm(cotizacion: ICotizacionModel) {
 
-    let fecha = moment(cotizacion.fechaSolicitud, 'DD-MM-YYYY');
+    let fecha = moment(cotizacion.fechaSolicitudString, 'DD-MM-YYYY');
     this.formDatos.patchValue({
       tipoCotizacion: this.tipos.find(item => item.id == cotizacion.tipoCotizacion.id),
       solicitante: cotizacion.solicitante,
