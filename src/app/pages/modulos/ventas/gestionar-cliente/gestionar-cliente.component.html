@@ -1,22 +1,21 @@
 <div>
-    <h5>Buscar:</h5>
-
-    <!-- Input Filtro -->
-    <div class="p-grid p-mb-4">
-        <div class="p-col-6">
-            <input (input)="dt.filterGlobal($event.target.value, 'contains')" type="text" pInputText
-                placeholder="Ingresa tu búsqueda">
-        </div>
-        <div class="p-col-6 p-text-right">
-            <button (click)="mostrarDialogRegister()" pButton pRipple type="button" label="Registrar Cliente"></button>
-        </div>
-    </div>
     <!-- Cliente Table -->
     <div class="card p-mb-4 p-shadow-6">
         <p-table #dt [rows]="10" [paginator]="true" responsive="stack"
             [globalFilterFields]="['ruc','razonSocial','telefono']"
             currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
             [showCurrentPageReport]="true" [value]="cliente" responsiveLayout="scroll">
+            <!-- Input Filtro -->
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            id="tFiltro" placeholder="Buscar..." />
+                    </span>
+                    <button pButton pRipple type="button" label="Registrar" (click)="mostrarDialogRegister()"></button>
+                </div>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="ruc">RUC<p-sortIcon field="ruc"></p-sortIcon>

@@ -6,6 +6,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { IVentaModel } from '@models/ventamodel';
 import { VentasService } from '@services/ventas.service';
 import { Router } from '@angular/router';
+import { ObvsService } from '@services/obvs.service';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class GestionarVentaComponent implements OnInit {
     private router: Router,
     private _confirmationService: ConfirmationService,
     private _messageService: MessageService,
-    private _ventasService: VentasService
+    private _ventasService: VentasService,
+    private _obvsService: ObvsService
   ) { }
 
   ngOnInit(): void {
@@ -35,16 +37,27 @@ export class GestionarVentaComponent implements OnInit {
   async listarVentas() {
 
     try {
+
+      this._obvsService.toogleSpinner();
       const data: any = await this._ventasService.getVentasPaginado({ pages: 1, rows: 10 }).toPromise();
       this.listaVentas = data.data;
-      console.log(data.data)
-    } catch (error) {
+    }
+
+    catch (error) {
       console.log("Error: ", error);
+    }
+
+    finally {
+      this._obvsService.toogleSpinner();
     }
   }
 
-  detalleVenta(idVenta: number) {
-    this.router.navigate(['/ventas/detalleVenta/' + idVenta])
+  verDetalle(idVenta: number) {
+    this.router.navigate(['/ventas/gestionarVenta/ver/' + idVenta])
+  }
+
+  editarDetalle(idVenta: number) {
+    this.router.navigate(['/ventas/gestionarVenta/editar/' + idVenta])
   }
 
   eliminarVenta(idVenta: number) {

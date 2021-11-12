@@ -4,7 +4,7 @@ export interface ICotizacionModel {
     idCotizacion: number;
     solicitante: string;
     descripcion: string;
-    fechaSolicitudString: string;
+    fechaSolicitud: string;
     email: string;
     razonSocial: string;
     estado: Identifier;

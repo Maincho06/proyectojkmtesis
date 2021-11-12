@@ -1,46 +1,55 @@
-<div class="p-grid">
+<div class="card">
 
-    <!-- Cabecera Venta -->
-    <div class="p-col-12">
-        <form [formGroup]="formVentas" class="p-fluid p-formgrid p-grid">
+    <h5 class="p-mb-5">Detalle Venta</h5>
 
-            <!-- Input Ruc -->
-            <div class="p-field p-col-12 p-md-6 p-lg-6">
-                <label>Ruc</label>
-                <input formControlName="ruc" type="text" pInputText readonly>
-            </div>
+    <div class="p-grid">
 
-            <!-- Input Razon Social -->
-            <div class="p-field p-col-12 p-md-6 p-lg-6">
-                <label>Razon Social</label>
-                <input formControlName="razonSocial" type="text" pInputText readonly>
-            </div>
+        <!-- Cabecera Venta -->
+        <div class="p-col-12">
+            <form [formGroup]="formVentas" class="p-fluid p-formgrid p-grid">
 
-            <!-- Input Precio -->
-            <div class="p-field p-col-12 p-md-6 p-lg-6">
-                <label>Precio</label>
-                <p-inputNumber formControlName="precio" mode="currency" currency="PEN" locale="es-PE"></p-inputNumber>
-            </div>
+                <!-- Input Ruc -->
+                <div class="p-field p-col-12 p-md-6 p-lg-6">
+                    <label>Ruc</label>
+                    <input formControlName="ruc" type="text" pInputText readonly>
+                </div>
 
-            <!-- Input Tipo Venta -->
-            <div class="p-field p-col-12 p-md-6 p-lg-6">
-                <label>Tipo Venta</label>
-                <input formControlName="tipoVenta" type="text" pInputText readonly>
-            </div>
+                <!-- Input Razon Social -->
+                <div class="p-field p-col-12 p-md-6 p-lg-6">
+                    <label>Razon Social</label>
+                    <input formControlName="razonSocial" type="text" pInputText readonly>
+                </div>
 
-        </form>
+                <!-- Input Precio -->
+                <div class="p-field p-col-12 p-md-6 p-lg-6">
+                    <label>Precio</label>
+                    <p-inputNumber mode="currency" currency="PEN" locale="es-PE" formControlName="precio" readonly>
+                    </p-inputNumber>
+                </div>
+
+                <!-- Input Tipo Venta -->
+                <div class="p-field p-col-12 p-md-6 p-lg-6">
+                    <label>Tipo Venta</label>
+                    <input formControlName="tipoVenta" type="text" pInputText readonly>
+                </div>
+
+            </form>
+        </div>
+
     </div>
 
-    <!-- Detalle Venta Table -->
-    <div class="card p-shadow-6">
+    <h5 class="p-mb-5">Cuotas</h5>
 
-        <p-toolbar styleClass="p-mb-4">
+    <!-- Detalle Venta Table -->
+    <div class="p-mt-4">
+
+        <p-toolbar styleClass="p-mb-4" *ngIf="tipo == 'editar'">
             <ng-template pTemplate="left">
             </ng-template>
 
             <ng-template pTemplate="right">
-                <button pButton pRipple label="Agregar Cuota" icon="pi pi-plus" class="p-button-success p-mr-2"
-                    (click)="abrirDialog()"></button>
+                <button [disabled]="validarCuotas" pButton pRipple label="Agregar Cuota" icon="pi pi-plus"
+                    class="p-button-success p-mr-2" (click)="abrirDialog()"></button>
             </ng-template>
         </p-toolbar>
 
@@ -49,7 +58,7 @@
             currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
             [showCurrentPageReport]="true">
 
-            <ng-template pTemplate="caption">
+            <!-- <ng-template pTemplate="caption">
                 <div class="p-d-flex p-ai-center p-jc-between">
                     <h5 class="p-m-0">Cuotas</h5>
                     <span class="p-input-icon-left">
@@ -58,11 +67,12 @@
                             placeholder="Buscar..." />
                     </span>
                 </div>
-            </ng-template>
+            </ng-template> -->
 
             <ng-template pTemplate="header">
                 <tr>
-                    <th pSortableColumn="idDetalleVenta">Codigo Cuota<p-sortIcon field="idDetalleVenta"></p-sortIcon>
+                    <th pSortableColumn="idDetalleVenta">Codigo Cuota<p-sortIcon field="idDetalleVenta">
+                        </p-sortIcon>
                     </th>
                     <th pSortableColumn="pagoParcial">Precio<p-sortIcon field="pagoParcial"></p-sortIcon>
                     </th>
@@ -74,7 +84,7 @@
             <ng-template pTemplate="body" let-cuotas>
                 <tr>
                     <td>C-00{{cuotas.idDetalleVenta}}</td>
-                    <td>{{cuotas.pagoParcial}}</td>
+                    <td>{{cuotas.pagoParcial | currency:'S/ ':'symbol-narrow':'1.2-2'}}</td>
                     <td>{{cuotas.fechaCuotaString}}</td>
                 </tr>
             </ng-template>
@@ -85,38 +95,96 @@
                 </div>
             </ng-template>
         </p-table>
+
     </div>
 
+</div>
+
+<!-- Botones Flotantes -->
+<div class="fab-container">
+    <button pButton pRipple type="button" icon="pi pi-plus" class="fab-toggler p-button-rounded floatButton"
+        (click)="onToggleFab(1, -1)">
+        <!-- <i class="material-icons" [@fabToggler]="{value: tsLista}">add</i> -->
+    </button>
+    <div [@speedDialStagger]="abLista.length">
+        <button *ngFor="let btn of abLista; let ibtn = index;" pButton pRipple type="button"
+            class="p-button-rounded p-button-white floatButton" (click)="clickFab(ibtn)" icon="pi {{btn.icon}}">
+        </button>
+    </div>
 </div>
 
 <!-- Dialog Cuotas -->
 <p-dialog [(visible)]="cuotaDialog" [style]="{width: '40vw'}" header="Cuotas" [modal]="true" styleClass="p-fluid">
 
     <ng-template pTemplate="content">
+
+        <!-- Registro Cuotas -->
         <form [formGroup]="formCuotas">
 
+            <!-- Precio -->
             <div class="p-field">
                 <label>Precio</label>
-                <p-inputNumber mode="currency" currency="PEN" locale="es-PE" formControlName="precioCuota"></p-inputNumber>
+                <p-inputNumber mode="currency" currency="PEN" locale="es-PE" formControlName="precioCuota">
+                </p-inputNumber>
+                <small *ngIf="formCuotas.get('precioCuota').hasError('min')" class="p-error">Verificar Precio.</small>
             </div>
 
+            <!-- Fecha -->
             <div class="p-field">
                 <label>Fecha</label>
                 <p-calendar appendTo="body" formControlName="fechaCuota"></p-calendar>
             </div>
 
-            <div class="p-field">
-                <label class="p-mr-2">¿Pago en 2 cuotas?</label>
-                <p-inputSwitch></p-inputSwitch>
+            <!-- Pago Cuotas -->
+            <div *ngIf="!segundaCuota" class="p-field p-mt-5">
+                <label class="p-mr-4">¿Su pago sera en 2 cuotas?</label>
+                <p-inputSwitch formControlName="pagoCuota"></p-inputSwitch>
             </div>
 
         </form>
+
+        <!-- Registro Proyectos -->
+        <div *ngIf="tipoVenta == 'Proyecto' && !segundaCuota">
+            <h5 class="p-mt-4 p-mb-4">Proyecto</h5>
+
+            <form [formGroup]="formProyectos">
+
+                <!-- Input Nombre -->
+                <div class="p-field">
+                    <label>Nombre</label>
+                    <input formControlName="nombre" type="text" pInputText>
+                </div>
+
+                <!-- Input Descripcion -->
+                <div class="p-field">
+                    <label>Descripcion</label>
+                    <input formControlName="descripcion" type="text" pInputText>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Registro Pedidos -->
+        <div *ngIf="tipoVenta == 'Producto' && !segundaCuota">
+            <h5 class="p-mt-4 p-mb-4">Pedido Proyecto</h5>
+
+            <form [formGroup]="formPedidos">
+
+                <!-- Input Proyecto -->
+                <div class="p-field">
+                    <label>Proyecto</label>
+                    <p-dropdown appendTo="body" [options]="lProyecto" formControlName="proyecto"
+                        placeholder="Seleccione un proyecto" optionLabel="nombreProyecto" optionValue="idProyecto"
+                        [showClear]="true"></p-dropdown>
+                </div>
+
+            </form>
+        </div>
+
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
-            (click)="cerrarDialog()"></button>
-        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"
-            (click)="registrarCuota()"></button>
+        <button pButton pRipple label="Cancelar" class="p-button-danger" (click)="cerrarDialog()"></button>
+        <button pButton pRipple label="Guardar" (click)="registrarCuota()"></button>
     </ng-template>
 </p-dialog>

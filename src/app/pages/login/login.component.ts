@@ -15,6 +15,8 @@ import { MessageService } from 'primeng/api';
 })
 export class LoginComponent implements OnInit {
   formLogin: FormGroup;
+  isLogin: boolean = true;
+  email: string = '';
 
   constructor(
     private _authService: AuthService,
@@ -31,6 +33,32 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     const token = getState(TOKEN_KEY);
     if (token) this._router.navigate(['/dashboard']);
+  }
+
+  changeLogin() {
+    this.isLogin = !this.isLogin;
+    this.email = '';
+    this.formLogin.reset();
+  }
+
+  async recoverUser() {
+    try {
+      this._obvsService.toogleSpinner();
+      // const { data, message }: ILogin = await this._authService.login(
+      //   this.formLogin.value
+      // );
+      toast({
+        title: 'Recuperar Usario',
+        message: "Revisa tu bandeja de entrada",
+        type: 'success',
+        messageService: this._messageService,
+      });
+      this.changeLogin()
+    } catch (err) {
+      console.log(err);
+    } finally {
+      this._obvsService.toogleSpinner();
+    }
   }
 
   async login() {
