@@ -1,40 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { Location, PopStateEvent } from '@angular/common';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import PerfectScrollbar from 'perfect-scrollbar';
-import { filter } from 'rxjs/operators';
-import * as $ from "jquery";
 import { MenuItem } from 'primeng/api';
+import { ObvsService } from '@services/obvs.service';
 
 @Component({
-    selector: 'app-pages',
-    templateUrl: './pages.component.html',
-    styleUrls: ['./pages.component.scss']
+  selector: 'app-pages',
+  templateUrl: './pages.component.html',
+  styleUrls: ['./pages.component.scss'],
 })
+export class PagesComponent implements OnDestroy {
+  sideBarOpen = true;
 
-export class PagesComponent implements OnInit {
+  $items: Subscription;
+  items: MenuItem[];
+  home: MenuItem;
 
-    sideBarOpen = true;
-    
-    items: MenuItem[];
-    home: MenuItem;
+  constructor(private _obvsService: ObvsService) {
+    this.home = { icon: 'pi pi-home', routerLink: '/' };
+    this.$items = _obvsService.$breadcrumbsObvs.subscribe(
+      (value) => (this.items = value)
+    );
+  }
 
-    constructor() { }
+  ngOnDestroy() {
+    this.$items.unsubscribe();
+  }
 
-    ngOnInit() {
-        this.items = [
-            { label: 'Categories' },
-            { label: 'Sports' },
-            { label: 'Football' },
-            { label: 'Countries' },
-        ];
-
-        this.home = {icon: 'pi pi-home', routerLink: '/'};
-    }
-
-    sideBarToggler() {
-        this.sideBarOpen = !this.sideBarOpen
-    }
-
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
 }

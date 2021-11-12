@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BaseService } from './base.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -12,16 +11,14 @@ import { filter } from 'rxjs/operators';
 export class ObvsService extends BaseService {
 
     private readonly $spinner: BehaviorSubject<any> = new BehaviorSubject(false);
-    // readonly $spinnerObvs = this.$spinner.asObservable();
-    // Observable exposing the navbar hierarchy 
     private readonly $navbar: BehaviorSubject<any> = new BehaviorSubject(false);
     readonly $navbarObvs = this.$navbar.asObservable();
+
     // Observable exposing the breadcrumb hierarchy 
     private readonly $breadcrumbs = new BehaviorSubject<any[]>([]);
     readonly $breadcrumbsObvs = this.$breadcrumbs.asObservable();
 
     constructor(
-        private http: HttpClient,
         private _spinner: NgxSpinnerService,
         private router: Router
     ) {
@@ -30,7 +27,7 @@ export class ObvsService extends BaseService {
             .pipe(
                 filter((event) => event instanceof NavigationEnd)
             )
-            .subscribe((event) => {
+            .subscribe(() => {
                 const root = this.router.routerState.snapshot.root;
                 const breadcrumbs: any[] = [];
                 this.addBreadcrumb(root, breadcrumbs);
@@ -56,18 +53,10 @@ export class ObvsService extends BaseService {
     ) {
         if (route) {
             if (route.data.breadcrumb) {
-                const breadcrumb = {
-                    label: this.getLabel(route.data),
-                };
+                const breadcrumb = route?.data?.breadcrumb
                 breadcrumbs.push(breadcrumb);
             }
             this.addBreadcrumb(route.firstChild, breadcrumbs);
         }
-    }
-
-    private getLabel(data) {
-        return typeof data.breadcrumb === 'function'
-            ? data.breadcrumb(data)
-            : data.breadcrumb;
     }
 }

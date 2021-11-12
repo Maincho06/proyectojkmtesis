@@ -11,26 +11,26 @@
                 <!-- Input Ruc -->
                 <div class="p-field p-col-12 p-md-6 p-lg-6">
                     <label>Ruc</label>
-                    <input formControlName="ruc" type="text" pInputText readonly>
+                    <input formControlName="ruc" type="text" pInputText [readonly]="true">
                 </div>
 
                 <!-- Input Razon Social -->
                 <div class="p-field p-col-12 p-md-6 p-lg-6">
                     <label>Razon Social</label>
-                    <input formControlName="razonSocial" type="text" pInputText readonly>
+                    <input formControlName="razonSocial" type="text" pInputText [readonly]="true">
                 </div>
 
                 <!-- Input Precio -->
                 <div class="p-field p-col-12 p-md-6 p-lg-6">
                     <label>Precio</label>
-                    <p-inputNumber mode="currency" currency="PEN" locale="es-PE" formControlName="precio" readonly>
+                    <p-inputNumber mode="currency" currency="PEN" locale="es-PE" formControlName="precio">
                     </p-inputNumber>
                 </div>
 
                 <!-- Input Tipo Venta -->
                 <div class="p-field p-col-12 p-md-6 p-lg-6">
                     <label>Tipo Venta</label>
-                    <input formControlName="tipoVenta" type="text" pInputText readonly>
+                    <input formControlName="tipoVenta" type="text" pInputText [readonly]="true">
                 </div>
 
             </form>

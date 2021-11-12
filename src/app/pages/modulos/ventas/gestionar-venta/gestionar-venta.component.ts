@@ -8,18 +8,15 @@ import { VentasService } from '@services/ventas.service';
 import { Router } from '@angular/router';
 import { ObvsService } from '@services/obvs.service';
 
-
 @Component({
   selector: 'app-gestionar-venta',
   templateUrl: './gestionar-venta.component.html',
   styleUrls: ['./gestionar-venta.component.scss'],
-  providers: [DialogService, ConfirmationService, MessageService]
+  providers: [DialogService, ConfirmationService, MessageService],
 })
-
 export class GestionarVentaComponent implements OnInit {
-
-  listaVentas: IVentaModel[]
-  formVentas: FormGroup
+  listaVentas: IVentaModel[];
+  formVentas: FormGroup;
 
   constructor(
     public dialogService: DialogService,
@@ -28,61 +25,58 @@ export class GestionarVentaComponent implements OnInit {
     private _messageService: MessageService,
     private _ventasService: VentasService,
     private _obvsService: ObvsService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.listarVentas()
+    this.listarVentas();
   }
 
   async listarVentas() {
-
     try {
-
       this._obvsService.toogleSpinner();
-      const data: any = await this._ventasService.getVentasPaginado({ pages: 1, rows: 10 }).toPromise();
+      const data: any = await this._ventasService
+        .getVentasPaginado({ pages: 1, rows: 10 })
+        .toPromise();
       this.listaVentas = data.data;
-    }
-
-    catch (error) {
-      console.log("Error: ", error);
-    }
-
-    finally {
+    } catch (error) {
+      console.log('Error: ', error);
+    } finally {
       this._obvsService.toogleSpinner();
     }
   }
 
   verDetalle(idVenta: number) {
-    this.router.navigate(['/ventas/gestionarVenta/ver/' + idVenta])
+    this.router.navigate(['/ventas/gestionarVenta/ver/' + idVenta]);
   }
 
   editarDetalle(idVenta: number) {
-    this.router.navigate(['/ventas/gestionarVenta/editar/' + idVenta])
+    this.router.navigate(['/ventas/gestionarVenta/editar/' + idVenta]);
   }
 
   eliminarVenta(idVenta: number) {
-
     this._confirmationService.confirm({
       message: '¿Estas seguro de eliminar esta venta?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
-
       accept: async () => {
-
         try {
-          let data = await this._ventasService.deleteVenta(idVenta).toPromise()
-
-          console.log(data)
-
-          this._messageService.add({ severity: 'success', summary: 'Confirmado', detail: 'Se elimino la venta satisfactoriamente' });
+          await this._ventasService.deleteVenta(idVenta).toPromise();
+          this._messageService.add({
+            severity: 'success',
+            summary: 'Confirmado',
+            detail: 'Se elimino la venta satisfactoriamente',
+          });
         } catch (error) {
-          console.log("Error: ", error);
+          console.log('Error: ', error);
         }
       },
       reject: () => {
-        this._messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'No se elimino la venta' });
-      }
+        this._messageService.add({
+          severity: 'error',
+          summary: 'Cancelado',
+          detail: 'No se elimino la venta',
+        });
+      },
     });
   }
-
 }

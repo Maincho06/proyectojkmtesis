@@ -1,5 +1,11 @@
 .menu-wrapper .sidebar-logo {
-    height: 90px;
-    padding: 20px 50px;
-    padding-right: 20px;
+  height: 90px;
+  padding: 20px 50px;
+  padding-right: 20px;
+}
+
+.active {
+  a {
+    color: var(--primary-color) !important;
+  }
 }
