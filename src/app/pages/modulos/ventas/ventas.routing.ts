@@ -26,6 +26,8 @@ const routes: Routes =
                     path: 'gestionarVenta',
                     children: [
                         { path: '', component: GestionarVentaComponent },
+                        { path: 'ver/:id', component: DetalleVentaComponent },
+                        { path: 'editar/:id', component: DetalleVentaComponent },
                     ]
                 },
                 {
@@ -34,13 +36,6 @@ const routes: Routes =
                         { path: '', component: GestionarClienteComponent },
                     ]
                 },
-                {
-                    path: 'detalleVenta/:id',
-                    children: [
-                        { path: '', component: DetalleVentaComponent },
-                    ]
-                },
-
 
             ]
         },

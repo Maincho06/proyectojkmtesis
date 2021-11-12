@@ -1,18 +1,26 @@
-<div class="wrapper">
+<div class="layout-sidebar layout-static p-ripple-disabled layout-wrapper layout-menu-light layout-topbar-light">
 
-    <div class="sidebar" data-color="white" data-active-color="danger">
-        <app-sidebar></app-sidebar>
-    </div>
-    <div class="main-panel">
-        <!-- <app-navbar></app-navbar> -->
-        <!-- <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb> -->
-        <!-- <app-navbar></app-navbar> -->
+    <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
 
-        <div class="content">
-            <div class="container-fluid">
+    <div class="layout-main">
 
-                <router-outlet></router-outlet>
+        <div class="layout-content">
+            <!-- <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb> -->
+
+            <div class="p-grid p-mb-2">
+                <div class="p-col-12">
+                    <div class="card">
+                        <!-- <h5>Breadcrumb</h5> -->
+                        <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+                    </div>
+                </div>
             </div>
+
+            <router-outlet></router-outlet>
         </div>
+
+        <app-footer></app-footer>
     </div>
+
+    <div class="layout-mask modal-in"></div>
 </div>

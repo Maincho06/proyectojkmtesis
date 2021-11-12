@@ -1,73 +1,59 @@
-<div>
-    <div class="card p-mb-4 p-shadow-6">
+<div class="card">
+    <h5 class="p-mb-5">Gestionar Ventas</h5>
+    
+    <p-table #dt [value]="listaVentas" [rows]="10" [paginator]="true" responsive="stack"
+        [globalFilterFields]="['idVenta','precio','fechaRegistro','razonSocial','ruc']"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+        [showCurrentPageReport]="true">
 
-        <!-- Ventas Table -->
-        <p-table #dt [value]="listaVentas" [rows]="10" [paginator]="true" responsive="stack"
-            [globalFilterFields]="['idVenta','precio','fechaRegistro','razonSocial','ruc']"
-            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
-            [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="idVenta">Codigo Venta<p-sortIcon field="idVenta"></p-sortIcon>
+                </th>
+                <th pSortableColumn="precio">Precio Total<p-sortIcon field="precio"></p-sortIcon>
+                </th>
+                <th pSortableColumn="fechaRegistro">Fecha Registro<p-sortIcon field="fechaRegistro"></p-sortIcon>
+                </th>
+                <th pSortableColumn="razonSocial">Razon Social<p-sortIcon field="razonSocial"></p-sortIcon>
+                </th>
+                <th pSortableColumn="ruc">Ruc<p-sortIcon field="ruc"></p-sortIcon>
+                </th>
+                <th>Estado</th>
+                <th>Opciones</th>
+            </tr>
+        </ng-template>
 
-            <ng-template pTemplate="caption">
-                <div class="p-d-flex p-ai-center p-jc-between">
-                    <span class="p-input-icon-left">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                            placeholder="Buscar..." />
+        <ng-template pTemplate="body" let-ventas>
+            <tr>
+                <td><span class="p-column-title">Codigo Venta</span>{{ventas.idVenta}}</td>
+                <td><span class="p-column-title">Precio Total</span>{{ventas.precio}}</td>
+                <td><span class="p-column-title">Fecha Registro</span>{{ventas.fechaRegistro}}</td>
+                <td><span class="p-column-title">Razon Social</span>{{ventas.razonSocial}}</td>
+                <td><span class="p-column-title">Ruc</span>{{ventas.ruc}}</td>
+                <td>
+                    <span class="p-column-title">Estado</span>
+                    <span
+                        [class]="'venta-badge status-' + (ventas.estado.descripcion ? ventas.estado.descripcion.toLowerCase() : '')">{{ventas.estado.descripcion}}
                     </span>
-                </div>
-            </ng-template>
+                </td>
+                <td>
+                    <span class="p-column-title">Opciones</span>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
+                        pTooltip="Ver" (click)="verDetalle(ventas.idVenta)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
+                        pTooltip="Editar" (click)="editarDetalle(ventas.idVenta)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                        pTooltip="Eliminar" (click)="eliminarVenta(ventas.idVenta)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                Total: {{listaVentas ? listaVentas.length : 0 }} ventas
+            </div>
+        </ng-template>
+    </p-table>
 
-            <ng-template pTemplate="header">
-                <tr>
-                    <th pSortableColumn="idVenta">Codigo Venta<p-sortIcon field="idVenta"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="precio">Precio Total<p-sortIcon field="precio"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="fechaRegistro">Fecha Registro<p-sortIcon field="fechaRegistro"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="razonSocial">Razon Social<p-sortIcon field="razonSocial"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="ruc">Ruc<p-sortIcon field="ruc"></p-sortIcon>
-                    </th>
-                    <th>Estado</th>
-                    <th>Opciones</th>
-                </tr>
-            </ng-template>
-
-            <ng-template pTemplate="body" let-ventas>
-                <tr>
-                    <td>{{ventas.idVenta}}</td>
-                    <td>{{ventas.precio}}</td>
-                    <td>{{ventas.fechaRegistro}}</td>
-                    <td>{{ventas.razonSocial}}</td>
-                    <td>{{ventas.ruc}}</td>
-                    <td>
-                        <span
-                            [class]="'venta-badge status-' + (ventas.estado.descripcion ? ventas.estado.descripcion.toLowerCase() : '')">{{ventas.estado.descripcion}}
-                        </span>
-                    </td>
-                    <td>
-                        <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
-                            pTooltip="Ver" (click)="detalleVenta(ventas.idVenta)"></button>
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
-                            pTooltip="Editar" (click)="detalleVenta(ventas.idVenta)"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                            pTooltip="Eliminar" (click)="eliminarVenta(ventas.idVenta)"></button>
-                    </td>
-                </tr>
-            </ng-template>
-
-            <ng-template pTemplate="summary">
-                <div class="p-d-flex p-ai-center p-jc-between">
-                    Total: {{listaVentas ? listaVentas.length : 0 }} ventas
-                </div>
-            </ng-template>
-        </p-table>
-    </div>
 </div>
-
-
 <!-- Modal Confirmacion -->
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
-
-<p-toast></p-toast>

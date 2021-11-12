@@ -13,14 +13,23 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { GestionarTrabajadorComponent } from './gestionar-trabajador/gestionar-trabajador.component';
 import { DetalleTrabajadorComponent } from './gestionar-trabajador/detalle-trabajador/detalle-trabajador.component';
 
+// Gestionar Usuario
+import { GestionarUsuarioComponent } from './gestionar-usuario/gestionar-usuario.component';
+import { UsuarioRegisterComponent } from './gestionar-usuario/usuario-register/usuario-register.component';
+import { UsuarioUpdateComponent } from './gestionar-usuario/usuario-update/usuario-update.component';
+
 
 const components = [
   GestionarTrabajadorComponent , 
-  DetalleTrabajadorComponent
+  DetalleTrabajadorComponent,
+  GestionarUsuarioComponent,
+  UsuarioRegisterComponent,
+  UsuarioUpdateComponent
+
 ]
 
 @NgModule({
-  declarations: [ ...components],
+  declarations: [ ...components, UsuarioRegisterComponent, UsuarioUpdateComponent],
   imports: [
     CommonModule,
     ProyectoRoutingModule,

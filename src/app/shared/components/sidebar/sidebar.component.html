@@ -1,16 +1,28 @@
-<div class="sidebar-wrapper">
-    <div class="logo">
-        <a class="simple-text logo-normal center">
-            <!-- JKM -->
-            <img [src]="'../../assets/img/logoJKM.png'" class="logoimg" />
+<div class="menu-wrapper layout-sidebar-active">
+
+    <div class="sidebar-logo">
+        <a href="#/">
+            <img src="../../../../assets/img/logoJKM1.png" alt="JKM">
         </a>
+        <!-- <a href="#" class="sidebar-pin">
+            <span class="pin"></span>
+        </a> -->
     </div>
-    <ul class="nav">
-        <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
-            <a [routerLink]="[menuItem.path]">
-                <i class="nc-icon {{menuItem.icon}}"></i>
-                <p>{{menuItem.title}}</p>
-            </a>
-        </li>
-    </ul>
+
+    <div class="layout-menu-container">
+        <ul class="layout-menu">
+
+            <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
+                <a routerlinkactive="active-route" [routerLink]="[menuItem.path]" class="p-ripple p-element">
+                    <i class="layout-menuitem-icon pi {{menuItem.icon}}"></i>
+                    <span class="layout-menuitem-text">{{menuItem.title}}</span>
+                </a>
+                <div class="layout-menu-tooltip">
+                    <div class="layout-menu-tooltip-arrow"></div>
+                    <div class="layout-menu-tooltip-text">{{menuItem.title}}</div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
 </div>
