@@ -181,8 +181,6 @@ export class DetalleVentaComponent implements OnInit {
 
   async registrarCuota() {
 
-    console.log(this.formCuotas)
-
     // Validacion Formulario Cuotas
     if (this.formCuotas.invalid) {
 
@@ -305,8 +303,6 @@ export class DetalleVentaComponent implements OnInit {
 
     let sumaCuotas = this.listaCuotas.reduce((sum, actualValue) => sum + (actualValue['pagoParcial']), 0);
     let precio = this.formVentas.controls.precio.value ?? 0
-    console.log(sumaCuotas)
-    console.log(precio)
 
     return sumaCuotas >= precio ? true : false
   }
