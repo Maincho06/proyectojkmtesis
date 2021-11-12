@@ -17,6 +17,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { LoginModule } from './pages/login/login.module';
 import { JwtModule } from '@auth0/angular-jwt';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -5,5 +5,6 @@ export const TRABAJADOR_URL = `${environment.API_URL}Trabajador`
 export const PROYECTO_URL   = `${environment.API_URL}Proyecto`
 export const COTIZACION_URL   = `${environment.API_URL}Cotizacion`
 export const VENTA_URL = `${environment.API_URL}Venta`;
+export const USUARIO_URL = `${environment.API_URL}Usuario`;
 export const CLIENTE_URL = `${environment.API_URL}Cliente`;
 

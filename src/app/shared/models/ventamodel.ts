@@ -29,4 +29,11 @@ export interface IRegisterVentaCuotas {
     numeroCuota?        : number;
     pagoParcial         : number;
     fechaCuota          : Date | string | null;
+
+    //Tipo Proyecto
+    nombreProyecto: string;
+    descripcionProyecto: string;
+
+    //Tipo Pedido
+    idProyecto: number | null;
 }

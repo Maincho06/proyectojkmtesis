@@ -1,13 +1,48 @@
-.navbar.navbar-transparent {
-    background-color: #271e78 !important;
-    box-shadow: none;
-    border-bottom: 1px solid #fff;
-}
+// .layout-topbar{
+//     position: sticky;
+//     top: 0;
+//     z-index: 100;
+//     padding: 0 16px;
+// }
+  
+// ul {
+//     li {
+//       list-style: none;
+//     }
+// }
 
-.navbar.navbar-transparent .nav-item .nav-link:not(.btn){
-    color: #ffffff;
-}
+// button {
+//     outline: none;
+//     border: 0;
+//     background: transparent;
+//     cursor: pointer;
+// }
 
-.navbar.navbar-absolute {
-    z-index: 900;
-}
+// .user {
+//     font-size: 14px;
+// }
+
+// mat-toolbar {
+//     background: #f7f7f7;
+// }
+
+// .user-image {
+//     border-radius: 50%;
+//     width: 50px;
+//     height: 50px;
+
+//     &-icon {
+//       height: 18px;
+//       font-size: 16px;
+//     }
+// }
+  
+// ::ng-deep {
+//     .mat-menu-content {
+//       width: 170px;
+//     }
+// }
+
+// .justify-content-between {
+//   justify-content: space-between!important;
+// }
