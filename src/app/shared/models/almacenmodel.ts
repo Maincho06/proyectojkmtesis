@@ -1,14 +1,15 @@
 export interface IAlmaceModel {
-    codigoAlmacen: number;
-    nombreDelAlmacen: string;
+    idAlmacen?: number;
+    nombre: string;
     direccion: string;
-    distrito : string;
+    distrito: string;
 }
 
 export interface IRegisterAlmacen {
-    nombreDelAlmacen: string;
+    idAlmacen?: number;
+    nombre: string;
     direccion: string;
-    distrito : string;
+    distrito: string;
 }
 
 export interface IUpdateAlmacen {

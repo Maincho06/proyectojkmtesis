@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IAlmaceModel } from '@models/almacenmodel';
 import { IClienteModel } from '@models/clientemodel';
 import { AlmacenService } from '@services/almacen.service';
-import { DialogService } from 'primeng/dynamicdialog';
-import { GestionarAlmacenRegisterComponent } from './components/gestionar-almacen-register/gestionar-almacen-register.component';
+import { BASE_INDEX_MODAL } from '@utils/general_constants';
+import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DetalleAlmacenComponent } from './detalle-almacen/detalle-almacen.component';
 
 
 
@@ -27,35 +28,34 @@ export class GestionarAlmacenComponent implements OnInit {
 
   async listarAlmacen() {
     try {
-      let data = await this._almacenService.getAlmacenPaginado({ pages: 1, rows: 100 });
-      this.almacen = data.data;
+      this.almacen = await this._almacenService.getAlmacen();
+      console.log("ALMACEN: ", this.almacen);
     } catch (error) {
       console.error(error);
       this.almacen = [];
     }
   }
 
-  mostrarDialogRegister() {
-    const ref = this._dialogService.open(GestionarAlmacenRegisterComponent, {
-      header: 'Registrar almacen',
-      width: '50%'
+  registerOrUpdateAlmacen(isRegistrar: boolean, data: IAlmaceModel) {
+    const dialogConfig = new DynamicDialogConfig();
+    dialogConfig.width = '80vw';
+    dialogConfig.baseZIndex = BASE_INDEX_MODAL;
+    dialogConfig.header = isRegistrar ? 'Registrar Almacen' : 'Actualizar Almacen';
+    dialogConfig.data = {
+      'isRegistrar': isRegistrar,
+      'data': data
+    };
+    const ref = this._dialogService.open(DetalleAlmacenComponent, dialogConfig);
+
+    ref.onClose.subscribe(async p => {
+      await this.listarAlmacen();
     });
 
-    // ref.onClose.subscribe(async (data) => {
-    //   await this.listarAlmacen()
-    // })
   }
 
-  mostrarDialogUpdate(almacen: IAlmaceModel) {
-    // const ref = this._dialogService.open(GestionarAlmacenUpdateComponent, {
-    //   header: 'Actualizar Almacen',
-    //   width: '50%',
-    //   data: almacen
-    // });
 
-    // ref.onClose.subscribe(async (data) => {
-    //   await this.listarAlmacen()
-    // })
+  mostrarDialogUpdate(almacen: IAlmaceModel) {
+
   }
 
 }

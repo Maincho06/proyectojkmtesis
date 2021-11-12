@@ -3,23 +3,22 @@ import { CommonModule } from '@angular/common';
 import { AlmacenRoutingModule } from './almacen.routing';
 import { GestionarAlmacenComponent } from './gestionar-almacen/gestionar-almacen.component';
 
-import { GestionarAlmacenRegisterComponent } from './gestionar-almacen/components/gestionar-almacen-register/gestionar-almacen-register.component';
 
 // Dialog
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SharedModule } from '../../../shared/shared.module';
-import { GestionarAlmacenUpdateComponent } from './gestionar-almacen/components/gestionar-almacen-update/gestionar-almacen-update.component';
+import { DetalleAlmacenComponent } from './gestionar-almacen/detalle-almacen/detalle-almacen.component';
 
 const COMPONENTS = [
   GestionarAlmacenComponent,
-  GestionarAlmacenRegisterComponent,
-  GestionarAlmacenUpdateComponent
+  DetalleAlmacenComponent
 ];
 
 @NgModule({
   declarations: [
-    ...COMPONENTS
+    ...COMPONENTS,
+    
   ],
   imports: [
     CommonModule,
