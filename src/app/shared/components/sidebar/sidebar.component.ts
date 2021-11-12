@@ -8,12 +8,15 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
+
     { path: '/dashboard', title: 'Dashboard', icon: 'pi-home', class: '' },
     { path: '/ventas/gestionarCotizacion', title: 'Gestionar Cotización', icon: 'pi-credit-card', class: '' },
     { path: '/ventas/gestionarVenta', title: 'Gestionar Venta', icon: 'pi-dollar', class: '' },
     { path: '/ventas/gestionarCliente', title: 'Gestionar Cliente', icon: 'pi-user', class: '' },
     { path: '/proyecto/gestionarTrabajadores', title: 'Gestionar Trabajadores', icon: 'pi-users', class: '' },
     { path: '/proyecto/gestionarUsuarios', title: 'Gestionar Usuarios', icon: 'pi-users', class: '' },
+    { path: '/almacen/gestionarAlmacen', title: 'Gestionar Almacen',     icon:'pi-users',    class: '' },
+
 ];
 
 @Component({

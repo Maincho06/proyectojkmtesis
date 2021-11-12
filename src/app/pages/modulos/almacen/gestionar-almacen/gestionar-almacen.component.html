@@ -1,0 +1,42 @@
+<div>
+    <h5>Buscar:</h5>
+
+    <!-- Input Filtro -->
+    <div class="p-grid p-mb-4">
+        <div class="p-col-6">
+            <input type="text" pInputText placeholder="Ingresa tu búsqueda">
+        </div>
+        <div class="p-col-6 p-text-right">
+            <button (click)="registerOrUpdateAlmacen(true,null)" pButton pRipple type="button" label="Registrar Almacen"></button>
+        </div>
+    </div>
+
+    <!-- Almacen Table -->
+    <div class="card p-mb-4 p-shadow-6">
+        <p-table [value]="almacen" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Distrito</th>
+                    <th>Opciones</th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-almacen>
+                <tr>
+                    <td>{{almacen.idAlmacen}}</td>
+                    <td>{{almacen.nombre}}</td>
+                    <td>{{almacen.direccion}}</td>
+                    <td>{{almacen.distrito}}</td>
+                    <td>
+                        <button (click)="registerOrUpdateAlmacen(false,almacen)" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>

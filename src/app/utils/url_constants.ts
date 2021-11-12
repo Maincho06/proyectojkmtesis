@@ -9,4 +9,5 @@ export const VENTA_URL = `${environment.API_URL}Venta`;
 export const USUARIO_URL = `${environment.API_URL}Usuario`;
 export const CLIENTE_URL = `${environment.API_URL}Cliente`;
 export const NOTIFICATION_URL = `${environment.API_URL}Notification`;
+export const ALMACEN_URL = `${environment.API_URL}Almacen`
 
