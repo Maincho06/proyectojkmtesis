@@ -1,10 +1,18 @@
 <div class="card">
-    <h5 class="p-mb-5">Gestionar Ventas</h5>
-    
     <p-table #dt [value]="listaVentas" [rows]="10" [paginator]="true" responsive="stack"
         [globalFilterFields]="['idVenta','precio','fechaRegistro','razonSocial','ruc']"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
         [showCurrentPageReport]="true">
+        <!-- Input Filtro -->
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        id="tFiltro" placeholder="Buscar..." />
+                </span>
+            </div>
+        </ng-template>
 
         <ng-template pTemplate="header">
             <tr>
