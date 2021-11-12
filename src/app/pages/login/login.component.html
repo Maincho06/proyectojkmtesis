@@ -4,23 +4,37 @@
 <div class="banner-background">
     <p-card>
         <img class="p-4" src="assets/img/logoJKM.png" width="300px" />
-        <form action="" [formGroup]="formLogin" (ngSubmit)="login()">
-            <div class="p-field flex-column flex">
-                <label for="usuario">Usuario</label>
-                <input id="usuario" type="username" pInputText placeholder="Ingrese su usuario"
-                    formControlName="username" />
-            </div>
-            <div class="p-field flex-column flex">
-                <label for="password">Contraseña</label>
-                <input pPassword type="password" [feedback]="false" placeholder="Ingresa su contraseña"
-                    formControlName="password" />
-            </div>
-            <div class="flex align-items-center">
-                <p-inputSwitch id="remember" class="pr-2"></p-inputSwitch>
-                <label for="remember">Recuerdame</label>
-            </div>
-            <button pButton pRipple type="submit" label="Iniciar sesion" class="p-button-raised w-full my-3"
-                [disabled]="formLogin.invalid"></button>
-        </form>
+        <ng-container *ngIf="isLogin; else recuperarUsuario">
+            <form [formGroup]="formLogin" (ngSubmit)="login()">
+                <div class="p-field flex-column flex">
+                    <label for="usuario">Usuario</label>
+                    <input id="usuario" type="username" pInputText placeholder="Ingrese su usuario"
+                        formControlName="username" />
+                </div>
+                <div class="p-field flex-column flex">
+                    <label for="password">Contraseña</label>
+                    <input pPassword type="password" [feedback]="false" placeholder="Ingresa su contraseña"
+                        formControlName="password" />
+                </div>
+                <span class="link" (click)="changeLogin()">¿Olvidaste tu cuenta?</span>
+                <button pButton pRipple type=" submit" label="Iniciar sesion" class="p-button-raised w-full my-3"
+                    [disabled]="formLogin.invalid"></button>
+            </form>
+        </ng-container>
+        <ng-template #recuperarUsuario>
+            <form (ngSubmit)="recoverUser()">
+                <h3 class="text-center py-3">Recuperar Usuario</h3>
+                <div class="p-field flex-column flex">
+                    <input id="usuario" type="username" pInputText placeholder="Ingrese tu correo"
+                        [(ngModel)]="email" name="email" />
+                </div>
+                <p style="max-width: 35ch;" class="pb-2">
+                    Se enviara un mensaje al correo vinculado con las credenciales solicitadas
+                </p>
+                <span class="link" (click)="changeLogin()">Volver</span>
+                <button pButton pRipple type=" submit" label="Enviar" class="p-button-raised w-full my-3"
+                    [disabled]="!email" (click)="recoverUser()"></button>
+            </form>
+        </ng-template>
     </p-card>
 </div>

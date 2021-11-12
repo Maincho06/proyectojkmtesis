@@ -4,7 +4,6 @@ import { HomeComponent } from './client/home/home.component';
 import { NopagefoundComponent } from '@components/nopagefound/nopagefound.component';
 import { PagesRoutingModule } from './pages/pages.routing';
 import { LoginComponent } from './pages/login/login.component';
-import { AuthGuardService as AuthGuard } from '@services/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
