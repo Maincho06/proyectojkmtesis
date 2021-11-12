@@ -38,7 +38,7 @@
                 <tr>
                     <td>{{cotizacion.razonSocial}}</td>
                     <td>{{cotizacion.precioCotizacion}}</td>
-                    <td>{{cotizacion.fechaSolicitudString}}</td>
+                    <td>{{cotizacion.fechaSolicitudString | date: 'dd/MM/yyyy'}}</td>
                     <td>{{cotizacion.estado.descripcion}}</td>
                     <td>
                         <button *ngIf="cotizacion.canCotizar" (click)="aceptarCotizacion(cotizacion)" pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" pTooltip="Cotizar"></button>

@@ -201,7 +201,7 @@ export class TrabajadoresCotizacionComponent implements OnInit {
   }
 
   get precioReferencial() {
-    return 'Precio Referencial: ' + (this.formRol?.controls?.rol?.value?.precio_referencial ?? 0)
+    return 'Precio Referencial: ' + (this.formRol?.controls?.rol?.value?.precioReferencial ?? 0)
 
   }
 }
