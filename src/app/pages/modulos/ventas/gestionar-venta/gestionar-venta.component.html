@@ -26,6 +26,8 @@
                 </th>
                 <th pSortableColumn="ruc">Ruc<p-sortIcon field="ruc"></p-sortIcon>
                 </th>
+                <th pSortableColumn="tipo.descripcion">Tipo<p-sortIcon field="tipo.descripcion"></p-sortIcon>
+                </th>
                 <th>Estado</th>
                 <th>Opciones</th>
             </tr>
@@ -38,6 +40,7 @@
                 <td><span class="p-column-title">Fecha Registro</span>{{ventas.fechaRegistro}}</td>
                 <td><span class="p-column-title">Razon Social</span>{{ventas.razonSocial}}</td>
                 <td><span class="p-column-title">Ruc</span>{{ventas.ruc}}</td>
+                <td><span class="p-column-title">Tipo</span>{{ventas.tipo.descripcion}}</td>
                 <td>
                     <span class="p-column-title">Estado</span>
                     <span

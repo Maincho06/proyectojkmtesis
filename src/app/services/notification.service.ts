@@ -4,17 +4,26 @@ import { NOTIFICATION_URL } from '@utils/url_constants';
 import { BaseService } from './base.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotificationService extends BaseService {
-
-  constructor(
-    private http: HttpClient,
-  ) {
+  constructor(private http: HttpClient) {
     super();
   }
 
-  aceptarCotizacion(idCotizacion){
-    return this.http.post<any>(`${NOTIFICATION_URL}/cotizacion/${idCotizacion}`, { headers: this.obtenerHeaders() }).toPromise();  
+  recoverAccount(body: { email: string }) {
+    return this.http
+      .post<any>(`${NOTIFICATION_URL}/auth/recuperarUsuario`, body, {
+        headers: this.obtenerHeaders(),
+      })
+      .toPromise();
+  }
+
+  aceptarCotizacion(idCotizacion) {
+    return this.http
+      .post<any>(`${NOTIFICATION_URL}/cotizacion/${idCotizacion}`, {
+        headers: this.obtenerHeaders(),
+      })
+      .toPromise();
   }
 }

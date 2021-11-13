@@ -29,8 +29,6 @@ export class DetalleTrabajadorComponent implements OnInit {
 
   async ngOnInit() {
     this.isRegistrar = this.config.data.isRegistrar;
-    console.log('DATA', this.config.data)
-    console.log('isRegistrar: ', this.isRegistrar);
     this.crearFormTrabajador();
     this.obtenerEstadoTrabajador();
     this.obtenerTipoTrabajador();
@@ -67,7 +65,6 @@ export class DetalleTrabajadorComponent implements OnInit {
   async obtenerTipoTrabajador() {
     try {
       this.listTipoTrabajador = await this._trabajadorService.obtenerTipoTrabajador();
-      console.log('Tipo: ', this.listTipoTrabajador);
     } catch (error) {
       console.log('ERROR: ', error);
     }
@@ -98,9 +95,7 @@ export class DetalleTrabajadorComponent implements OnInit {
         model.idEstado = Number.parseInt(this.formTrabajador.get('estado').value.id);
         data = await this._trabajadorService.updateTrabajador(model, this.trabajador.idTrabajador);
       }
-      console.log('RESP: ', data);
       this.ref.close();
-      
     } catch (error) {
       console.log('ERROR: ', error);
     }
