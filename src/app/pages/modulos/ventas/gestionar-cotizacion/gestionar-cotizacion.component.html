@@ -3,7 +3,8 @@
 <div>
     <!-- Cotizacion Table -->
     <div class="card p-mb-4">
-        <p-table #dt [rows]="10" [paginator]="true" responsive="stack" [globalFilterFields]="['razonSocial','precioCotizacion','fechaSolicitudString']" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados" [showCurrentPageReport]="true"
+        <p-table #dt [rows]="10" [paginator]="true" responsive="stack" 
+        [globalFilterFields]="['razonSocial','precioCotizacion','fechaSolicitudString', 'tipoCotizacion.descripcion']" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados" [showCurrentPageReport]="true"
             [value]="cotizaciones" responsiveLayout="scroll">
             <!-- Input Filtro -->
             <ng-template pTemplate="caption">
@@ -28,6 +29,9 @@
                     <th pSortableColumn="fechaSolicitudString">Fecha de Solicitud
                         <p-sortIcon field="fechaSolicitudString"></p-sortIcon>
                     </th>
+                    <th pSortableColumn="tipoCotizacion.descripcion">Tipo
+                        <p-sortIcon field="estado.descripcion"></p-sortIcon>
+                    </th>
                     <th pSortableColumn="estado.descripcion">Estado
                         <p-sortIcon field="estado.descripcion"></p-sortIcon>
                     </th>
@@ -39,6 +43,7 @@
                     <td>{{cotizacion.razonSocial}}</td>
                     <td>{{cotizacion.precioCotizacion}}</td>
                     <td>{{cotizacion.fechaSolicitudString | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{cotizacion.tipoCotizacion.descripcion}}</td>
                     <td>{{cotizacion.estado.descripcion}}</td>
                     <td>
                         <button *ngIf="cotizacion.canCotizar" (click)="aceptarCotizacion(cotizacion)" pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" pTooltip="Cotizar"></button>
