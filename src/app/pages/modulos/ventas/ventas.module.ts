@@ -16,7 +16,7 @@ import { GestionarClientUpdateComponent } from './gestionar-cliente/components/g
 import { ProductosCotizacionComponent } from './gestionar-cotizacion/components/productos-cotizacion/productos-cotizacion.component';
 import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-venta.component';
 import { GestionarPedidosComponent } from './gestionar-pedidos/gestionar-pedidos.component';
-import { ModalDetallePedidoComponent } from './gestionar-pedidos/modal-detalle-pedido/modal-detalle-pedido.component';
+import { DetallePedidoComponent } from './gestionar-pedidos/detalle-pedido/detalle-pedido.component';
 
 // Dialog
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -38,7 +38,7 @@ import { DialogService } from 'primeng/dynamicdialog';
     ProductosCotizacionComponent,
     DetalleVentaComponent,
     GestionarPedidosComponent,
-    ModalDetallePedidoComponent,
+    DetallePedidoComponent,
   ],
   imports: [
     CommonModule,

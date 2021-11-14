@@ -13,10 +13,10 @@ export const ROUTES: RouteInfo[] = [
     { path: '/ventas/gestionarCotizacion', title: 'Gestionar Cotización', icon: 'pi-credit-card', class: '' },
     { path: '/ventas/gestionarVenta', title: 'Gestionar Venta', icon: 'pi-dollar', class: '' },
     { path: '/ventas/gestionarCliente', title: 'Gestionar Cliente', icon: 'pi-user', class: '' },
+    { path: '/ventas/gestionarPedido', title: 'Gestionar Pedido', icon: 'pi-inbox', class: ''},
     { path: '/proyecto/gestionarTrabajadores', title: 'Gestionar Trabajadores', icon: 'pi-users', class: '' },
     { path: '/proyecto/gestionarUsuarios', title: 'Gestionar Usuarios', icon: 'pi-users', class: '' },
     { path: '/almacen/gestionarAlmacen', title: 'Gestionar Almacen',     icon:'pi-users',    class: '' },
-    { path: '/ventas/gestionarPedidos', title: 'Gestionar Pedido', icon: 'pi-inbox', class: ''}
 
 ];
 

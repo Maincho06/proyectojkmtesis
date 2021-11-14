@@ -10,4 +10,5 @@ export const USUARIO_URL = `${environment.API_URL}Usuario`;
 export const CLIENTE_URL = `${environment.API_URL}Cliente`;
 export const NOTIFICATION_URL = `${environment.API_URL}Notification`;
 export const ALMACEN_URL = `${environment.API_URL}Almacen`
+export const PEDIDO_URL = `${environment.API_URL}Pedido`
 

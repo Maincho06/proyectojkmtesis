@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IPedidoModel } from '@models/pedidomodel';
+import { PedidoService } from '@services/pedido.service';
 import { BASE_INDEX_MODAL } from '@utils/general_constants';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { ModalDetallePedidoComponent } from './modal-detalle-pedido/modal-detalle-pedido.component';
+import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.component';
 
 @Component({
   selector: 'app-gestionar-pedidos',
@@ -16,15 +17,22 @@ export class GestionarPedidosComponent implements OnInit {
     { id: 1, solicitante: "Mauricio", cliente: "Mauricio", fechaSolicitud: "01-11-2021", fechaEntrega: "15-12-2021" },
     { id: 2, solicitante: "Farfan", cliente: "Cesar", fechaSolicitud: "01-11-2021", fechaEntrega: "15-12-2021" },
   ];
+  listaPedido: any[];
 
   constructor(
     public dialogService: DialogService,
+    private _pedidoService: PedidoService,
   ) { }
 
-  ngOnInit(): void {
-    
+  async ngOnInit() {
+    await this.obtenerPedido();
     
 
+  }
+
+  async obtenerPedido() {
+    this.listaPedido = await this._pedidoService.getPedido();
+    console.log('LISTA PEDIDO: ', this.listaPedido);
   }
 
   detallePedido() {
@@ -37,7 +45,7 @@ export class GestionarPedidosComponent implements OnInit {
 
     // }
 
-    const ref = this.dialogService.open(ModalDetallePedidoComponent, dialogConfig);
+    const ref = this.dialogService.open(DetallePedidoComponent, dialogConfig);
     ref.onClose.subscribe(async p => {
       console.log('P');
     })

@@ -3,9 +3,8 @@
 <div>
     <!-- Cotizacion Table -->
     <div class="card p-mb-4">
-        <p-table #dt [rows]="10" [paginator]="true" responsive="stack" 
-        [globalFilterFields]="['razonSocial','precioCotizacion','fechaSolicitudString', 'tipoCotizacion.descripcion']" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados" [showCurrentPageReport]="true"
-            [value]="cotizaciones" responsiveLayout="scroll">
+        <p-table #dt [rows]="10" [paginator]="true" responsive="stack" [globalFilterFields]="['razonSocial','precioCotizacion','fechaSolicitudString', 'tipoCotizacion.descripcion']" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+            [showCurrentPageReport]="true" [value]="cotizaciones" responsiveLayout="scroll">
             <!-- Input Filtro -->
             <ng-template pTemplate="caption">
                 <div class="p-d-flex p-ai-center p-jc-between">
@@ -46,8 +45,8 @@
                     <td>{{cotizacion.tipoCotizacion.descripcion}}</td>
                     <td>{{cotizacion.estado.descripcion}}</td>
                     <td>
-                        <!-- <button *ngIf="cotizacion.canCotizar" (click)="aceptarCotizacion(cotizacion)" pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" pTooltip="Cotizar"></button> -->
-                        <button (click)="aceptarCotizacion(cotizacion)" pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" pTooltip="Cotizar"></button>
+                        <button *ngIf="cotizacion.canCotizar" (click)="aceptarCotizacion(cotizacion)" pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" pTooltip="Cotizar"></button>
+                        <!-- <button (click)="aceptarCotizacion(cotizacion)" pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" pTooltip="Cotizar"></button> -->
                         <button *ngIf="cotizacion.canEdit" [routerLink]="[cotizacion.idCotizacion]" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
                         <button *ngIf="cotizacion.canDelete" (click)="rechazarCotizacion(cotizacion)" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Eliminar"></button>
                     </td>
