@@ -6,6 +6,7 @@ import { GestionarCotizacionDetalleComponent } from './gestionar-cotizacion/comp
 import { GestionarCotizacionComponent } from './gestionar-cotizacion/gestionar-cotizacion.component';
 import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-venta.component';
 import { GestionarVentaComponent } from './gestionar-venta/gestionar-venta.component';
+import { GestionarPedidosComponent } from './gestionar-pedidos/gestionar-pedidos.component';
 
 const routes: Routes = [
   {
@@ -102,6 +103,21 @@ const routes: Routes = [
           },
         },
       },
+      {
+        path: 'gestionarCotizacion',
+        children: [
+          { path: '', component: GestionarCotizacionComponent },
+          { path: 'crear', component: GestionarCotizacionDetalleComponent },
+          { path: ':id', component: GestionarCotizacionDetalleComponent }
+        ]
+
+      },
+      {
+        path: 'gestionarPedidos',
+        children: [
+          { path: '', component: GestionarPedidosComponent }
+        ]
+      }
     ],
   },
 ];
@@ -109,4 +125,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class VentasRoutingModule {}
+export class VentasRoutingModule { }

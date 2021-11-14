@@ -1,0 +1,29 @@
+.p-button-success {
+    background: #271E78 !important;
+    color: #ffffff !important;
+    border-color: #271E78 !important;
+}
+
+.p-button-success:focus {
+    box-shadow: 0 0 0 0.2rem #c5bff5 !important;
+}
+
+.p-button-warning {
+    color: #212529;
+    background: #FBC02D;
+    border: 1px solid #FBC02D;
+}
+
+.p-button-warning:focus {
+    box-shadow: 0 0 0 0.2rem #fde6ab;
+}
+
+.p-button-delete {
+    background: #c02929;
+    color: #ffffff;
+    border-color: #c02929;
+}
+
+.p-button-delete:focus {
+    box-shadow: 0 0 0 0.2rem #edacac;
+}

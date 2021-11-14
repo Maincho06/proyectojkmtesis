@@ -1,94 +1,105 @@
-/* You can add global styles to this file, and also import other style files */
-
-
-/* ScrollBar  */
-
-::-webkit-scrollbar {
-    width: 15px;
-}
-::-webkit-scrollbar-track {
-    background: #f5f5f5;
-    box-shadow: 0 0 2px rgba(0,0,0, .2) inset;
-}
-::-webkit-scrollbar-thumb {
-    background: #271e78;
-    border-radius: 8px;
-    border: 3px solid #f5f5f5;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #1f185e;
-}
-
-/*---- Float Buttons ----*/
-
-.fab-container {
-    position: fixed;
-    top: 100px;
-    right: 50px;
-    z-index: 150;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.fab-container>div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.fab-container>div>button {
-    margin-top: 10px;
-    outline: none;
-}
-
-.p-button.p-button-white, .p-buttonset.p-button-white > .p-button, .p-splitbutton.p-button-white > .p-button {
-    color: #000000;
-    background: #ffffff;
-    border: 0px;
-    box-shadow: 0 3px 5px -1px #0003, 0 6px 10px 0 #00000024, 0 1px 18px 0 #0000001f;
-}
-
-.floatButton{
-    width: 2.6rem !important;
-    height: 2.6rem !important;
-}
-
-.p-paginator {
-    justify-content: right !important;
-}
-
-.p-inputswitch {
-    position: absolute !important;
-}
-
-@media screen and (max-width: 40rem) {
-    :host ::ng-deep {
-        .p-datatable {
-                .p-datatable-thead > tr > th,
-                .p-datatable-tfoot > tr > td {
-                    display: none !important;
+            /* You can add global styles to this file, and also import other style files */
+            /* ScrollBar  */
+            
+             ::-webkit-scrollbar {
+                width: 15px;
+            }
+            
+             ::-webkit-scrollbar-track {
+                background: #f5f5f5;
+                box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+            }
+            
+             ::-webkit-scrollbar-thumb {
+                background: #271e78;
+                border-radius: 8px;
+                border: 3px solid #f5f5f5;
+            }
+            
+             ::-webkit-scrollbar-thumb:hover {
+                background: #1f185e;
+            }
+            /*---- Float Buttons ----*/
+            
+            .fab-container {
+                position: fixed;
+                top: 100px;
+                right: 50px;
+                z-index: 150;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .fab-container>div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 5px;
+            }
+            
+            .fab-container>div>button {
+                margin-top: 10px;
+                outline: none;
+                /* BreadCrumb */
+                .p-breadcrumb {
+                    background: none !important;
+                    border: none !important;
+                    border-radius: none !important;
+                    padding: 1rem;
                 }
-
-                .p-datatable-tbody > tr > td {
-                    text-align: left;
-                    display: block;
-                    width: 100%;
-                    float: left;
-                    clear: left;
-                    border: 0 none;
-
-                    .p-column-title {
-                        padding: .4rem;
-                        min-width: 30%;
-                        display: inline-block;
-                        margin: -.4em 1em -.4em -.4rem;
-                        font-weight: bold;
+                .p-breadcrumb ul li:last-child .p-menuitem-text {
+                    color: #ffffff !important;
+                }
+                .p-button.p-button-white,
+                .p-buttonset.p-button-white>.p-button,
+                .p-splitbutton.p-button-white>.p-button {
+                    color: #000000;
+                    background: #ffffff;
+                    border: 0px;
+                    box-shadow: 0 3px 5px -1px #0003, 0 6px 10px 0 #00000024, 0 1px 18px 0 #0000001f;
+                }
+                .floatButton {
+                    width: 2.6rem !important;
+                    height: 2.6rem !important;
+                }
+                .p-paginator {
+                    justify-content: right !important;
+                }
+                .p-inputswitch {
+                    position: absolute !important;
+                }
+                @media screen and (max-width: 40rem) {
+                     :host ::ng-deep {
+                        .p-datatable {
+                            .p-datatable-thead>tr>th,
+                            .p-datatable-tfoot>tr>td {
+                                display: none !important;
+                            }
+                            .p-datatable-tbody>tr>td {
+                                text-align: left;
+                                display: block;
+                                width: 100%;
+                                float: left;
+                                clear: left;
+                                border: 0 none;
+                                .p-column-title {
+                                    padding: .4rem;
+                                    min-width: 30%;
+                                    display: inline-block;
+                                    margin: -.4em 1em -.4em -.4rem;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
                     }
                 }
-
-        }
-    }
-}
+            }
+            
+            .p-datatable .p-datatable-tbody>tr>td {
+                text-align: center !important;
+            }
+            
+            .p-datatable .p-datatable-thead>tr>th {
+                text-align: center !important;
+            }

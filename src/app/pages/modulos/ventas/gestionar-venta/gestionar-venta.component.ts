@@ -38,6 +38,7 @@ export class GestionarVentaComponent implements OnInit {
         .getVentasPaginado({ pages: 1, rows: 10 })
         .toPromise();
       this.listaVentas = data.data;
+      console.log('VENTAS', this.listaVentas);
     } catch (error) {
       console.log('Error: ', error);
     } finally {

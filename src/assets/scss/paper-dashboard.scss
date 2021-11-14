@@ -1,0 +1,15 @@
+@import 'paper-dashboard/variables';
+@import 'paper-dashboard/mixins';
+// Plugins CSS
+@import "paper-dashboard/plugins/plugin-animate-bootstrap-notify";
+// Core CSS
+@import "paper-dashboard/misc";
+@import "core/buttons";
+// components
+@import "paper-dashboard/navbar";
+@import "paper-dashboard/sidebar-and-main-panel";
+@import "paper-dashboard/nucleo-outline";
+// cards
+// angular differences
+@import "paper-dashboard/angular/sidebar-and-main-panel";
+@import "paper-dashboard/responsive";

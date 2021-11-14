@@ -1,0 +1,31 @@
+<app-table-container>
+    <p-table [value]="listaPedidos" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Codigo</th>
+                <th>Solicitante</th>
+                <th>Cliente</th>
+                <th>Fecha Entrega</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pedidos>
+            <tr>
+                <td>Prueba</td>
+                <td>Prueba</td>
+                <td>Prueba</td>
+                <td>Prueba</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2" pTooltip="Ver" (click)="detallePedido()"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Eliminar"></button>
+                </td>
+
+
+            </tr>
+        </ng-template>
+    </p-table>
+</app-table-container>
+
+<!-- Modal Confirmacion -->
+<p-confirmDialog></p-confirmDialog>

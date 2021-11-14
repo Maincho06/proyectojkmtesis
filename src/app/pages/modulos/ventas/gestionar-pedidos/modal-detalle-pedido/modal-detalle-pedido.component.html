@@ -1,0 +1,78 @@
+<!-- Modal Pedido -->
+
+<div class="p-grid">
+    <div class="p-col-12">
+        <form [formGroup]="formPedido" class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-lg-2">
+                <label>Codigo</label>
+                <input formControlName="codigo" type="text" pInputText>
+            </div>
+
+            <div class="p-field p-lg-5">
+                <label>Solicitante</label>
+                <input formControlName="codigo" type="text" pInputText readonly>
+            </div>
+
+            <div class="p-field p-lg-5">
+                <label>Cliente</label>
+                <input formControlName="codigo" type="text" pInputText readonly>
+            </div>
+
+            <div class="p-field p-col-4">
+                <label for="range">Fecha Solicitud</label>
+                <p-calendar appendTo="body" [baseZIndex]="10000" formControlName="fechaSolicitud" inputId="basic"></p-calendar>
+            </div>
+
+            <div class="p-field p-col-4">
+                <label for="range">Fecha Entrega</label>
+                <p-calendar appendTo="body" [baseZIndex]="10000" formControlName="fechaEntrega" inputId="basic"></p-calendar>
+            </div>
+
+            <div class="p-field p-col-4">
+                <label>Tipo</label>
+                <p-dropdown [options]="[]" optionLabel="estado" [showClear]="true" placeholder="Tipo" formControlName="tipo"></p-dropdown>
+            </div>
+
+
+        </form>
+    </div>
+
+    <hr>
+    <!-- Lista Pedido -->
+
+    <div class="p-col-12">
+        <h4>Lista Productos</h4>
+
+        <p-table [value]="products" responsiveLayout="scroll">
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Reviews</th>
+                    <th>Status</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{product.name}}</td>
+                    <td><img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.name" width="100" class="p-shadow-4" /></td>
+                    <td>{{product.price | currency:'USD'}}</td>
+                    <td>{{product.category}}</td>
+                    <td>
+                        <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                    </td>
+                    <td><span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span></td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    En total hay {{products ? products.length : 0 }} productos.
+                </div>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
