@@ -19,6 +19,10 @@ export class PedidoService extends BaseService {
     return this.http.get<any>(`${PEDIDO_URL}`, { headers: this.obtenerHeaders()}).toPromise();
   }
 
+  getEstados(): Promise<any> { 
+    return this.http.get<any>(`${PEDIDO_URL}/Estados`, { headers: this.obtenerHeaders()}).toPromise();
+  }
+
   getPedidoById(idPedido: number): Promise<any> { 
     return this.http.get<any>(`${PEDIDO_URL}/${idPedido}`, { headers: this.obtenerHeaders()}).toPromise();
   }

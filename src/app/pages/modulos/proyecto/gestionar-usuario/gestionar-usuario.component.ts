@@ -20,7 +20,6 @@ export class GestionarUsuarioComponent implements OnInit {
 
   constructor(
     public _dialogService: DialogService,
-    private router: Router,
     private _confirmationService: ConfirmationService,
     private _messageService: MessageService,
     private _usuariosService: UsuariosService,
@@ -40,8 +39,6 @@ export class GestionarUsuarioComponent implements OnInit {
       // Cambiar
       const data: any = await this._usuariosService.getUsuariosPaginado({ pages: 1, rows: 10 }).toPromise();
 
-      console.log(data)
-      
       this.listaUsuarios = data.data;
     }
 

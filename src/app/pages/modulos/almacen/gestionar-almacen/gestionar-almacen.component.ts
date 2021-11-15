@@ -29,7 +29,6 @@ export class GestionarAlmacenComponent implements OnInit {
   async listarAlmacen() {
     try {
       this.almacen = await this._almacenService.getAlmacen();
-      console.log("ALMACEN: ", this.almacen);
     } catch (error) {
       console.error(error);
       this.almacen = [];
