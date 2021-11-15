@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IPedidoModel } from '@models/pedidomodel';
 import { PedidoService } from '@services/pedido.service';
 import { BASE_INDEX_MODAL } from '@utils/general_constants';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
@@ -13,10 +12,6 @@ import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.componen
 })
 export class GestionarPedidosComponent implements OnInit {
 
-  listaPedidos: IPedidoModel[] = [
-    { id: 1, solicitante: "Mauricio", cliente: "Mauricio", fechaSolicitud: "01-11-2021", fechaEntrega: "15-12-2021" },
-    { id: 2, solicitante: "Farfan", cliente: "Cesar", fechaSolicitud: "01-11-2021", fechaEntrega: "15-12-2021" },
-  ];
   listaPedido: any[];
 
   constructor(
@@ -26,13 +21,10 @@ export class GestionarPedidosComponent implements OnInit {
 
   async ngOnInit() {
     await this.obtenerPedido();
-    
-
   }
 
   async obtenerPedido() {
     this.listaPedido = await this._pedidoService.getPedido();
-    console.log('LISTA PEDIDO: ', this.listaPedido);
   }
 
   detallePedido() {

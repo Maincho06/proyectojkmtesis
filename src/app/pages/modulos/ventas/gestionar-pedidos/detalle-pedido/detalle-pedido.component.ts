@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PedidoService } from '@services/pedido.service';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ObvsService } from '@services/obvs.service';
 import { ActivatedRoute } from '@angular/router';
 import { EstadoGeneral } from '@models/generalmodel';
+import { Identifier } from '@models/identifiermodel';
 
 @Component({
   selector: 'app-detalle-pedido',
   templateUrl: './detalle-pedido.component.html',
-  styleUrls: ['./detalle-pedido.component.scss']
+  styleUrls: ['./detalle-pedido.component.scss'],
 })
 export class DetallePedidoComponent implements OnInit {
-
   formPedido: FormGroup;
   pedido: any;
   idPedido: number;
@@ -20,19 +19,19 @@ export class DetallePedidoComponent implements OnInit {
   productos: any[];
   listaEstadoPedido: EstadoGeneral[];
   precioTotal: number;
-
+  listEstados: Identifier[];
 
   constructor(
     private _formBuilder: FormBuilder,
     private _pedidoService: PedidoService,
     private _obvsService: ObvsService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     this.crearFormPedido();
-   }
+  }
 
   async ngOnInit() {
-    this.route.params.subscribe((params) =>  {
+    this.route.params.subscribe((params) => {
       this.idPedido = params.id;
     });
     await this.obtenerPedidoById(this.idPedido);
@@ -50,7 +49,7 @@ export class DetallePedidoComponent implements OnInit {
       'estado'        : [null,[Validators.required]],
     });
   }
-  
+
   inicializarFormulario(pedido: any) {
     this.formPedido.reset({
       codigo        : pedido.codigoOrden,
@@ -76,7 +75,6 @@ export class DetallePedidoComponent implements OnInit {
     } finally {
       this._obvsService.toogleSpinner();
     }
-
   }
 
   async obteneEstadoPedido() {

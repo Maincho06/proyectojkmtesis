@@ -5,28 +5,11 @@
 
         <div class="layout-topbar-right">
             <ul class="layout-topbar-actions">
-                <li class="topbar-item search-item"><a tabindex="0"><i class="topbar-icon pi pi-search"></i></a>
-                    <div class="search-input-wrapper"><span class="p-input-icon-left"><i class="pi pi-search"></i><input
-                                type="text" pinputtext="" placeholder="Search..."
-                                class="p-inputtext p-component p-element"></span></div>
-                    <ul class="fadeInDown">
-                        <div class="search-input-wrapper p-fluid" style="width: 100%;"><span
-                                class="p-input-icon-left"><i class="pi pi-search"></i><input type="text" pinputtext=""
-                                    placeholder="Search..." class="p-inputtext p-component p-element"></span></div>
-                    </ul>
-                </li>
-                <li class="topbar-item user-profile">
-                    <a href="#">
-                        <img src="../../../../assets/img/default-avatar.png" alt="avatar-icon">
-                    </a>
-                    
-                    <ul class="fadeInDown">
-                        <li><a href="#"><span>Profile</span></a></li>
-                        <li><a href="#"><span>Settings</span></a></li>
-                        <li><a href="#"><span>Messages</span></a></li>
-                        <li><a href="#"><span>Notifications</span></a></li>
-                    </ul>
-                </li>
+                <button pButton type="button" label=" " class="p-button-rounded p-button-text"
+                    (click)="menu.toggle($event)">
+                    <img src="../../../../assets/img/default-avatar.png" alt="avatar-icon" width="30">
+                </button>
+                <p-menu #menu [popup]="true" [model]="items"></p-menu>
             </ul>
         </div>
 
