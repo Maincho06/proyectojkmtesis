@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BaseService } from './base.service';
 import { USUARIO_URL } from '@utils/url_constants';
 import { Observable } from 'rxjs';
-import { IRegisterUsuario } from '@models/usuariomodel';
+import { IRegisterUsuario, IUpdateUsuario } from '@models/usuariomodel';
 
 @Injectable({
     providedIn: 'root'
@@ -43,9 +43,20 @@ export class UsuariosService extends BaseService {
     }
 
     // Editar Usuario
-    // editUsuario(idUsuario: string, usuario: IUsuarioModel){
+    editUsuario(usuario: IUpdateUsuario): Promise<any> {
+        
+        const url = `${USUARIO_URL}/${usuario.IdUsuario}`
 
-    // }
+        return this.http.put<any>(url, usuario, { headers: this.obtenerHeaders() }).toPromise()
+    }
+
+    // Actualizar Estado Usuario
+    updateEstadoUsuario(idUsuario: number): Promise<any> {
+        
+        const url = `${USUARIO_URL}/${idUsuario}/Estado`
+
+        return this.http.put<any>(url, { headers: this.obtenerHeaders() }).toPromise()
+    }
 
     // Eliminar Usario
     deleteUsuario(idUsuario: number): Observable<any> {

@@ -29,7 +29,7 @@ const components = [
 ]
 
 @NgModule({
-  declarations: [ ...components, UsuarioRegisterComponent, UsuarioUpdateComponent],
+  declarations: [ ...components],
   imports: [
     CommonModule,
     ProyectoRoutingModule,

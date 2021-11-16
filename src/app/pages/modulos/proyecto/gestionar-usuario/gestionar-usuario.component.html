@@ -1,65 +1,73 @@
 <div class="card">
 
-    <h5 class="p-mb-5">Gestionar Usuarios</h5>
-
-    <!-- <h4 class="p-mb-3">Buscar:</h4> -->
-
-    <!-- Input Filtro -->
-    <!-- <div class="p-grid p-mb-4">
-        <div class="p-col-6">
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                    placeholder="Ingresa tu búsqueda" />
-            </span>
-        </div>
-        <div class="p-col-6 p-text-right">
-            <button pButton pRipple type="button" label="Registrar Usuario" (click)="registerUsuario()"></button>
-        </div>
-    </div> -->
-
     <!-- Lista de Usuarios -->
     <p-table #dt [value]="listaUsuarios" [rows]="10" [paginator]="true" responsive="stack"
+        [globalFilterFields]="['usuario','nombres','apellidos','fechaNacimiento','rol']"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
         [showCurrentPageReport]="true">
 
+        <!-- Input Filtro -->
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        id="tFiltro" placeholder="Buscar..." />
+                </span>
+                <button pButton pRipple type="button" label="Registrar Usuario" (click)="registerUsuario()"></button>
+            </div>
+        </ng-template>
+
+        <!-- Cabecera Tabla -->
         <ng-template pTemplate="header">
             <tr>
-                <th>Código</th>
-                <th>Usuario</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Fecha Nacimiento</th>
-                <th>Rol</th>
+                <th pSortableColumn="codigo">Código<p-sortIcon field="codigo"></p-sortIcon>
+                </th>
+                <th pSortableColumn="usuario">Usuario<p-sortIcon field="usuario"></p-sortIcon>
+                </th>
+                <th pSortableColumn="nombres">Nombres<p-sortIcon field="nombres"></p-sortIcon>
+                </th>
+                <th pSortableColumn="apellidos">Apellidos<p-sortIcon field="apellidos"></p-sortIcon>
+                </th>
+                <th pSortableColumn="fechaNacimiento">Fecha Nacimiento<p-sortIcon field="fechaNacimiento"></p-sortIcon>
+                </th>
+                <th pSortableColumn="rol">Rol<p-sortIcon field="rol"></p-sortIcon>
+                </th>
+                <th>Estado</th>
                 <th>Opciones</th>
             </tr>
         </ng-template>
 
+        <!-- Cuerpo Tabla -->
         <ng-template pTemplate="body" let-usuarios>
             <tr>
                 <td><span class="p-column-title">Código</span>{{usuarios.idUsuario}}</td>
                 <td><span class="p-column-title">Usuario</span>{{usuarios.username}}</td>
                 <td><span class="p-column-title">Nombres</span>{{usuarios.nombre}}</td>
                 <td><span class="p-column-title">Apellidos</span>{{usuarios.apellido}}</td>
-                <td><span class="p-column-title">Fecha Nacimiento</span>{{usuarios.fechaNacimientoString}}</td>
-                <td><span class="p-column-title">Rol</span>{{usuarios.descripcion}}</td>
+                <td><span class="p-column-title">Fecha Nacimiento</span>{{usuarios.fechaNacimiento | date:'dd/MM/yyyy'}}
+                </td>
+                <td><span class="p-column-title">Rol</span>{{usuarios.descripcionRol}}</td>
+                <td><span class="p-column-title">Rol</span>{{usuarios.descripcionEstado}}</td>
                 <td>
                     <span class="p-column-title">Opciones</span>
                     <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
                         pTooltip="Ver" (click)="verUsuario(usuarios.idUsuario)"></button>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
                         pTooltip="Editar" (click)="editarUsuario(usuarios.idUsuario)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                        pTooltip="Eliminar" (click)="eliminarUsuario(usuarios.idUsuario)"></button>
+                    <button pButton pRipple icon="pi pi-cog" class="p-button-rounded p-button-help"
+                        pTooltip="Cambiar Estado" (click)="actualizarEstadoUsuario(usuarios.idUsuario)"></button>
                 </td>
             </tr>
         </ng-template>
 
+        <!-- Registro Total Nro -->
         <ng-template pTemplate="summary">
             <div class="p-d-flex p-ai-center p-jc-between">
                 Total: {{listaUsuarios ? listaUsuarios.length : 0 }} usuario(s)
             </div>
         </ng-template>
+
     </p-table>
 
 </div>
