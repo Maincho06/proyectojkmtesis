@@ -33,7 +33,7 @@
 
                 <div class="p-field p-col-4">
                     <label>Estado</label>
-                    <p-dropdown [options]="listEstados" optionLabel="descripcion" [showClear]="true" placeholder="Estado" formControlName="estado"></p-dropdown>
+                    <p-dropdown [options]="listaEstadoPedido" optionLabel="descripcion" [showClear]="true" placeholder="Estado" formControlName="estado"></p-dropdown>
                 </div>
 
 
@@ -54,7 +54,7 @@
                     <tr>
                         <th>Codigo</th>
                         <th>Nombre</th>
-                        <th>Imagen</th>
+                        <!-- <th>Imagen</th> -->
                         <th>Cantidad</th>
                         <th>Precio Unitario</th>
                         <th>Precio Total</th>
@@ -64,7 +64,7 @@
                     <tr>
                         <td>{{producto.codigo}}</td>
                         <td>{{producto.nombre}}</td>
-                        <td><img [src]="producto.imagen" [alt]="producto.nombre" width="100" class="p-shadow-4" /></td>
+                        <!-- <td><img [src]="producto.imagen" [alt]="producto.nombre" width="100" class="p-shadow-4" /></td> -->
 
                         <td>{{producto.cantidad}}</td>
                         <td>{{producto.precioProd | number:'1.2-2' }}</td>
@@ -73,7 +73,7 @@
                 </ng-template>
                 <ng-template pTemplate="footer">
                     <tr>
-                        <td colspan="5" class="p-text-right">Total</td>
+                        <td colspan="4" class="p-text-right">Total</td>
                         <td class="p-text-center">{{ precioTotal | number:'1.2-2'}}</td>
                     </tr>
                 </ng-template>
