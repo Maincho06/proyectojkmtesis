@@ -23,6 +23,7 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { PasswordModule } from 'primeng/password';
 import { MenuModule } from 'primeng/menu';
+import {FileUploadModule} from 'primeng/fileupload';
 
 const PRIMENG = [
   SidebarModule,
@@ -49,6 +50,7 @@ const PRIMENG = [
   MenuModule,
   ToolbarModule,
   InputNumberModule,
+  FileUploadModule
 ];
 
 @NgModule({

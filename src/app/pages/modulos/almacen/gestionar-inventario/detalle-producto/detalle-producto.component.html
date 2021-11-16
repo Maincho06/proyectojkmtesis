@@ -4,20 +4,28 @@
         <div class="p-col-12">
             <form [formGroup]="formProducto" class="p-fluid p-formgrid p-grid">
 
-                <div class="p-field p-lg-4">
+                <div class="p-field p-lg-6">
                     <label>Nombre</label>
                     <input formControlName="nombre" type="text" pInputText>
                 </div>
 
-                <div class="p-field p-lg-4">
+                <div class="p-field p-lg-6">
                     <label>Codigo</label>
                     <input formControlName="codigo" type="text" pInputText>
                 </div>
-
-                <div class="p-field p-lg-4">
+                
+                <div class="p-field p-lg-6">
                     <label>Imagen</label>
-                    <input formControlName="imagen" type="text" pInputText>
+                    <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
+                        accept="image/*" maxFileSize="1000000">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
                 </div>
+
 
             </form>
         </div>

@@ -17,6 +17,7 @@ export class DetalleProductoComponent implements OnInit {
   isRegistrar: boolean;
   idProducto: number;
   producto: IProductoModel;
+  uploadedFiles: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,20 +29,20 @@ export class DetalleProductoComponent implements OnInit {
   async ngOnInit() {
     this.route.params.subscribe((params) => {
       console.log('PARAM: ', params.id);
-      if(params.id === undefined) {
+      if (params.id === undefined) {
         this.isRegistrar = true;
       } else {
         this.idProducto = params.id;
         this.isRegistrar = false;
       }
-      
+
     });
     // this.isRegistrar = this.config.data.isRegistrar;
     this.crearFormProducto();
 
     if (!this.isRegistrar) {
-        // this.producto = this.config.data.data;
-        this.inicializarFormulario(this.producto);
+      // this.producto = this.config.data.data;
+      this.inicializarFormulario(this.producto);
     }
   }
 
@@ -82,5 +83,17 @@ export class DetalleProductoComponent implements OnInit {
       console.log('ERROR: ', error);
     }
   }
+
+  /* onBasicUploadAuto(event) {
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+
+    this._messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
+  } */
+
+  onUpload(event) {
+    this._messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode'});
+}
 
 }
