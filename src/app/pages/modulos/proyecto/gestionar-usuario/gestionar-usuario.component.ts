@@ -20,7 +20,6 @@ export class GestionarUsuarioComponent implements OnInit {
 
   constructor(
     public _dialogService: DialogService,
-    private router: Router,
     private _confirmationService: ConfirmationService,
     private _messageService: MessageService,
     private _usuariosService: UsuariosService,

@@ -1,0 +1,26 @@
+<!-- Modal Almacen -->
+
+<div class="p-grid">
+    <div class="p-col-12">
+        <form [formGroup]="formAlmacen" class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-lg-6">
+                <label>Nombre</label>
+                <input formControlName="nombre" type="text" pInputText>
+                <small *ngIf="validarNombreAlmacen" class="p-error">El nombre no puede estar vacío</small>
+            </div>
+            <div class="p-field p-lg-6">
+                <label>Dirección</label>
+                <input formControlName="direccion" type="text" pInputText>
+                <small *ngIf="validarDireccionAlmacen" class="p-error">La dirección no puede estar vacia</small>
+            </div>
+            <div class="p-field p-lg-6">
+                <label>Distrito</label>
+                <input formControlName="distrito" type="text" pInputText>
+                <small *ngIf="validarDistritoAlmacen" class="p-error">El distrito no puede estar vacío</small>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<button pButton type="button" [label]="isRegistrar ?  'Registrar' : 'Actualizar'" (click)="registrarOrUpdateAlmacen()"></button>

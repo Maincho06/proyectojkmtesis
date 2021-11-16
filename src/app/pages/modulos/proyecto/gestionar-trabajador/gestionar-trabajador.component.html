@@ -9,8 +9,7 @@
                         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
                             id="tFiltro" placeholder="Buscar..." />
                     </span>
-                    <button pButton pRipple type="button" label="Registrar"
-                        (click)="detalleTrabajador(true, null)"></button>
+                    <button pButton pRipple type="button" label="Registrar" (click)="detalleTrabajador(true, null)"></button>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
@@ -32,10 +31,8 @@
                     <td>{{ventas.estado.descripcion}}</td>
                     <td>
                         <!-- <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2" pTooltip="Ver" (click)="detalleTrabajador(false,ventas)"></button> -->
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
-                            pTooltip="Editar" (click)="detalleTrabajador(false,ventas)"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                            pTooltip="Eliminar" (click)="eliminarTrabajador(ventas.idTrabajador)"></button>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar" (click)="detalleTrabajador(false,ventas)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Eliminar" (click)="eliminarTrabajador(ventas.idTrabajador)"></button>
                     </td>
                 </tr>
             </ng-template>

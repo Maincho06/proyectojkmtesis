@@ -15,6 +15,12 @@ import { GestionarClientRegisterComponent } from './gestionar-cliente/components
 import { GestionarClientUpdateComponent } from './gestionar-cliente/components/gestionar-client-update/gestionar-client-update.component';
 import { ProductosCotizacionComponent } from './gestionar-cotizacion/components/productos-cotizacion/productos-cotizacion.component';
 import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-venta.component';
+import { GestionarPedidosComponent } from './gestionar-pedidos/gestionar-pedidos.component';
+import { DetallePedidoComponent } from './gestionar-pedidos/detalle-pedido/detalle-pedido.component';
+
+// Dialog
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 
 
 
@@ -31,11 +37,18 @@ import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-v
     GestionarClientUpdateComponent,
     ProductosCotizacionComponent,
     DetalleVentaComponent,
+    GestionarPedidosComponent,
+    DetallePedidoComponent,
   ],
   imports: [
     CommonModule,
     VentasRoutingModule,
     SharedModule
+  ],
+  providers: [
+    DialogService,
+    ConfirmationService, 
+    MessageService
   ]
 })
 export class VentasModule { }
