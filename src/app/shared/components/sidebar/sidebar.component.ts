@@ -17,6 +17,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/proyecto/gestionarTrabajadores', title: 'Gestionar Trabajadores', icon: 'pi-users', class: '' },
     { path: '/proyecto/gestionarUsuarios', title: 'Gestionar Usuarios', icon: 'pi-users', class: '' },
     { path: '/almacen/gestionarAlmacen', title: 'Gestionar Almacen',     icon:'pi-users',    class: '' },
+    { path: '/almacen/gestionarInventario', title: 'Gestionar Inventario',     icon:'pi-users',    class: '' },
 
 ];
 

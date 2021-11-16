@@ -9,16 +9,19 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SharedModule } from '../../../shared/shared.module';
 import { DetalleAlmacenComponent } from './gestionar-almacen/detalle-almacen/detalle-almacen.component';
+import { GestionarInventarioComponent } from './gestionar-inventario/gestionar-inventario.component';
+import { DetalleProductoComponent } from './gestionar-inventario/detalle-producto/detalle-producto.component';
 
 const COMPONENTS = [
   GestionarAlmacenComponent,
-  DetalleAlmacenComponent
+  DetalleAlmacenComponent,
+  GestionarInventarioComponent,
+  DetalleProductoComponent,
 ];
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    
   ],
   imports: [
     CommonModule,
