@@ -28,7 +28,7 @@ const routes: Routes = [
                         },
                     },
                     {
-                        path: 'registrar',
+                        path: 'crear',
                         component: DetalleProductoComponent,
                         data: {
                             breadcrumb: '/almacen/gestionarInventario',

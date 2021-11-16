@@ -1,1 +1,38 @@
-<p>detalle-producto works!</p>
+<!-- Modal Producto -->
+<div class="card">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <form [formGroup]="formProducto" class="p-fluid p-formgrid p-grid">
+
+                <div class="p-field p-lg-4">
+                    <label>Nombre</label>
+                    <input formControlName="nombre" type="text" pInputText>
+                </div>
+
+                <div class="p-field p-lg-4">
+                    <label>Codigo</label>
+                    <input formControlName="codigo" type="text" pInputText>
+                </div>
+
+                <div class="p-field p-lg-4">
+                    <label>Imagen</label>
+                    <input formControlName="imagen" type="text" pInputText>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <button pButton type="button" label="Registrar" (click)="registrarProducto()"></button>
+</div>
+
+
+<pre>
+    Estado del formulario {{formProducto.valid}}
+  <br />
+    Status: {{formProducto.status}}
+  </pre>
+
+<pre>
+  {{ formProducto.value | json }}
+  </pre>

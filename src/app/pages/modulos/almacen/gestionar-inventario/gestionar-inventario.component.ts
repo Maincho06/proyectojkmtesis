@@ -33,6 +33,8 @@ export class GestionarInventarioComponent implements OnInit {
       this.listProductos =
         await this._productoService
           .getProducto();
+
+          
     } catch (error) {
       console.log('Error: ', error);
     } finally {

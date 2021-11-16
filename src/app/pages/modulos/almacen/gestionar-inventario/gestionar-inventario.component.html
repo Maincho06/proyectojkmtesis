@@ -9,7 +9,7 @@
                         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
                             id="tFiltro" placeholder="Buscar..." />
                     </span>
-                    <button pButton pRipple type="button" label="Registrar"></button>
+                    <button pButton pRipple type="button" label="Registrar" [routerLink]="'crear'"></button>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
