@@ -5,11 +5,13 @@
 
         <div class="layout-topbar-right">
             <ul class="layout-topbar-actions">
-                <button pButton type="button" label=" " class="p-button-rounded p-button-text"
-                    (click)="menu.toggle($event)">
+                <button pButton type="button" label=" " class="p-button-rounded p-button-text" (click)="menu.toggle($event)">
                     <img src="../../../../assets/img/default-avatar.png" alt="avatar-icon" width="30">
                 </button>
                 <p-menu #menu [popup]="true" [model]="items"></p-menu>
+                <a *ngIf="items" (click)="toggleMenu(menu, $event, rowData)">
+                    <i class="fas fa-chevron-circle-down"></i>
+                </a>
             </ul>
         </div>
 

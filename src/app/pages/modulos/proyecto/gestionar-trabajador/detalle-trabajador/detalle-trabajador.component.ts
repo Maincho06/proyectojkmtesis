@@ -6,6 +6,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import * as moment from 'moment';
 import { toast } from '@utils/toast';
 import { MessageService } from 'primeng/api';
+import { validarFormularioJKM } from '@utils/form';
 
 @Component({
   selector: 'app-detalle-trabajador',
@@ -79,6 +80,11 @@ export class DetalleTrabajadorComponent implements OnInit {
   }
 
   async registrarTrabajador() {
+    if (this.formTrabajador.invalid) {
+      return Object.values(this.formTrabajador.controls).forEach(control => {
+        control.markAllAsTouched();
+      })
+    }
     try {
       let model: IRequestRegisterTrabajador = {
         nombre         : this.formTrabajador.get('nombre').value,
@@ -101,6 +107,27 @@ export class DetalleTrabajadorComponent implements OnInit {
     }
   }
 
+
+  // Get Validacioens
+
+  get validarNombre() {
+    return this.formTrabajador.get('nombre').invalid && this.formTrabajador.get('nombre').touched;
+  }
+  get validarApellidoMaterno() {
+    return this.formTrabajador.get('apellidoMaterno').invalid && this.formTrabajador.get('apellidoMaterno').touched;
+  }
+  get validarApellidoPaterno() {
+    return this.formTrabajador.get('apellidoPaterno').invalid && this.formTrabajador.get('apellidoPaterno').touched;
+  }
+  get validarFechaNacimiento() {
+    return this.formTrabajador.get('fechaNacimiento').invalid && this.formTrabajador.get('fechaNacimiento').touched;
+  }
+  get validarTipo() {
+    return this.formTrabajador.get('tipo').invalid && this.formTrabajador.get('tipo').touched;
+  }
+  get validarEstado() {
+    return this.formTrabajador.get('estado').invalid && this.formTrabajador.get('estado').touched;
+  }
 
 
 }

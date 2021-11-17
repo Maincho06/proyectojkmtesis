@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IAlmaceModel } from '@models/almacenmodel';
 import { IClienteModel } from '@models/clientemodel';
 import { AlmacenService } from '@services/almacen.service';
-import { BASE_INDEX_MODAL } from '@utils/general_constants';
+import { BASE_INDEX_MODAL, SIZE_MODAL } from '@utils/general_constants';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { DetalleAlmacenComponent } from './detalle-almacen/detalle-almacen.component';
 
@@ -37,7 +37,7 @@ export class GestionarAlmacenComponent implements OnInit {
 
   registerOrUpdateAlmacen(isRegistrar: boolean, data: IAlmaceModel) {
     const dialogConfig = new DynamicDialogConfig();
-    dialogConfig.width = '80vw';
+    dialogConfig.width = SIZE_MODAL;
     dialogConfig.baseZIndex = BASE_INDEX_MODAL;
     dialogConfig.header = isRegistrar ? 'Registrar Almacen' : 'Actualizar Almacen';
     dialogConfig.data = {

@@ -33,4 +33,5 @@ export class NavbarComponent implements OnInit {
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
   }
+
 }
