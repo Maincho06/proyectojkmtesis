@@ -67,14 +67,14 @@
                         <!-- <td><img [src]="producto.imagen" [alt]="producto.nombre" width="100" class="p-shadow-4" /></td> -->
 
                         <td>{{producto.cantidad}}</td>
-                        <td>{{producto.precioProd | number:'1.2-2' }}</td>
-                        <td>{{producto.cantidad * producto.precioProd | number:'1.2-2' }}</td>
+                        <td>{{producto.precioProd | currency:'S/ ' }}</td>
+                        <td>{{producto.cantidad * producto.precioProd | currency:'S/ ' }}</td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="footer">
                     <tr>
                         <td colspan="4" class="p-text-right">Total</td>
-                        <td class="p-text-center">{{ precioTotal | number:'1.2-2'}}</td>
+                        <td>{{ precioTotal | currency:'S/ '}}</td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">

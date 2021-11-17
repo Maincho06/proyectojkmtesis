@@ -40,7 +40,7 @@
             <ng-template pTemplate="body" let-cotizacion>
                 <tr>
                     <td>{{cotizacion.razonSocial}}</td>
-                    <td>{{cotizacion.precioCotizacion}}</td>
+                    <td>{{cotizacion.precioCotizacion | currency:'S/ '}}</td>
                     <td>{{cotizacion.fechaSolicitudString | date: 'dd/MM/yyyy'}}</td>
                     <td>{{cotizacion.tipoCotizacion.descripcion}}</td>
                     <td>{{cotizacion.estado.descripcion}}</td>
