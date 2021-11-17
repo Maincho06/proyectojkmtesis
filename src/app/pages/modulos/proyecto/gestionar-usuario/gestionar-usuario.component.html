@@ -48,7 +48,9 @@
                 <td><span class="p-column-title">Fecha Nacimiento</span>{{usuarios.fechaNacimiento | date:'dd/MM/yyyy'}}
                 </td>
                 <td><span class="p-column-title">Rol</span>{{usuarios.descripcionRol}}</td>
-                <td><span class="p-column-title">Rol</span>{{usuarios.descripcionEstado}}</td>
+                <td><span class="p-column-title">Estado</span><span
+                        [class]="'usuario-badge status-' + (usuarios.descripcionEstado ? usuarios.descripcionEstado.toLowerCase() : '')">{{usuarios.descripcionEstado}}</span>
+                </td>
                 <td>
                     <span class="p-column-title">Opciones</span>
                     <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"

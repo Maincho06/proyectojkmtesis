@@ -90,17 +90,16 @@
 </div>
 
 <!-- Botones Flotantes -->
-<div class="fab-container">
+<!-- <div class="fab-container">
     <button pButton pRipple type="button" icon="pi pi-plus" class="fab-toggler p-button-rounded floatButton"
         (click)="onToggleFab(1, -1)">
-        <!-- <i class="material-icons" [@fabToggler]="{value: tsLista}">add</i> -->
     </button>
     <div [@speedDialStagger]="abLista.length">
         <button *ngFor="let btn of abLista; let ibtn = index;" pButton pRipple type="button"
             class="p-button-rounded p-button-white floatButton" (click)="clickFab(ibtn)" icon="pi {{btn.icon}}">
         </button>
     </div>
-</div>
+</div> -->
 
 <!-- Dialog Cuotas -->
 <p-dialog [(visible)]="cuotaDialog" [style]="{width: '40vw'}" header="Cuotas" [modal]="true" styleClass="p-fluid">
