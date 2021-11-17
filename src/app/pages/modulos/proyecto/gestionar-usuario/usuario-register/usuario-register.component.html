@@ -7,46 +7,54 @@
             <!-- Input Nombres -->
             <div class="p-field p-col-12">
                 <label>Nombres</label>
-                <input formControlName="nombres" type="text" pInputText>
+                <input formControlName="nombre" type="text" pInputText>
             </div>
 
             <!-- Input Apellidos -->
             <div class="p-field p-col-12">
                 <label>Apellidos</label>
-                <input formControlName="apellidos" type="text" pInputText>
+                <input formControlName="apellido" type="text" pInputText>
             </div>
 
-            <!-- Input Nombre Usuario -->
+            <!-- Input Email -->
             <div class="p-field p-col-12">
-                <label>Nombre Usuario</label>
-                <input formControlName="nombreUsuario" type="text" pInputText>
-            </div>
-
-            <!-- Input Contraseña -->
-            <div class="p-field p-col-12">
-                <label>Contraseña</label>
-                <input formControlName="contrasenia" type="text" pInputText>
+                <label>Email</label>
+                <input formControlName="email" type="text" pInputText>
             </div>
 
             <!-- Input Fecha Nacimiento -->
             <div class="p-field p-col-12">
                 <label>Fecha de Nacimiento</label>
-                <input formControlName="fechaNac" type="text" pInputText>
+                <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1700:2030"
+                    [readonlyInput]="true" formControlName="fechaNacimiento"></p-calendar>
+            </div>
+
+            <!-- Input Nombre Usuario -->
+            <div class="p-field p-col-12">
+                <label>Nombre Usuario</label>
+                <input formControlName="username" type="text" pInputText>
+            </div>
+
+            <!-- Input Contraseña -->
+            <div class="p-field p-col-12">
+                <label>Contraseña</label>
+                <input formControlName="password" type="text" pInputText>
             </div>
 
             <!-- Input Rol-->
             <div class="p-field p-col-12">
                 <label>Rol</label>
-                <input formControlName="rol" type="text" pInputText>
+                <p-dropdown appendTo="body" [options]="lRol" formControlName="rol" placeholder="Seleccione un proyecto"
+                    optionLabel="descripcion" optionValue="idRol" [showClear]="true"></p-dropdown>
             </div>
 
         </form>
 
-        <div class="text-right p-mt-2">
-            <button pButton pRipple label="Cancelar" class="p-button-danger p-mr-2"></button>
-            <button pButton pRipple label="Guardar"></button>
+        <div class="p-text-right p-mt-3">
+            <button pButton pRipple label="Guardar" (click)="registrarUsuario()" class="p-mr-2"></button>
+            <button pButton pRipple label="Cancelar" (click)="cerrarModal()" class="p-button-danger"></button>
         </div>
-        
+
     </div>
 
 </div>

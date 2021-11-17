@@ -1,23 +1,43 @@
-export interface IUsuarioModel {
-    idVenta           : number;
-    precio            : number;
-    FechaRegistro     : Date | string | null;
-    idTipo            : number;
-    tipoDescripcion   : string;
-    idEstado          : number;
-    estadoDescripcion : string;
-    razonSocial       : string;
-    ruc               : string;
+
+export interface IDetalleUsuarioModel {
+    idDetalleUsuario: number;
+    nombre: string;
+    apellido: string;
+    email: string;
+    fechaNacimiento: Date | string | null;
+
+}
+
+export interface IUsuarioModel extends IDetalleUsuarioModel {
+    idUsuario: number;
+    username: string;
+    password: string;
+    descripcionRol: string;
+    descripcionEstado: string
+}
+
+export interface IRegisterUsuario {
+    Nombre: string;
+    Apellido: string;
+    Email: string;
+    FechaNacimiento: Date | string;
+    Username: string;
+    Password: string;
+    IdRol: number;
+}
+
+export interface IUpdateUsuario{
+    IdUsuario: number;
+    Nombre: string;
+    Apellido: string;
+    Email: string;
+    FechaNacimiento: Date | string;
+    Username: string;
+    Password: string;
+    IdRol: number;
 }
 
 export interface IRol {
-    idRol                 : number;
-    descripcion           : string;
-}
-
-export interface IRegisterUsuario{
-    idVenta             : number;
-    numeroCuota?        : number;
-    pagoParcial         : number;
-    fechaCuota          : Date | string | null;
+    idRol: number;
+    descripcion: string;
 }

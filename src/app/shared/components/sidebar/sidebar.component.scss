@@ -6,6 +6,16 @@
 
 .active {
   a {
-    color: var(--primary-color) !important;
+    color: #f2f5f7 !important;
+    background: #221879 !important
   }
 }
+
+// .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > a.active-route {
+//   color: #2170E7;
+//   color: var(--primary-color);
+// }
+// .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > a.active-route::before {
+//   background-color: #2170E7;
+//   background-color: var(--primary-color);
+// }
