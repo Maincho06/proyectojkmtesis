@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -10,7 +11,9 @@ export class NavbarComponent implements OnInit {
   items: MenuItem[];
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
 
-  constructor() {}
+  constructor(
+    private route: Router
+  ) {}
 
   ngOnInit() {
     this.items = [
@@ -20,6 +23,10 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Cerrar Sesion',
             icon: 'pi pi-times',
+            command: (event) => {
+              localStorage.clear();
+              this.route.navigateByUrl('login');
+            }
           },
         ],
       },
@@ -29,4 +36,5 @@ export class NavbarComponent implements OnInit {
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
   }
+
 }

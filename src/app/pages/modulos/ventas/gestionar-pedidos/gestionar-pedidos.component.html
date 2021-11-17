@@ -1,5 +1,5 @@
 <app-table-container>
-    <p-table [value]="listaPedido" responsiveLayout="scroll">
+    <p-table [value]="listaPedido" responsiveLayout="scroll" [rows]="10" [paginator]="true">
         <ng-template pTemplate="header">
             <tr>
                 <th>Codigo</th>

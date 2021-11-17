@@ -1,4 +1,4 @@
-<div>
+<div class="card">
     <h5>Buscar:</h5>
 
     <!-- Input Filtro -->
@@ -13,7 +13,7 @@
 
     <!-- Almacen Table -->
     <div class="card p-mb-4 p-shadow-6">
-        <p-table [value]="almacen" responsiveLayout="scroll">
+        <p-table [value]="almacen" responsiveLayout="scroll" [rows]="10" [paginator]="true">
             <ng-template pTemplate="header">
 
                 <tr>

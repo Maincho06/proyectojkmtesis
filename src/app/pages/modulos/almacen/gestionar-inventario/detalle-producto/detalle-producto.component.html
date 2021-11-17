@@ -13,11 +13,10 @@
                     <label>Codigo</label>
                     <input formControlName="codigo" type="text" pInputText>
                 </div>
-                
+
                 <div class="p-field p-lg-6">
                     <label>Imagen</label>
-                    <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
-                        accept="image/*" maxFileSize="1000000">
+                    <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
                         <ng-template pTemplate="content">
                             <ul *ngIf="uploadedFiles.length">
                                 <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -33,14 +32,3 @@
 
     <button pButton type="button" label="Registrar" (click)="registrarProducto()"></button>
 </div>
-
-
-<pre>
-    Estado del formulario {{formProducto.valid}}
-  <br />
-    Status: {{formProducto.status}}
-  </pre>
-
-<pre>
-  {{ formProducto.value | json }}
-  </pre>

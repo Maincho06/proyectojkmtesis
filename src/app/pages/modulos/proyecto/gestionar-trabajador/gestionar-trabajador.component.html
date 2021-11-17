@@ -1,7 +1,7 @@
 <div>
     <!-- Trabajador Table -->
     <div class="card p-mb-4">
-        <p-table [value]="listTrabajadores" responsiveLayout="scroll">
+        <p-table [value]="listTrabajadores" responsiveLayout="scroll" [rows]="10" [paginator]="true">
             <ng-template pTemplate="caption">
                 <div class="p-d-flex p-ai-center p-jc-between">
                     <span class="p-input-icon-left">
@@ -45,6 +45,3 @@
 <!-- Modal Confirmación -->
 
 <p-confirmDialog></p-confirmDialog>
-
-
-<p-toast></p-toast>

@@ -3,45 +3,46 @@
     <div class="p-col-12">
         <form [formGroup]="formTrabajador" class="p-fluid p-formgrid p-grid">
 
-            <div class="p-field p-lg-4">
+            <div class="p-field p-lg-12">
                 <label>Nombre</label>
                 <input formControlName="nombre" type="text" pInputText>
+                <small *ngIf="validarNombre" class="p-error">El nombre no puede estar vacío</small>
             </div>
 
-            <div class="p-field p-lg-4">
+            <div class="p-field p-lg-12">
                 <label>Apellido Paterno</label>
                 <input formControlName="apellidoPaterno" type="text" pInputText>
+                <small *ngIf="validarApellidoPaterno" class="p-error">El apellido paterno no puede estar vacío</small>
             </div>
 
-            <div class="p-field p-lg-4">
+            <div class="p-field p-lg-12">
                 <label>Apellido Materno</label>
                 <input formControlName="apellidoMaterno" type="text" pInputText>
+                <small *ngIf="validarApellidoMaterno" class="p-error">El apellido materno no puede estar vacío</small>
             </div>
 
-            <!-- <div class="p-field p-lg-4">
+            <div class="p-field p-lg-12">
                 <label>Fecha Nacimiento</label>
-                <input formControlName="fechaNacimiento" type="text" pInputText>
-            </div> -->
-
-            <div class="p-field p-lg-4">
-                <label>Date</label>
                 <p-inputMask mask="99/99/9999" formControlName="fechaNacimiento" placeholder="99/99/9999" slotChar="mm/dd/yyyy"></p-inputMask>
+                <small *ngIf="validarFechaNacimiento" class="p-error">La fecha de nacimiento no puede estar vacío</small>
             </div>
 
-            <div class="p-field p-lg-4">
+            <div class="p-field p-lg-12">
                 <label>Tipo</label>
                 <p-dropdown [options]="listTipoTrabajador" optionLabel="descripcion" [showClear]="true" placeholder="Tipo" formControlName="tipo"></p-dropdown>
+                <small *ngIf="validarTipo" class="p-error">El Tipo no puede estar vacío</small>
             </div>
 
-
-
-            <div class="p-field p-lg-4" *ngIf="!isRegistrar">
+            <div class="p-field p-lg-12" *ngIf="!isRegistrar">
                 <label>Estado</label>
                 <p-dropdown [options]="listaEstadoTrabajador" optionLabel="descripcion" placeholder="Estado" [showClear]="true" appendTo="body" [baseZIndex]="10000" formControlName="estado"></p-dropdown>
+                <small *ngIf="validarEstado" class="p-error">El Estado no puede estar vacío</small>
             </div>
 
         </form>
     </div>
 </div>
 
-<button pButton type="button" label="Registrar" (click)="registrarTrabajador()"></button>
+<div class="button-center">
+    <button pButton type="button" [label]="isRegistrar ? 'Registrar' : 'Actualizar'" (click)="registrarTrabajador()"></button>
+</div>

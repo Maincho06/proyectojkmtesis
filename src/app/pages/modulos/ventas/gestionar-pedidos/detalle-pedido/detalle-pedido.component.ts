@@ -56,7 +56,7 @@ export class DetallePedidoComponent implements OnInit {
       solicitante   : pedido.solicitante,
       cliente       : pedido.cliente,
       fechaSolicitud: new Date(pedido.fechaRegistro),
-      fechaEntrega  : new Date(pedido.fechaEntrega),
+      fechaEntrega  : pedido.fechaEntregaString !== null ? new Date(pedido.fechaEntrega) : null,
       estado        : pedido.estado
     });
     // if(!this.isEstadoCreado)  this.formPedido.get('fechaEntrega').disable();

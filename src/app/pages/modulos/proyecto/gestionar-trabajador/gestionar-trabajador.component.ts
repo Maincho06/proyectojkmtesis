@@ -43,7 +43,8 @@ export class GestionarTrabajadorComponent implements OnInit {
   detalleTrabajador(isRegistrar: boolean, data: any) {
     const dialogConfig = new DynamicDialogConfig();
 
-    dialogConfig.width = '80vw';
+    // dialogConfig.width = '40w';
+    dialogConfig.width = '30rem'
     dialogConfig.baseZIndex = BASE_INDEX_MODAL;
     dialogConfig.header = 'Registrar Trabajador';
     dialogConfig.data = {
