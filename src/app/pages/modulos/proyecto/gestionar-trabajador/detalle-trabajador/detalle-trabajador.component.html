@@ -29,7 +29,7 @@
 
             <div class="p-field p-lg-12">
                 <label>Tipo</label>
-                <p-dropdown [options]="listTipoTrabajador" optionLabel="descripcion" [showClear]="true" placeholder="Tipo" formControlName="tipo"></p-dropdown>
+                <p-dropdown [options]="listTipoTrabajador" optionLabel="nombre" [showClear]="true" placeholder="Tipo" formControlName="tipo"></p-dropdown>
                 <small *ngIf="validarTipo" class="p-error">El Tipo no puede estar vacío</small>
             </div>
 

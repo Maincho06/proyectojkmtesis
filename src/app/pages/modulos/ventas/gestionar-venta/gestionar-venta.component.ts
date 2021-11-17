@@ -59,6 +59,8 @@ export class GestionarVentaComponent implements OnInit {
       message: '¿Estas seguro de eliminar esta venta?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         try {
           await this._ventasService.deleteVenta(idVenta).toPromise();

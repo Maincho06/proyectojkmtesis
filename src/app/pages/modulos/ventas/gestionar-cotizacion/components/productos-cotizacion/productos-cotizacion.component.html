@@ -1,4 +1,5 @@
-<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle" acceptLabel="Si" rejectLabel="No">
+</p-confirmDialog>
 
 <div class="card p-mb-4">
     <p-table [value]="detalleOrden" responsiveLayout="scroll">
@@ -17,8 +18,8 @@
                 <td>{{detalleOrden.codigoProducto}}</td>
                 <td>{{detalleOrden.nombreProducto}}</td>
                 <td>{{detalleOrden.cantidad}}</td>
-                <td>{{detalleOrden.precio  | currency:'S/ ':'symbol-narrow':'1.2-2'}}</td>
-                <td>{{detalleOrden.cantidad * detalleOrden.precio  | currency:'S/ ':'symbol-narrow':'1.2-2'}}</td>
+                <td>{{detalleOrden.precio | currency:'S/ ':'symbol-narrow':'1.2-2'}}</td>
+                <td>{{detalleOrden.cantidad * detalleOrden.precio | currency:'S/ ':'symbol-narrow':'1.2-2'}}</td>
                 <td>
                     <button (click)="modificar(detalleOrden)" pButton pRipple icon="pi pi-pencil"
                         class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>

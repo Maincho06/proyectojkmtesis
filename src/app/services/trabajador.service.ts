@@ -45,6 +45,10 @@ export class TrabajadorService extends BaseService {
         return this.http.get<ITipoTrabajador[]>(`${TRABAJADOR_URL}/Tipo`).toPromise();
     }
 
+    obtenerTipoTrabajadorById(idTipoTrabajador): Promise<ITipoTrabajador> {
+        return this.http.get<ITipoTrabajador>(`${TRABAJADOR_URL}/Tipo/${idTipoTrabajador}`).toPromise();
+    }
+
     registrarTrabajador(body: IRequestRegisterTrabajador): Promise<any> {
         return this.http.post<any>(`${TRABAJADOR_URL}`, body).toPromise();
     }
@@ -55,6 +59,14 @@ export class TrabajadorService extends BaseService {
 
     eliminarTrabajador(idTrabajador: number) {
         return this.http.delete<any>(`${TRABAJADOR_URL}/${idTrabajador}`).toPromise();
+    }
+
+    registrarTipoTrabajador(body: ITipoTrabajador): Promise<any> {
+        return this.http.post<any>(`${TRABAJADOR_URL}/Tipo`, body).toPromise();
+    }
+
+    updateTipoTrabajador(body: ITipoTrabajador) {
+        return this.http.put<any>(`${TRABAJADOR_URL}/Tipo/${body.id}`, body).toPromise();
     }
 
 }

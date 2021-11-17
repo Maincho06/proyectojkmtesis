@@ -66,6 +66,8 @@ export class GestionarInventarioComponent implements OnInit {
       message: '¿Seguro que desea eliminar el producto?',
       header: 'Alerta',
       icon: 'pi pi-info-circle',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         const data = await this._productoService.eliminarProducto(
           idProducto

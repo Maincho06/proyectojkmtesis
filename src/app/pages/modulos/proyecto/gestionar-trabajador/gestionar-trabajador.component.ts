@@ -65,6 +65,8 @@ export class GestionarTrabajadorComponent implements OnInit {
       message: '¿Seguro que desea eliminar el trabajador?',
       header: 'Alerta',
       icon: 'pi pi-info-circle',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         const data = await this._trabajadorService.eliminarTrabajador(
           idTrabajador

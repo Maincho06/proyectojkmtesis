@@ -9,9 +9,10 @@ export interface ITrabajadorModel {
 }
 
 export interface ITipoTrabajador {
-    id?                   : number;
-    descripcion           : string;
-    precioReferencial?    : number;
+    id?               : number;
+    nombre            : string;
+    descripcion       : string;
+    precioReferencial?: number;
 }
 
 export interface IEstadoTrabajador {

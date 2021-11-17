@@ -17,6 +17,8 @@ import { DetalleTrabajadorComponent } from './gestionar-trabajador/detalle-traba
 import { GestionarUsuarioComponent } from './gestionar-usuario/gestionar-usuario.component';
 import { UsuarioRegisterComponent } from './gestionar-usuario/usuario-register/usuario-register.component';
 import { UsuarioUpdateComponent } from './gestionar-usuario/usuario-update/usuario-update.component';
+import { GestionarTipoTrabajadorComponent } from './gestionar-tipo-trabajador/gestionar-tipo-trabajador.component';
+import { DetalleTipoTrabajadorComponent } from './gestionar-tipo-trabajador/detalle-tipo-trabajador/detalle-tipo-trabajador.component';
 
 
 const components = [
@@ -24,8 +26,9 @@ const components = [
   DetalleTrabajadorComponent,
   GestionarUsuarioComponent,
   UsuarioRegisterComponent,
-  UsuarioUpdateComponent
-
+  UsuarioUpdateComponent,
+  GestionarTipoTrabajadorComponent,
+  DetalleTipoTrabajadorComponent
 ]
 
 @NgModule({

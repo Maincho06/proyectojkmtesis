@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from 'app/pages/pages.component';
+import { GestionarTipoTrabajadorComponent } from './gestionar-tipo-trabajador/gestionar-tipo-trabajador.component';
 import { GestionarTrabajadorComponent } from './gestionar-trabajador/gestionar-trabajador.component';
 import { GestionarUsuarioComponent } from './gestionar-usuario/gestionar-usuario.component';
 import { UsuarioRegisterComponent } from './gestionar-usuario/usuario-register/usuario-register.component';
@@ -24,6 +25,22 @@ const routes: Routes = [
           breadcrumb: {
             label: 'Gestionar Trabajador',
             routerLink: '/proyecto/gestionarTrabajadores',
+          },
+        },
+      },
+      {
+        path: 'gestionarTipoTrabajador',
+        children: [
+          {
+            path: '',
+            component: GestionarTipoTrabajadorComponent,
+            data: { breadcrumb: '' },
+          },
+        ],
+        data: {
+          breadcrumb: {
+            label: 'Gestionar Tipo Trabajador',
+            routerLink: '/proyecto/gestionarTipoTrabajador',
           },
         },
       },

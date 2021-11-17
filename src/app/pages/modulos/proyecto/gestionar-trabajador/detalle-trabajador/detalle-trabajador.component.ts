@@ -4,9 +4,6 @@ import { IEstadoTrabajador, IRequestRegisterTrabajador, ITipoTrabajador, ITrabaj
 import { TrabajadorService } from '@services/trabajador.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import * as moment from 'moment';
-import { toast } from '@utils/toast';
-import { MessageService } from 'primeng/api';
-import { validarFormularioJKM } from '@utils/form';
 
 @Component({
   selector: 'app-detalle-trabajador',
@@ -20,12 +17,12 @@ export class DetalleTrabajadorComponent implements OnInit {
   trabajador: ITrabajadorModel;
   listTipoTrabajador: ITipoTrabajador[];
   listaEstadoTrabajador: IEstadoTrabajador[];
+  
   constructor(
     private formBuilder: FormBuilder,
     private _trabajadorService: TrabajadorService,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private _messageService:  MessageService,
   ) { }
 
   async ngOnInit() {

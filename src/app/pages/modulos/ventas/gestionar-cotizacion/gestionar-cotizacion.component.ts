@@ -53,6 +53,9 @@ export class GestionarCotizacionComponent implements OnInit {
   rechazarCotizacion(cotizacion: ICotizacionModel) {
     this._confirmationService.confirm({
       message: '¿Desea rechazar la cotización?',
+      header: 'Alerta',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         try {
           await this._cotizacionService.rechazarCotizacion(cotizacion.idCotizacion);
@@ -76,6 +79,9 @@ export class GestionarCotizacionComponent implements OnInit {
   async aceptarCotizacion(cotizacion: ICotizacionModel) {
     this._confirmationService.confirm({
       message: '¿Desea aceptar la cotización?',
+      header: 'Alerta',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         try {
           await this._cotizacionService.aceptarCotizacion(cotizacion.idCotizacion);

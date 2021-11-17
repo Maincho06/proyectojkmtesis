@@ -108,7 +108,8 @@ export class GestionarUsuarioComponent implements OnInit {
       message: '¿Estas seguro de eliminar este Usuario?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
-
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
 
         try {

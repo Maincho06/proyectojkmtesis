@@ -180,6 +180,9 @@ export class ProductosCotizacionComponent implements OnInit {
   deleteDetalleOrden(detalleOrden: IDetalleOrdenModel) {
     this._confirmationService.confirm({
       message: '¿Desea eliminar el producto indicado?',
+      header: 'Alerta',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         try {
           await this._cotizacionService.deleteDetalleOrdenCotizacion(this.idCotizacion, detalleOrden.idDetalleOrden);

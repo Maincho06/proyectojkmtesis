@@ -180,6 +180,9 @@ export class TrabajadoresCotizacionComponent implements OnInit {
   deleteTipoTrabajador(tipo: ITipoTrabajadorModel) {
     this._confirmationService.confirm({
       message: '¿Desea eliminar el tipo de trabajador?',
+      header: 'Alerta',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         try {
           await this._cotizacionService.deleteTipoTrabajadorCotizacion(this.idCotizacion, tipo.idTipoTrabajador);
