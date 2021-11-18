@@ -157,7 +157,7 @@ export class DetalleVentaComponent implements OnInit {
       this._obvsService.toogleSpinner();
       const data: any = await this._proyectoService
         .getProyectosPaginado()
-        .toPromise();
+        
       this.lProyecto = data?.data;
     } catch (error) {
       console.log('Error: ', error);

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from 'app/pages/pages.component';
 import { GestionarTipoTrabajadorComponent } from './gestionar-tipo-trabajador/gestionar-tipo-trabajador.component';
+import { DetalleGestionarProyectoComponent } from './gestionar-proyecto/components/detalle-gestionar-proyecto/detalle-gestionar-proyecto.component';
+import { GestionarProyectoComponent } from './gestionar-proyecto/gestionar-proyecto.component';
 import { GestionarTrabajadorComponent } from './gestionar-trabajador/gestionar-trabajador.component';
 import { GestionarUsuarioComponent } from './gestionar-usuario/gestionar-usuario.component';
 import { UsuarioRegisterComponent } from './gestionar-usuario/usuario-register/usuario-register.component';
@@ -92,7 +94,34 @@ const routes: Routes = [
           },
         },
       },
-
+      {
+        path: 'gestionarProyecto',
+        children: [
+          {
+            path: '',
+            component: GestionarProyectoComponent,
+            data: {
+              breadcrumb: '',
+            },
+          },
+          {
+            path: ':id',
+            component: DetalleGestionarProyectoComponent,
+            data: {
+              breadcrumb: {
+                label: 'Editar',
+                routerLink: '/proyecto/gestionarProyecto/:id',
+              },
+            },
+          },
+        ],
+        data: {
+          breadcrumb: {
+            label: 'Gestionar Proyecto',
+            routerLink: '/proyecto/gestionarProyecto',
+          },
+        },
+      },
       { path: '**', redirectTo: 'gestionarProyecto' },
     ],
   },
