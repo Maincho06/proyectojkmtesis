@@ -33,7 +33,7 @@ export class GestionarTrabajadorComponent implements OnInit {
         await this._trabajadorService
           .getTrabajadorPaginado({ pages: pages, rows: 10 })
           .toPromise();
-      this.listTrabajadores = data.data;
+      this.listTrabajadores = data?.data;
     } catch (error) {
       console.log('Error: ', error);
     } finally {

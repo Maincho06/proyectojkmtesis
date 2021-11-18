@@ -34,7 +34,7 @@ export class GestionarProyectoComponent implements OnInit {
   async listarProyectos() {
     try {
       let data = await this._proyectoService.getProyectosPaginado();
-      this.proyectos = data.data;
+      this.proyectos = data?.data;
     } catch (error) {
       console.error(error);
       this.proyectos = [];
