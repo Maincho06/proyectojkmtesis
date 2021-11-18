@@ -17,6 +17,11 @@ import { DetalleTrabajadorComponent } from './gestionar-trabajador/detalle-traba
 import { GestionarUsuarioComponent } from './gestionar-usuario/gestionar-usuario.component';
 import { UsuarioRegisterComponent } from './gestionar-usuario/usuario-register/usuario-register.component';
 import { UsuarioUpdateComponent } from './gestionar-usuario/usuario-update/usuario-update.component';
+import { GestionarProyectoComponent } from './gestionar-proyecto/gestionar-proyecto.component';
+import { DatosProyectoComponent } from './gestionar-proyecto/components/datos-proyecto/datos-proyecto.component';
+import { TrabajadorProyectoComponent } from './gestionar-proyecto/components/trabajador-proyecto/trabajador-proyecto.component';
+import { ActividadProyectoComponent } from './gestionar-proyecto/components/actividad-proyecto/actividad-proyecto.component';
+import { DetalleGestionarProyectoComponent } from './gestionar-proyecto/components/detalle-gestionar-proyecto/detalle-gestionar-proyecto.component';
 
 
 const components = [
@@ -29,7 +34,7 @@ const components = [
 ]
 
 @NgModule({
-  declarations: [ ...components, UsuarioRegisterComponent, UsuarioUpdateComponent],
+  declarations: [ ...components, UsuarioRegisterComponent, UsuarioUpdateComponent, GestionarProyectoComponent, DatosProyectoComponent, TrabajadorProyectoComponent, ActividadProyectoComponent, DetalleGestionarProyectoComponent],
   imports: [
     CommonModule,
     ProyectoRoutingModule,

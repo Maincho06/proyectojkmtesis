@@ -17,9 +17,9 @@ export class ProyectoService extends BaseService {
     }
 
     // Listado de Proyectos
-    getProyectosPaginado(): Observable<any> {
+    getProyectosPaginado(): Promise<any> {
 
-        return this.http.get<any>(`${PROYECTO_URL}`, {  headers: this.obtenerHeaders() });
+        return this.http.get<any>(`${PROYECTO_URL}`, {  headers: this.obtenerHeaders() }).toPromise();
     }
     
 

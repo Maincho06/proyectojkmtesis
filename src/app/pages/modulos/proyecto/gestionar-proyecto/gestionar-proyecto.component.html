@@ -1,0 +1,56 @@
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<div>
+    <!-- Cotizacion Table -->
+    <div class="card p-mb-4">
+        <p-table #dt [rows]="10" [paginator]="true" responsive="stack" 
+        [globalFilterFields]="['nombreProyecto','fechaInicio','fechaFin', 'descripcion','estado.descripcion']" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados" [showCurrentPageReport]="true"
+            [value]="proyectos" responsiveLayout="scroll">
+            <!-- Input Filtro -->
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            id="tFiltro" placeholder="Buscar..." />
+                    </span>
+                    <button pButton pRipple type="button" label="Registrar" routerLink="crear"></button>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="nombreProyecto">Nombre
+                        <p-sortIcon field="razonSocial"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="fechaInicio">Fecha inicio
+                        <p-sortIcon field="fechaInicio"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="fechaFin">Fecha Fin
+                        <p-sortIcon field="fechaFin"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="descripcion">Descripción
+                        <p-sortIcon field="descripcion"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="estado.descripcion">Estado
+                        <p-sortIcon field="estado.descripcion"></p-sortIcon>
+                    </th>
+                    <th>Opciones</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-proyectos>
+                <tr>
+                    <td>{{proyectos.nombreProyecto}}</td>
+                    <td>{{proyectos.fechaInicio | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{proyectos.fechaFin | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{proyectos.descripcion}}</td>
+                    <td>{{proyectos.estado.descripcion}}</td>
+                    <td>
+                        <button [routerLink]="[proyectos.idProyecto]" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
