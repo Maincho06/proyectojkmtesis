@@ -20,7 +20,6 @@ export class GestionarUsuarioComponent implements OnInit {
 
   constructor(
     public _dialogService: DialogService,
-    private router: Router,
     private _confirmationService: ConfirmationService,
     private _messageService: MessageService,
     private _usuariosService: UsuariosService,
@@ -39,9 +38,7 @@ export class GestionarUsuarioComponent implements OnInit {
 
       // Cambiar
       const data: any = await this._usuariosService.getUsuariosPaginado({ pages: 1, rows: 10 }).toPromise();
-
       console.log(data)
-      
       this.listaUsuarios = data.data;
     }
 
@@ -56,18 +53,21 @@ export class GestionarUsuarioComponent implements OnInit {
   }
 
   registerUsuario() {
-
     const ref = this._dialogService.open(UsuarioRegisterComponent, {
       header: 'Registrar Usuario',
       width: '30rem'
     })
 
+    ref.onClose.subscribe(async (data) => {
+      await this.listarUsuarios()
+    })
   }
 
   verUsuario(idUsuario: number) {
     const ref = this._dialogService.open(UsuarioUpdateComponent, {
       header: 'Ver Usuario',
-      width: '30rem'
+      width: '30rem',
+      data: idUsuario
     })
 
   }
@@ -75,8 +75,31 @@ export class GestionarUsuarioComponent implements OnInit {
   editarUsuario(idUsuario: number) {
     const ref = this._dialogService.open(UsuarioUpdateComponent, {
       header: 'Editar Usuario',
-      width: '30rem'
+      width: '30rem',
+      data: idUsuario
     })
+
+    ref.onClose.subscribe(async (data) => {
+      await this.listarUsuarios()
+    })
+  }
+
+  async actualizarEstadoUsuario(idUsuario: number) {
+    try {
+
+      this._obvsService.toogleSpinner();
+      const data: any = await this._usuariosService.updateEstadoUsuario(idUsuario)
+      console.log(data)
+      this.listarUsuarios()
+    }
+
+    catch (error) {
+      console.log("Error: ", error);
+    }
+
+    finally {
+      this._obvsService.toogleSpinner();
+    }
   }
 
   eliminarUsuario(idUsuario: number) {
@@ -85,7 +108,8 @@ export class GestionarUsuarioComponent implements OnInit {
       message: '¿Estas seguro de eliminar este Usuario?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
-
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
 
         try {

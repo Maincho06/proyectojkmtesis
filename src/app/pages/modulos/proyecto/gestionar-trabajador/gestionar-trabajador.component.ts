@@ -33,7 +33,7 @@ export class GestionarTrabajadorComponent implements OnInit {
         await this._trabajadorService
           .getTrabajadorPaginado({ pages: pages, rows: 10 })
           .toPromise();
-      this.listTrabajadores = data.data;
+      this.listTrabajadores = data?.data;
     } catch (error) {
       console.log('Error: ', error);
     } finally {
@@ -43,8 +43,9 @@ export class GestionarTrabajadorComponent implements OnInit {
   detalleTrabajador(isRegistrar: boolean, data: any) {
     const dialogConfig = new DynamicDialogConfig();
 
-    dialogConfig.width = '80vw';
-    dialogConfig.baseZIndex = BASE_INDEX_MODAL;
+    // dialogConfig.width = '40w';
+    dialogConfig.width = '30rem'
+    // dialogConfig.baseZIndex = BASE_INDEX_MODAL;
     dialogConfig.header = 'Registrar Trabajador';
     dialogConfig.data = {
       isRegistrar: isRegistrar,
@@ -64,6 +65,8 @@ export class GestionarTrabajadorComponent implements OnInit {
       message: '¿Seguro que desea eliminar el trabajador?',
       header: 'Alerta',
       icon: 'pi pi-info-circle',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         const data = await this._trabajadorService.eliminarTrabajador(
           idTrabajador

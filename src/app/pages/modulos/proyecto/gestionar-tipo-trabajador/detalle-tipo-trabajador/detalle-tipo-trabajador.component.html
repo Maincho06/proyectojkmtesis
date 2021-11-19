@@ -1,0 +1,26 @@
+<!-- Modal Tipo Trabajador -->
+<div class="p-grid">
+    <div class="p-col-12">
+        <form [formGroup]="formTipoTrabajador" class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-lg-12">
+                <label>Nombre</label>
+                <input formControlName="nombre" type="text" pInputText>
+                <!-- <small *ngIf="validarNombreAlmacen" class="p-error">El nombre no puede estar vacío</small> -->
+            </div>
+            <div class="p-field p-lg-12">
+                <label>Descripcion</label>
+                <input formControlName="descripcion" type="text" pInputText>
+                <!-- <small *ngIf="validarDireccionAlmacen" class="p-error">La dirección no puede estar vacia</small> -->
+            </div>
+            <div class="p-field p-lg-12">
+                <label>Precio Referencial</label>
+                <input formControlName="precioReferencial" type="number" pInputText>
+                <!-- <small *ngIf="validarDistritoAlmacen" class="p-error">El distrito no puede estar vacío</small> -->
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="button-center">
+    <button pButton type="button" [label]="idTipo == 0 ? 'Registrar' : 'Actualizar'" (click)="registerTipo()"></button>
+</div>

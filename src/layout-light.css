@@ -1043,7 +1043,8 @@ a {
   border-radius: 8px;
 }
 .menu-wrapper .layout-menu-container .layout-menu li {
-  padding: 10px 0;
+  /* padding: 10px 0; */
+  padding: 0.3rem 0;
 }
 .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem > a i.layout-submenu-toggler {
   -webkit-transform: rotate(-180deg);
@@ -1921,11 +1922,24 @@ a {
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > a {
   color: #293241;
+
+  font-size: 0.8rem;
+  height: 44px !important;
+  margin-bottom: 4px;
+  border-radius: 5px;
+  margin: 0 8px;
 }
-.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > a:hover {
+/* .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > a:hover {
   color: #2170E7;
   color: var(--primary-color);
+} */
+
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > a:hover {
+  background: #221879 !important;
+  transition-duration: 300ms !important;
+  color: #f2f5f7 !important;
 }
+
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > a.active-route {
   color: #2170E7;
   color: var(--primary-color);

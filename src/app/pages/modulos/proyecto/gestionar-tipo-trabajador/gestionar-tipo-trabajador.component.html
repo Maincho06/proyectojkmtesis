@@ -1,0 +1,45 @@
+<div>
+    <!-- Trabajador Table -->
+    <div class="card p-mb-4">
+        <p-table #dt [value]="listTipoTrabajador" responsiveLayout="scroll" [rows]="10" [paginator]="true">
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            id="tFiltro" placeholder="Buscar..." />
+                    </span>
+                    <button pButton pRipple type="button" label="Registrar"
+                        (click)="openModalTipoTrabajador()"></button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>N</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio Referencial</th>
+                    <th>Editar</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-tipo>
+                <tr>
+                    <td>{{tipo.id}}</td>
+                    <td>{{tipo.nombre}}</td>
+                    <td>{{tipo.descripcion}}</td>
+                    <td>{{tipo.precioReferencial | currency:'S/ '}}</td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
+                            pTooltip="Editar" (click)="openModalTipoTrabajador(tipo.id)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
+
+
+<!-- Modal Confirmación -->
+
+<!-- <p-confirmDialog></p-confirmDialog> -->

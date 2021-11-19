@@ -52,6 +52,7 @@ export class TrabajadoresCotizacionComponent implements OnInit {
     try {
       let data = await this._cotizacionService.getTrabajadoresByCotizacion(idCotizacion);
       this.trabajadores = data ?? [];
+      console.log(data);
     } catch (error) {
       console.error(error);
       this.trabajadores = [];
@@ -180,6 +181,9 @@ export class TrabajadoresCotizacionComponent implements OnInit {
   deleteTipoTrabajador(tipo: ITipoTrabajadorModel) {
     this._confirmationService.confirm({
       message: '¿Desea eliminar el tipo de trabajador?',
+      header: 'Alerta',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         try {
           await this._cotizacionService.deleteTipoTrabajadorCotizacion(this.idCotizacion, tipo.idTipoTrabajador);

@@ -77,7 +77,7 @@ export class DetalleAlmacenComponent implements OnInit {
         data = await this._almacenService.updateAlmacen(model);
       }
       toast({
-        title: "data.message",
+        title: data.message,
         message: '',
         type: "success",
         messageService: this._messageService
@@ -86,7 +86,7 @@ export class DetalleAlmacenComponent implements OnInit {
       console.log('ERROR: ', error);
     } finally {
       // this._ref.close();
-      // this._obvsService.toogleSpinner();
+      this._obvsService.toogleSpinner();
     }
   }
 

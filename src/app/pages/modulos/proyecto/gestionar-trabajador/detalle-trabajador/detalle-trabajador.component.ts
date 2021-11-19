@@ -19,12 +19,13 @@ export class DetalleTrabajadorComponent implements OnInit {
   trabajador: ITrabajadorModel;
   listTipoTrabajador: ITipoTrabajador[];
   listaEstadoTrabajador: IEstadoTrabajador[];
+  
   constructor(
     private formBuilder: FormBuilder,
     private _trabajadorService: TrabajadorService,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private _messageService:  MessageService,
+    private _messageService: MessageService,
   ) { }
 
   async ngOnInit() {
@@ -47,7 +48,7 @@ export class DetalleTrabajadorComponent implements OnInit {
       apellidoPaterno: [null, [Validators.required]],
       fechaNacimiento: [null, [Validators.required]],
       tipo           : [null, [Validators.required]],
-      estado         : [null, [Validators.required]]
+      estado         : [null]
     })
   }
 
@@ -79,6 +80,11 @@ export class DetalleTrabajadorComponent implements OnInit {
   }
 
   async registrarTrabajador() {
+    if (this.formTrabajador.invalid) {
+      return Object.values(this.formTrabajador.controls).forEach(control => {
+        control.markAllAsTouched();
+      })
+    }
     try {
       let model: IRequestRegisterTrabajador = {
         nombre         : this.formTrabajador.get('nombre').value,
@@ -95,12 +101,39 @@ export class DetalleTrabajadorComponent implements OnInit {
         model.idEstado = Number.parseInt(this.formTrabajador.get('estado').value.id);
         data = await this._trabajadorService.updateTrabajador(model, this.trabajador.idTrabajador);
       }
+      toast({
+        title: 'Correcto',
+        message: data.message,
+        type: 'success',
+        messageService: this._messageService,
+      });
       this.ref.close();
     } catch (error) {
       console.log('ERROR: ', error);
     }
   }
 
+
+  // Get Validacioens
+
+  get validarNombre() {
+    return this.formTrabajador.get('nombre').invalid && this.formTrabajador.get('nombre').touched;
+  }
+  get validarApellidoMaterno() {
+    return this.formTrabajador.get('apellidoMaterno').invalid && this.formTrabajador.get('apellidoMaterno').touched;
+  }
+  get validarApellidoPaterno() {
+    return this.formTrabajador.get('apellidoPaterno').invalid && this.formTrabajador.get('apellidoPaterno').touched;
+  }
+  get validarFechaNacimiento() {
+    return this.formTrabajador.get('fechaNacimiento').invalid && this.formTrabajador.get('fechaNacimiento').touched;
+  }
+  get validarTipo() {
+    return this.formTrabajador.get('tipo').invalid && this.formTrabajador.get('tipo').touched;
+  }
+  get validarEstado() {
+    return this.formTrabajador.get('estado').invalid && this.formTrabajador.get('estado').touched;
+  }
 
 
 }

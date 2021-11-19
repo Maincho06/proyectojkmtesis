@@ -4,3 +4,9 @@ export interface IProductoModel {
     codigo: number;
     imagen: number;
 }
+
+export interface IRegisterProducto {
+    nombre: string;
+    codigo: string;
+    imagen: string;
+}

@@ -1,0 +1,6 @@
+::ng-deep {
+    .p-disabled,
+    .p-component:disabled {
+        opacity: 1 !important;
+    }
+}

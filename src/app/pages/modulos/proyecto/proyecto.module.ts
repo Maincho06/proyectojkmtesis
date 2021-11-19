@@ -17,28 +17,34 @@ import { DetalleTrabajadorComponent } from './gestionar-trabajador/detalle-traba
 import { GestionarUsuarioComponent } from './gestionar-usuario/gestionar-usuario.component';
 import { UsuarioRegisterComponent } from './gestionar-usuario/usuario-register/usuario-register.component';
 import { UsuarioUpdateComponent } from './gestionar-usuario/usuario-update/usuario-update.component';
-
+import { GestionarTipoTrabajadorComponent } from './gestionar-tipo-trabajador/gestionar-tipo-trabajador.component';
+import { DetalleTipoTrabajadorComponent } from './gestionar-tipo-trabajador/detalle-tipo-trabajador/detalle-tipo-trabajador.component';
+import { GestionarProyectoComponent } from './gestionar-proyecto/gestionar-proyecto.component';
+import { DatosProyectoComponent } from './gestionar-proyecto/components/datos-proyecto/datos-proyecto.component';
+import { TrabajadorProyectoComponent } from './gestionar-proyecto/components/trabajador-proyecto/trabajador-proyecto.component';
+import { ActividadProyectoComponent } from './gestionar-proyecto/components/actividad-proyecto/actividad-proyecto.component';
+import { DetalleGestionarProyectoComponent } from './gestionar-proyecto/components/detalle-gestionar-proyecto/detalle-gestionar-proyecto.component';
 
 const components = [
-  GestionarTrabajadorComponent , 
+  GestionarTrabajadorComponent,
   DetalleTrabajadorComponent,
   GestionarUsuarioComponent,
   UsuarioRegisterComponent,
-  UsuarioUpdateComponent
-
-]
+  UsuarioUpdateComponent,
+  GestionarTipoTrabajadorComponent,
+  DetalleTipoTrabajadorComponent,
+  UsuarioRegisterComponent,
+  UsuarioUpdateComponent,
+  GestionarProyectoComponent,
+  DatosProyectoComponent,
+  TrabajadorProyectoComponent,
+  ActividadProyectoComponent,
+  DetalleGestionarProyectoComponent,
+];
 
 @NgModule({
-  declarations: [ ...components, UsuarioRegisterComponent, UsuarioUpdateComponent],
-  imports: [
-    CommonModule,
-    ProyectoRoutingModule,
-    SharedModule
-  ],
-  providers: [
-    DialogService,
-    ConfirmationService, 
-    MessageService
-  ]
+  declarations: [...components],
+  imports: [CommonModule, ProyectoRoutingModule, SharedModule],
+  providers: [DialogService, ConfirmationService, MessageService],
 })
-export class ProyectoModule { }
+export class ProyectoModule {}

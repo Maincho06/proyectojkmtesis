@@ -181,6 +181,9 @@ export class ActividadesCotizacionComponent implements OnInit {
   deleteActividad(actividad: IActividadCotizacionModel) {
    this._confirmationService.confirm({
       message: '¿Desea eliminar la actividad?',
+      header: 'Alerta',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         try {
           await this._cotizacionService.deleteActividadCotizacion(this.idCotizacion, actividad.IdActividad);

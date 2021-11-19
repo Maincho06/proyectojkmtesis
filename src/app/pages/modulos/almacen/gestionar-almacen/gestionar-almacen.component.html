@@ -1,28 +1,41 @@
 <div>
-    <h5>Buscar:</h5>
-
-    <!-- Input Filtro -->
-    <div class="p-grid p-mb-4">
-        <div class="p-col-6">
-            <input type="text" pInputText placeholder="Ingresa tu búsqueda">
-        </div>
-        <div class="p-col-6 p-text-right">
-            <button (click)="registerOrUpdateAlmacen(true,null)" pButton pRipple type="button" label="Registrar Almacen"></button>
-        </div>
-    </div>
-
     <!-- Almacen Table -->
     <div class="card p-mb-4 p-shadow-6">
-        <p-table [value]="almacen" responsiveLayout="scroll">
+        <p-table #dt [value]="almacen" responsiveLayout="scroll" [rows]="10" [paginator]="true" responsive="stack"
+            [globalFilterFields]="['idAlmacen','nombre','direccion', 'distrito', 'opciones']"
+            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados">
+            <!-- Input Filtro -->
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            id="tFiltro" placeholder="Buscar..." />
+                    </span>
+                    <button (click)="registerOrUpdateAlmacen(true,null)" pButton pRipple type="button"
+                        label="Registrar Almacen"></button>
+                </div>
+            </ng-template>
+
             <ng-template pTemplate="header">
-
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Dirección</th>
-                    <th>Distrito</th>
-                    <th>Opciones</th>
-
+                    <th pSortableColumn="idAlmacen">
+                        ID
+                        <p-sortIcon field="idAlmacen"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="nombre">
+                        Nombre
+                        <p-sortIcon field="nombre"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="direccion">
+                        Dirección
+                        <p-sortIcon field="direccion"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="distrito">
+                        Distrito
+                        <p-sortIcon field="distrito"></p-sortIcon>
+                    </th>
+                    <th> Opciones </th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-almacen>
@@ -32,7 +45,8 @@
                     <td>{{almacen.direccion}}</td>
                     <td>{{almacen.distrito}}</td>
                     <td>
-                        <button (click)="registerOrUpdateAlmacen(false,almacen)" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
+                        <button (click)="registerOrUpdateAlmacen(false,almacen)" pButton pRipple icon="pi pi-pencil"
+                            class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
                     </td>
                 </tr>
             </ng-template>

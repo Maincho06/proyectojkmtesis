@@ -4,18 +4,19 @@ import { AUTH_URL } from '@utils/url_constants';
 import { BaseService } from './base.service';
 import { ILogin } from '@models/authmodel';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { getState, TOKEN_KEY } from '@utils/storage';
+import { clearState, getState, TOKEN_KEY } from '@utils/storage';
+import { Router } from '@angular/router';
 
 const jwtHelper = new JwtHelperService();
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends BaseService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _router: Router) {
     super();
   }
 
-  public isAuthenticated(): boolean {
+  isAuthenticated(): boolean {
     const token = getState(TOKEN_KEY);
     if (!!token) return !jwtHelper.isTokenExpired(token);
     return false;
@@ -32,6 +33,11 @@ export class AuthService extends BaseService {
         headers: this.obtenerHeaders(),
       })
       .toPromise();
+  }
+
+  logout() {
+    clearState();
+    this._router.navigate(['/login']);
   }
 
   getPerfil(): Promise<any> {

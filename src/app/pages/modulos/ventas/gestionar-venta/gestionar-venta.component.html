@@ -1,8 +1,10 @@
 <div class="card">
+
     <p-table #dt [value]="listaVentas" [rows]="10" [paginator]="true" responsive="stack"
         [globalFilterFields]="['idVenta','precio','fechaRegistro','razonSocial','ruc']"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
         [showCurrentPageReport]="true">
+
         <!-- Input Filtro -->
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
@@ -14,39 +16,46 @@
             </div>
         </ng-template>
 
+        <!-- Cabecera Tabla -->
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="idVenta">Codigo Venta<p-sortIcon field="idVenta"></p-sortIcon>
+                <th pSortableColumn="idVenta">Codigo Venta
+                    <p-sortIcon field="idVenta"></p-sortIcon>
                 </th>
-                <th pSortableColumn="precio">Precio Total<p-sortIcon field="precio"></p-sortIcon>
+                <th pSortableColumn="precio">Precio Total
+                    <p-sortIcon field="precio"></p-sortIcon>
                 </th>
-                <th pSortableColumn="fechaRegistro">Fecha Registro<p-sortIcon field="fechaRegistro"></p-sortIcon>
+                <th pSortableColumn="fechaRegistro">Fecha Registro
+                    <p-sortIcon field="fechaRegistro"></p-sortIcon>
                 </th>
-                <th pSortableColumn="razonSocial">Razon Social<p-sortIcon field="razonSocial"></p-sortIcon>
+                <th pSortableColumn="razonSocial">Razon Social
+                    <p-sortIcon field="razonSocial"></p-sortIcon>
                 </th>
-                <th pSortableColumn="ruc">Ruc<p-sortIcon field="ruc"></p-sortIcon>
+                <th pSortableColumn="ruc">Ruc
+                    <p-sortIcon field="ruc"></p-sortIcon>
                 </th>
-                <th pSortableColumn="tipo.descripcion">Tipo<p-sortIcon field="tipo.descripcion"></p-sortIcon>
+                <th pSortableColumn="tipo.descripcion">Tipo
+                    <p-sortIcon field="tipo.descripcion"></p-sortIcon>
                 </th>
-                <th>Estado</th>
+                <!-- <th>Estado</th> -->
                 <th>Opciones</th>
             </tr>
         </ng-template>
 
+        <!-- Cuerpo Tabla -->
         <ng-template pTemplate="body" let-ventas>
             <tr>
                 <td><span class="p-column-title">Codigo Venta</span>{{ventas.idVenta}}</td>
-                <td><span class="p-column-title">Precio Total</span>{{ventas.precio}}</td>
+                <td><span class="p-column-title">Precio Total</span>{{ventas.precio | currency:'S/ '}}</td>
                 <td><span class="p-column-title">Fecha Registro</span>{{ventas.fechaRegistro}}</td>
                 <td><span class="p-column-title">Razon Social</span>{{ventas.razonSocial}}</td>
                 <td><span class="p-column-title">Ruc</span>{{ventas.ruc}}</td>
                 <td><span class="p-column-title">Tipo</span>{{ventas.tipo.descripcion}}</td>
-                <td>
+                <!-- <td>
                     <span class="p-column-title">Estado</span>
-                    <span
-                        [class]="'venta-badge status-' + (ventas.estado.descripcion ? ventas.estado.descripcion.toLowerCase() : '')">{{ventas.estado.descripcion}}
+                    <span [class]="'venta-badge status-' + (ventas.estado.descripcion ? ventas.estado.descripcion.toLowerCase() : '')">{{ventas.estado.descripcion}}
                     </span>
-                </td>
+                </td> -->
                 <td>
                     <span class="p-column-title">Opciones</span>
                     <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
@@ -58,13 +67,18 @@
                 </td>
             </tr>
         </ng-template>
+
+        <!-- Registro Total Nro -->
         <ng-template pTemplate="summary">
             <div class="p-d-flex p-ai-center p-jc-between">
                 Total: {{listaVentas ? listaVentas.length : 0 }} ventas
             </div>
         </ng-template>
+
     </p-table>
 
 </div>
+
 <!-- Modal Confirmacion -->
-<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle" acceptLabel="Si" rejectLabel="No">
+</p-confirmDialog>

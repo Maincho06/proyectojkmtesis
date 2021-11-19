@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AuthService } from '@services/auth.service';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -10,7 +11,7 @@ export class NavbarComponent implements OnInit {
   items: MenuItem[];
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
 
-  constructor() {}
+  constructor(private _authService: AuthService) {}
 
   ngOnInit() {
     this.items = [
@@ -20,6 +21,9 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Cerrar Sesion',
             icon: 'pi pi-times',
+            command: () => {
+              this._authService.logout();
+            },
           },
         ],
       },
@@ -29,4 +33,5 @@ export class NavbarComponent implements OnInit {
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
   }
+
 }
