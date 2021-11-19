@@ -14,7 +14,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-tipotrabajador>
             <tr>
-                <td>{{tipotrabajador.nombre}}</td>
+                <td>{{tipotrabajador.descripcion}}</td>
                 <td>{{tipotrabajador.cantidad}}</td>
                 <td>{{tipotrabajador.precio | currency:'S/ ':'symbol-narrow':'1.2-2'}}</td>
                 <td>{{tipotrabajador.cantidad * tipotrabajador.precio | currency:'S/ ':'symbol-narrow':'1.2-2'}}</td>

@@ -52,6 +52,7 @@ export class TrabajadoresCotizacionComponent implements OnInit {
     try {
       let data = await this._cotizacionService.getTrabajadoresByCotizacion(idCotizacion);
       this.trabajadores = data ?? [];
+      console.log(data);
     } catch (error) {
       console.error(error);
       this.trabajadores = [];

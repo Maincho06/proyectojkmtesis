@@ -60,6 +60,8 @@ export class ProductosCotizacionComponent implements OnInit {
     try {
       let data = await this._productoService.getProducto();
       this.productos = data;
+      console.log(data);
+
     } catch (error) {
       console.error(error);
       this.productos = [];
