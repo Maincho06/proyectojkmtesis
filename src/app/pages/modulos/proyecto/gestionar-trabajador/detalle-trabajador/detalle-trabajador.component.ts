@@ -6,7 +6,6 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import * as moment from 'moment';
 import { toast } from '@utils/toast';
 import { MessageService } from 'primeng/api';
-import { validarFormularioJKM } from '@utils/form';
 
 @Component({
   selector: 'app-detalle-trabajador',
@@ -20,12 +19,13 @@ export class DetalleTrabajadorComponent implements OnInit {
   trabajador: ITrabajadorModel;
   listTipoTrabajador: ITipoTrabajador[];
   listaEstadoTrabajador: IEstadoTrabajador[];
+  
   constructor(
     private formBuilder: FormBuilder,
     private _trabajadorService: TrabajadorService,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private _messageService:  MessageService,
+    private _messageService: MessageService,
   ) { }
 
   async ngOnInit() {
@@ -48,7 +48,7 @@ export class DetalleTrabajadorComponent implements OnInit {
       apellidoPaterno: [null, [Validators.required]],
       fechaNacimiento: [null, [Validators.required]],
       tipo           : [null, [Validators.required]],
-      estado         : [null, [Validators.required]]
+      estado         : [null]
     })
   }
 
@@ -101,6 +101,12 @@ export class DetalleTrabajadorComponent implements OnInit {
         model.idEstado = Number.parseInt(this.formTrabajador.get('estado').value.id);
         data = await this._trabajadorService.updateTrabajador(model, this.trabajador.idTrabajador);
       }
+      toast({
+        title: 'Correcto',
+        message: data.message,
+        type: 'success',
+        messageService: this._messageService,
+      });
       this.ref.close();
     } catch (error) {
       console.log('ERROR: ', error);

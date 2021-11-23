@@ -60,6 +60,8 @@ export class ProductosCotizacionComponent implements OnInit {
     try {
       let data = await this._productoService.getProducto();
       this.productos = data;
+      console.log(data);
+
     } catch (error) {
       console.error(error);
       this.productos = [];
@@ -180,6 +182,9 @@ export class ProductosCotizacionComponent implements OnInit {
   deleteDetalleOrden(detalleOrden: IDetalleOrdenModel) {
     this._confirmationService.confirm({
       message: '¿Desea eliminar el producto indicado?',
+      header: 'Alerta',
+      acceptLabel: "Si",
+      rejectLabel: "No",
       accept: async () => {
         try {
           await this._cotizacionService.deleteDetalleOrdenCotizacion(this.idCotizacion, detalleOrden.idDetalleOrden);
