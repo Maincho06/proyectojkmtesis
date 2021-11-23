@@ -1,12 +1,9 @@
-<div class="menu-wrapper layout-sidebar-active">
+<!-- <div class="menu-wrapper layout-sidebar-active">
 
     <div class="sidebar-logo">
         <a href="#/">
             <img src="../../../../assets/img/logoJKM1.png" alt="JKM">
         </a>
-        <!-- <a href="#" class="sidebar-pin">
-            <span class="pin"></span>
-        </a> -->
     </div>
 
     <div class="layout-menu-container">
@@ -25,4 +22,31 @@
 
         </ul>
     </div>
-</div>
+</div> -->
+
+<p-sidebar [(visible)]="visibleSidebar1" class="menu-wrapper layout-sidebar-active" [baseZIndex]="10000">
+    <div class="sidebar-logo">
+        <a href="#/">
+            <img src="../../../../assets/img/logoJKM1.png" alt="JKM">
+        </a>
+    </div>
+
+    <div class="layout-menu-container">
+        <ul class="layout-menu">
+
+            <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
+                <a routerlinkactive="active-route" [routerLink]="[menuItem.path]" class="p-ripple p-element">
+                    <i class="layout-menuitem-icon pi {{menuItem.icon}}"></i>
+                    <span class="layout-menuitem-text">{{menuItem.title}}</span>
+                </a>
+                <div class="layout-menu-tooltip">
+                    <div class="layout-menu-tooltip-arrow"></div>
+                    <div class="layout-menu-tooltip-text">{{menuItem.title}}</div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</p-sidebar>
+
+<p-button type="button" class="p-mr-2" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right"></p-button>

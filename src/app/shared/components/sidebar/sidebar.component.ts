@@ -28,6 +28,7 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
 
+    visibleSidebar1 = true;
     public menuItems: any[];
 
     ngOnInit() {
