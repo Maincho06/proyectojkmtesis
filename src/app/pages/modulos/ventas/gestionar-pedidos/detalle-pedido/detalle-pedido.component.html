@@ -54,7 +54,7 @@
                     <tr>
                         <th>Codigo</th>
                         <th>Nombre</th>
-                        <!-- <th>Imagen</th> -->
+                        <th>Imagen</th>
                         <th>Cantidad</th>
                         <th>Precio Unitario</th>
                         <th>Precio Total</th>
@@ -64,8 +64,10 @@
                     <tr>
                         <td>{{producto.codigo}}</td>
                         <td>{{producto.nombre}}</td>
-                        <!-- <td><img [src]="producto.imagen" [alt]="producto.nombre" width="100" class="p-shadow-4" /></td> -->
+                        <td>
+                            <i class="pi pi-image" style="font-size: 2rem"></i>
 
+                        </td>
                         <td>{{producto.cantidad}}</td>
                         <td>{{producto.precioProd | currency:'S/ ' }}</td>
                         <td>{{producto.cantidad * producto.precioProd | currency:'S/ ' }}</td>
