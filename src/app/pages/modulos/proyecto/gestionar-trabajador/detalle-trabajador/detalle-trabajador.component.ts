@@ -63,6 +63,10 @@ export class DetalleTrabajadorComponent implements OnInit {
     })
   }
 
+  cerrarModal() {
+    this.ref.close();
+  }
+
   async obtenerTipoTrabajador() {
     try {
       this.listTipoTrabajador = await this._trabajadorService.obtenerTipoTrabajador();

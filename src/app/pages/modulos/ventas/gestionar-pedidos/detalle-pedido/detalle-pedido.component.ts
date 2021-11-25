@@ -5,6 +5,11 @@ import { ObvsService } from '@services/obvs.service';
 import { ActivatedRoute } from '@angular/router';
 import { EstadoGeneral } from '@models/generalmodel';
 import { Identifier } from '@models/identifiermodel';
+import { MessageService } from 'primeng/api';
+import { toast } from '@utils/toast';
+import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { SIZE_MODAL } from '../../../../../utils/general_constants';
+import { ModalContainerComponent } from '@components/modal-container/modal-container.component';
 
 @Component({
   selector: 'app-detalle-pedido',
@@ -25,7 +30,9 @@ export class DetallePedidoComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _pedidoService: PedidoService,
     private _obvsService: ObvsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public _dialogService: DialogService,
+    private _messageService: MessageService,
   ) {
     this.crearFormPedido();
   }
@@ -94,14 +101,30 @@ export class DetallePedidoComponent implements OnInit {
 
       const respEstado = await this._pedidoService.updatePedidoEstado(this.idPedido, idEstado);
       const respEntrega = await this._pedidoService.updatePedidoFechaEntrega(this.idPedido, fechaEntrega);
+      
+      toast({
+        title: 'Se actualizó de manera correcta',
+        message: '',
+        type: 'success',
+        messageService: this._messageService,
+      });
 
-      console.log('RESP ESTADO: ', respEstado);
-      console.log('RESP ENTREGA: ', respEntrega);
     } catch (error) {
       console.error(error);
     } finally {
       this._obvsService.toogleSpinner();
     }
+  }
+
+  verImagen(imagen: string) {
+    const ref = this._dialogService.open(ModalContainerComponent, {
+      width: SIZE_MODAL,
+      data: {
+        'imagen':imagen
+      },
+      dismissableMask: true,
+      showHeader: false
+    })
   }
 
 

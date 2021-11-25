@@ -1,7 +1,7 @@
 <div>
     <!-- Trabajador Table -->
     <div class="card p-mb-4">
-        <p-table [value]="listTrabajadores" responsiveLayout="scroll" [rows]="10" [paginator]="true">
+        <p-table #dt [value]="listTrabajadores" responsiveLayout="stack" [rows]="10" [paginator]="true" [filterDelay]="0" [globalFilterFields]="['nombre','fechaNacimiento','tipo.descripcion','estado.descripcion']" [showCurrentPageReport]="true">
             <ng-template pTemplate="caption">
                 <div class="p-d-flex p-ai-center p-jc-between">
                     <span class="p-input-icon-left">
@@ -9,17 +9,24 @@
                         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
                             id="tFiltro" placeholder="Buscar..." />
                     </span>
-                    <button pButton pRipple type="button" label="Registrar"
-                        (click)="detalleTrabajador(true, null)"></button>
+                    <button pButton pRipple type="button" label="Registrar" (click)="detalleTrabajador(true, null)"></button>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th>N</th>
-                    <th>Nombre y Apellidos</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Tipo</th>
-                    <th>Estado</th>
+                    <th pSortableColumn="nombre">Nombre y Apellidos
+                        <p-sortIcon field="nombre"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="fechaNacimiento">Fecha Nacimiento
+                        <p-sortIcon field="fechaNacimiento"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="tipo.descripcion">Tipo
+                        <p-sortIcon field="tipo.descripcion"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="estado.descripcion">Estado
+                        <p-sortIcon field="estado.descripcion"></p-sortIcon>
+                    </th>
                     <th>Opciones</th>
                 </tr>
             </ng-template>
@@ -29,13 +36,16 @@
                     <td>{{ventas.nombre}} {{ventas.apellidoPaterno}} {{ventas.apellidoMaterno}}</td>
                     <td>{{ventas.fechaNacimiento | date:'dd/MM/yyyy'}}</td>
                     <td>{{ventas.tipo.descripcion}}</td>
-                    <td>{{ventas.estado.descripcion}}</td>
+                    <td>
+                        <span class="p-column-title" [ngClass]="{ 'status-activo': ventas.estado.id == 1, 'status-inactivo': ventas.estado.id == 2  }">
+                            {{ventas.estado.descripcion | titlecase }}
+                        </span>
+
+                    </td>
                     <td>
                         <!-- <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2" pTooltip="Ver" (click)="detalleTrabajador(false,ventas)"></button> -->
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
-                            pTooltip="Editar" (click)="detalleTrabajador(false,ventas)"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                            pTooltip="Eliminar" (click)="eliminarTrabajador(ventas.idTrabajador)"></button>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar" (click)="detalleTrabajador(false,ventas)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Eliminar" (click)="eliminarTrabajador(ventas.idTrabajador)"></button>
                     </td>
                 </tr>
             </ng-template>

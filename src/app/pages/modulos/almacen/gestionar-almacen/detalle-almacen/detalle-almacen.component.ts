@@ -55,6 +55,10 @@ export class DetalleAlmacenComponent implements OnInit {
     });
   }
 
+  cerrarModal() {
+    this._ref.close();
+  }
+
   async registrarOrUpdateAlmacen() {
     
     if (this.formAlmacen.invalid) {

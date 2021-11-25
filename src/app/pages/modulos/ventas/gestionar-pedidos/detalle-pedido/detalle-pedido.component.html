@@ -20,26 +20,27 @@
                     <input formControlName="cliente" type="text" pInputText readonly>
                 </div>
 
-                <div class="p-field p-col-4">
+                <div class="p-field p-col-2">
                     <label for="range">Fecha Solicitud</label>
                     <p-calendar appendTo="body" dateFormat="dd/mm/yy" [baseZIndex]="10000" formControlName="fechaSolicitud" inputId="basic"></p-calendar>
                 </div>
 
-                <div class="p-field p-col-4">
+                <div class="p-field p-col-5">
                     <label for="range">Fecha Entrega</label>
                     <p-calendar appendTo="body" dateFormat="dd/mm/yy" [baseZIndex]="10000" formControlName="fechaEntrega" inputId="basic">
                     </p-calendar>
                 </div>
 
-                <div class="p-field p-col-4">
+                <div class="p-field p-col-5">
                     <label>Estado</label>
                     <p-dropdown [options]="listaEstadoPedido" optionLabel="descripcion" [showClear]="true" placeholder="Estado" formControlName="estado"></p-dropdown>
                 </div>
 
 
             </form>
-
-            <button pButton pRipple type="button" label="Actualizar" (click)="actualizarPedido()"></button>
+            <div class="p-text-right">
+                <button pButton pRipple type="button" label="Actualizar" (click)="actualizarPedido()"></button>
+            </div>
         </div>
 
         <hr>
@@ -65,8 +66,7 @@
                         <td>{{producto.codigo}}</td>
                         <td>{{producto.nombre}}</td>
                         <td>
-                            <i class="pi pi-image" style="font-size: 2rem"></i>
-
+                            <i class="pi pi-image" style="font-size: 2rem" (click)="verImagen(producto.imagen)"></i>
                         </td>
                         <td>{{producto.cantidad}}</td>
                         <td>{{producto.precioProd | currency:'S/ ' }}</td>
@@ -75,7 +75,7 @@
                 </ng-template>
                 <ng-template pTemplate="footer">
                     <tr>
-                        <td colspan="4" class="p-text-right">Total</td>
+                        <td colspan="5" class="p-text-right">Total</td>
                         <td>{{ precioTotal | currency:'S/ '}}</td>
                     </tr>
                 </ng-template>
