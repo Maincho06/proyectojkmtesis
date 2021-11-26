@@ -24,6 +24,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { PasswordModule } from 'primeng/password';
 import { MenuModule } from 'primeng/menu';
 import {FileUploadModule} from 'primeng/fileupload';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 const PRIMENG = [
   SidebarModule,
@@ -50,7 +51,8 @@ const PRIMENG = [
   MenuModule,
   ToolbarModule,
   InputNumberModule,
-  FileUploadModule
+  FileUploadModule,
+  ProgressBarModule
 ];
 
 @NgModule({

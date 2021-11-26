@@ -1,1 +1,49 @@
-<p>datos-proyecto works!</p>
+<form [formGroup]="formDatos" class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-4">
+        <label>Estado</label>
+        <p-dropdown appendTo="body" [options]="estados" formControlName="estado" placeholder="Seleccione un estado"
+            optionLabel="descripcion" optionValue="id"></p-dropdown>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label>Nombre Proyecto</label>
+        <input formControlName="nombreProyecto" type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label>Empresa</label>
+        <input formControlName="cliente" readonly type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="basic">Fecha inicio</label>
+        <input formControlName="fechaInicio" readonly type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="basic">Fecha fin</label>
+        <input formControlName="fechaFin" readonly type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label>Precio</label>
+        <input formControlName="precio" readonly type="number" pInputText>
+    </div>
+
+    <div class="p-field p-col-12">
+        <label>Descripción</label>
+        <textarea formControlName="descripcion" pInputTextarea></textarea>
+    </div>
+</form>
+
+<div class="p-grid p-fluid justify-content-end">
+
+    <div class="p-field p-col-2">
+        <button pButton type="button" label="Salir" routerLink="/proyecto/gestionarProyecto"
+            class="p-button-danger"></button>
+    </div>
+    <div class="p-field p-col-2">
+        <button pButton type="button" (click)="guardarProyecto()" label="Guardar"></button>
+    </div>
+
+</div>

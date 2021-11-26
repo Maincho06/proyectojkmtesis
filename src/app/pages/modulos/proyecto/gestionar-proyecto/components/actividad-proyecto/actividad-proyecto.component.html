@@ -1,1 +1,75 @@
-<p>actividad-proyecto works!</p>
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle" acceptLabel="Si" rejectLabel="No">
+</p-confirmDialog>
+
+<div class="card p-mb-4">
+    <p-progressBar [value]="porcentajeTareas"></p-progressBar>
+
+    <p-treeTable [value]="actividades">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Descripción</th>
+                <th>Prioridad</th>
+                <th>Fecha inicio</th>
+                <th>Fecha Fin</th>
+                <th>Estado</th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+            <tr>
+                <td>
+                    <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                    {{rowData.descripcion}}
+                </td>
+                <td>{{rowData.prioridad}}</td>
+                <td>{{!rowData.fechaInicio ? ' - ' : (rowData.fechaInicio | date:'dd/MM/yyyy')}}</td>
+                <td>{{ !rowData.fechaFin ? ' - ' : (rowData.fechaFin | date:'dd/MM/yyyy')}}</td>
+                <td>{{rowData.estado.descripcion}}</td>
+
+                <td>
+                    <button class="p-button-rounded p-button-warning p-mr-2" pButton pRipple icon="pi pi-pencil"
+                        (click)="modificar(rowData)" styleClass="p-button-success"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-treeTable>
+</div>
+
+<p-dialog header="Actividad" [(visible)]="mostrarModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+    [resizable]="false">
+    <form [formGroup]="formActividad" class="p-fluid p-formgrid p-grid">
+
+        <div class="p-field p-col-12">
+            <label>Descripcion</label>
+            <input formControlName="descripcion" type="text" pInputText>
+        </div>
+        <div class="p-field p-col-6">
+            <label>Prioridad</label>
+            <p-dropdown appendTo="body" [options]="prioridades" formControlName="prioridad" placeholder="Seleccione una"
+                optionLabel="descripcion" optionValue="valor" [showClear]="true"></p-dropdown>
+        </div>
+        <div class="p-field p-col-6">
+            <label>Prioridad</label>
+            <p-dropdown appendTo="body" [options]="estados" formControlName="estado" placeholder="Seleccione una"
+                optionLabel="descripcion" optionValue="id" [showClear]="true"></p-dropdown>
+        </div>
+        <div class="p-field p-col-6">
+            <label for="basic">Fecha Inicio</label>
+            <p-calendar appendTo="body" formControlName="fechaInicio" dateFormat="dd/mm/yy" inputId="basic">
+            </p-calendar>
+        </div>
+
+        <div class="p-field p-col-6">
+            <label for="basic">Fecha Fin</label>
+            <p-calendar appendTo="body" [minDate]="formActividad.controls.fechaInicio.value" formControlName="fechaFin"
+                dateFormat="dd/mm/yy" inputId="basic"></p-calendar>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <button pButton type="button" label="Cerrar" (click)="mostrarModal=false; this.formActividad.reset()"
+            class="p-button-danger"></button>
+        <button pButton type="button" (click)="guardarTipoTrabajador()" label="Guardar"></button>
+    </ng-template>
+</p-dialog>
