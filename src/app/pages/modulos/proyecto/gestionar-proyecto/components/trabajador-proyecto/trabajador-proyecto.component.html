@@ -26,6 +26,9 @@
         <div class="p-field p-col-12">
             <button (click)="nuevo()" pButton pRipple type="button" icon="pi pi-plus" style="float: right;"
                 class="alinear-button p-button-rounded p-button-text"></button>
+
+            <button (click)="mostrarModalRol = true;" pButton pRipple type="button" icon="pi pi-users"
+                style="float: right;" class="alinear-button p-button-rounded p-button-text"></button>
         </div>
     </div>
 
@@ -42,6 +45,8 @@
                 [options]="trabajadores" formControlName="trabajador" placeholder="Seleccione un trabajador"
                 optionValue="id" optionLabel="descripcion">
             </p-dropdown>
+            <small class="p-error"
+                *ngIf="formTrabajador.controls.trabajador.hasError('required') && formTrabajador.controls.trabajador.touched">Obligatorio</small>
         </div>
 
         <div class="p-field p-col-12">
@@ -55,4 +60,24 @@
             class="p-button-danger"></button>
         <button pButton type="button" (click)="guardarTrabajador()" label="Guardar"></button>
     </ng-template>
+</p-dialog>
+
+<p-dialog [header]="'Tipo Trabajador Recomendados'" [(visible)]="mostrarModalRol" [modal]="true"
+    [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
+    <div class="card p-mb-4">
+        <p-table [value]="tipoTrabajadores" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Rol</th>
+                    <th>Cantidad</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-tipotrabajador>
+                <tr>
+                    <td>{{tipotrabajador.descripcion}}</td>
+                    <td>{{tipotrabajador.cantidad}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </p-dialog>

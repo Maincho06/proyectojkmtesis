@@ -44,16 +44,25 @@
         <div class="p-field p-col-12">
             <label>Descripcion</label>
             <input formControlName="descripcion" type="text" pInputText>
+            <small class="p-error"
+                *ngIf="formActividad.controls.descripcion.hasError('required') && formActividad.controls.descripcion.touched">Obligatorio</small>
+
         </div>
         <div class="p-field p-col-6">
             <label>Prioridad</label>
             <p-dropdown appendTo="body" [options]="prioridades" formControlName="prioridad" placeholder="Seleccione una"
                 optionLabel="descripcion" optionValue="valor" [showClear]="true"></p-dropdown>
+            <small class="p-error"
+                *ngIf="formActividad.controls.prioridad.hasError('required') && formActividad.controls.prioridad.touched">Obligatorio</small>
+
         </div>
         <div class="p-field p-col-6">
-            <label>Prioridad</label>
+            <label>Estado</label>
             <p-dropdown appendTo="body" [options]="estados" formControlName="estado" placeholder="Seleccione una"
                 optionLabel="descripcion" optionValue="id" [showClear]="true"></p-dropdown>
+            <small class="p-error"
+                *ngIf="formActividad.controls.estado.hasError('required') && formActividad.controls.estado.touched">Obligatorio</small>
+
         </div>
         <div class="p-field p-col-6">
             <label for="basic">Fecha Inicio</label>

@@ -3,11 +3,17 @@
         <label>Estado</label>
         <p-dropdown appendTo="body" [options]="estados" formControlName="estado" placeholder="Seleccione un estado"
             optionLabel="descripcion" optionValue="id"></p-dropdown>
+        <small class="p-error"
+            *ngIf="formDatos.controls.estado.hasError('required') && formDatos.controls.estado.touched">Obligatorio</small>
+
     </div>
 
     <div class="p-field p-col-4">
         <label>Nombre Proyecto</label>
         <input formControlName="nombreProyecto" type="text" pInputText>
+        <small class="p-error"
+            *ngIf="formDatos.controls.nombreProyecto.hasError('required') && formDatos.controls.nombreProyecto.touched">Obligatorio</small>
+
     </div>
 
     <div class="p-field p-col-4">
@@ -33,6 +39,9 @@
     <div class="p-field p-col-12">
         <label>Descripción</label>
         <textarea formControlName="descripcion" pInputTextarea></textarea>
+        <small class="p-error"
+            *ngIf="formDatos.controls.descripcion.hasError('required') && formDatos.controls.descripcion.touched">Obligatorio</small>
+
     </div>
 </form>
 

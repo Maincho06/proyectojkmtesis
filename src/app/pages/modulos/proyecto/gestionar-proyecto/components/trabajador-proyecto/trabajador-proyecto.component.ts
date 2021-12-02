@@ -28,9 +28,10 @@ export class TrabajadorProyectoComponent implements OnInit {
   formTrabajador: FormGroup;
 
   mostrarModal = false;
-
+  mostrarModalRol = false;
   trabajadores: ITrabajadorSelect[] = [];
   trabajadoresProyecto: TrabajadorProyectoModel[] = [];
+  tipoTrabajadores
   modificando = false;
 
   constructor(
@@ -52,7 +53,18 @@ export class TrabajadorProyectoComponent implements OnInit {
     this._activatedRoute.paramMap.subscribe(async params => {
       this.idProyecto = Number(params.get('id'));
       await this.listarTrabajadoresPorProyectoId(this.idProyecto);
+      await this.listarProyectoById(this.idProyecto);
     })
+  }
+
+
+  async listarProyectoById(idProyecto: number) {
+    try {
+      let data = await this._proyectoService.getProyectoById(idProyecto);
+      this.listarTipoTrabajadoresPorCotizacionId(data.idCotizacion);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 
@@ -80,6 +92,15 @@ export class TrabajadorProyectoComponent implements OnInit {
     }
   }
 
+  async listarTipoTrabajadoresPorCotizacionId(idCotizacion: number) {
+    try {
+      let data = await this._cotizacionService.getTrabajadoresByCotizacion(idCotizacion);
+      this.tipoTrabajadores = data ?? [];
+    } catch (error) {
+      console.error(error);
+      this.trabajadores = [];
+    }
+  }
   inicializarForm() {
     this.formTrabajador = this.formBuilder.group({
       trabajador: [null, Validators.required],
@@ -137,7 +158,7 @@ export class TrabajadorProyectoComponent implements OnInit {
     }
   }
 
-  asignarTipo(valor:ITrabajadorSelect) {
+  asignarTipo(valor: ITrabajadorSelect) {
     this.formTrabajador.controls.tipo.setValue(valor.tipo)
   }
 
