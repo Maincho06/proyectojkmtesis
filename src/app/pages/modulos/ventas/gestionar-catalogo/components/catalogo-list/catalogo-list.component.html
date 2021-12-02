@@ -1,0 +1,73 @@
+<div class="card">
+
+    <!-- Lista de Catalogo -->
+    <p-table #dt [value]="listaCatalogo" [rows]="10" [paginator]="true" responsive="stack"
+        [globalFilterFields]="['codigo','producto','precio','stock','estado']"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+        [showCurrentPageReport]="true">
+
+        <!-- Input Filtro -->
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        id="tFiltro" placeholder="Buscar..." />
+                </span>
+                <!-- <button pButton pRipple type="button" label="Registrar Catálogo" (click)="registerCatalogo()"></button> -->
+            </div>
+        </ng-template>
+
+        <!-- Cabecera Tabla -->
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="codigo">Código<p-sortIcon field="codigo"></p-sortIcon>
+                </th>
+                <th pSortableColumn="producto">Producto<p-sortIcon field="producto"></p-sortIcon>
+                </th>
+                <th pSortableColumn="precio">Precio<p-sortIcon field="precio"></p-sortIcon>
+                </th>
+                <th pSortableColumn="stock">Stock<p-sortIcon field="stock"></p-sortIcon>
+                </th>
+                <th pSortableColumn="estado">Estado<p-sortIcon field="estado"></p-sortIcon>
+                </th>
+                <th>Opciones</th>
+            </tr>
+        </ng-template>
+
+        <!-- Cuerpo Tabla -->
+        <ng-template pTemplate="body" let-catalogo>
+            <tr>
+                <td><span class="p-column-title">Código</span>{{catalogo.idCatalogo}}</td>
+                <td><span class="p-column-title">Producto</span>{{catalogo.nombre}}</td>
+                <td><span class="p-column-title">Precio</span>{{catalogo.precio | currency:'S/ '}}</td>
+                <td><span class="p-column-title">Stock</span>{{catalogo.stock}}</td>
+                <td><span class="p-column-title">Estado</span>
+                    <span
+                        [class]="'list estado-' + (catalogo.isActive == 1 ? 'activo' : 'inactivo')">{{catalogo.isActive
+                        == 1 ? 'Activo' : 'Inactivo'}}</span>
+                </td>
+
+                <td>
+                    <span class="p-column-title">Opciones</span>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
+                        pTooltip="Ver" (click)="verCatalogo(catalogo.idCatalogo)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
+                        pTooltip="Editar" (click)="editarCatalogo(catalogo.idCatalogo)"></button>
+                    <button pButton pRipple icon="pi pi-cog" class="p-button-rounded p-button-help"
+                        pTooltip="Cambiar Estado" (click)="actualizarEstadoCatalogo(catalogo.idCatalogo)"></button>
+                </td>
+
+            </tr>
+        </ng-template>
+
+        <!-- Registro Total Nro -->
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                Total: {{listaCatalogo ? listaCatalogo.length : 0 }} catalogo(s)
+            </div>
+        </ng-template>
+
+    </p-table>
+
+</div>

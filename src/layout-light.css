@@ -1124,7 +1124,7 @@ a {
     display: none;
   }
   .layout-wrapper.layout-sidebar .layout-main {
-    padding-left: 62px;
+    /* padding-left: 62px; */
   }
   .layout-wrapper.layout-static .menu-wrapper {
     transform: translate3d(0px, 0px, 0px);
@@ -1198,7 +1198,7 @@ a {
     visibility: visible;
   }
   .layout-wrapper.layout-static .layout-main {
-    padding-left: 230px;
+    /* padding-left: 230px; */
     -moz-transition: padding-left 0.2s;
     -o-transition: padding-left 0.2s;
     -webkit-transition: padding-left 0.2s;

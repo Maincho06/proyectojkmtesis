@@ -8,6 +8,7 @@ import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-v
 import { GestionarVentaComponent } from './gestionar-venta/gestionar-venta.component';
 import { GestionarPedidosComponent } from './gestionar-pedidos/gestionar-pedidos.component';
 import { DetallePedidoComponent } from './gestionar-pedidos/detalle-pedido/detalle-pedido.component';
+import { GestionarCatalogoComponent } from './gestionar-catalogo/gestionar-catalogo.component';
 
 const routes: Routes = [
   {
@@ -107,28 +108,46 @@ const routes: Routes = [
       {
         path: 'gestionarPedido',
         children: [
-          { 
-            path: '', 
-            component: GestionarPedidosComponent, 
+          {
+            path: '',
+            component: GestionarPedidosComponent,
             data: {
               breadcrumb: ''
-            } 
+            }
           },
-          { 
-            path: ':id', 
-            component: DetallePedidoComponent, 
+          {
+            path: ':id',
+            component: DetallePedidoComponent,
             data: {
               breadcrumb: {
                 label: 'Editar',
                 routerLink: '/ventas/gestionarPedido',
               },
-            }, 
+            },
           },
         ],
         data: {
           breadcrumb: {
             label: 'Gestionar Pedido',
             routerLink: '/ventas/gestionarPedido'
+          }
+        }
+      },
+      {
+        path: 'gestionarCatalogo',
+        children: [
+          {
+            path: '',
+            component: GestionarCatalogoComponent,
+            data: {
+              breadcrumb: ''
+            }
+          }
+        ],
+        data: {
+          breadcrumb: {
+            label: 'Gestionar Catálogo',
+            routerLink: '/ventas/gestionarCatalogo'
           }
         }
       }

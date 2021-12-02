@@ -1,0 +1,36 @@
+<div class="p-grid">
+
+    <!-- Inputs Catalogo -->
+    <div class="p-col-12">
+        <form [formGroup]="formCatalogo" class="p-fluid p-formgrid p-grid">
+
+            <!-- Input Producto-->
+            <div class="p-field p-col-12">
+                <label>Producto</label>
+                <p-dropdown appendTo="body" [options]="lProducto" formControlName="producto" placeholder="Seleccione un Producto"
+                    optionLabel="nombre" optionValue="idProducto" [showClear]="true"></p-dropdown>
+            </div>
+
+            <!-- Input Precio -->
+            <div class="p-field p-col-12">
+                <label>Precio</label>
+                <p-inputNumber mode="currency" currency="PEN" locale="es-PE" formControlName="precio">
+                </p-inputNumber>
+            </div>
+
+            <!-- Input Stock -->
+            <div class="p-field p-col-12">
+                <label>Stock</label>
+                <input formControlName="stock" type="text" pInputText>
+            </div>
+
+        </form>
+
+        <div class="p-text-right p-mt-3">
+            <button *ngIf="estado" pButton pRipple label="Guardar" (click)="actualizarCatalogo()" class="p-mr-2"></button>
+            <button *ngIf="estado" pButton pRipple label="Cancelar" (click)="cerrarModal()" class="p-button-danger"></button>
+        </div>
+
+    </div>
+
+</div>

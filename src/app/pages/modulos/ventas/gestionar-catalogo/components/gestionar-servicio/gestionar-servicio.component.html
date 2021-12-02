@@ -1,0 +1,73 @@
+<div class="card">
+
+    <!-- Lista de Servicios -->
+    <p-table #dt [value]="listaServicio" [rows]="10" [paginator]="true" responsive="stack"
+        [globalFilterFields]="['codigo','servicio','estado']"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+        [showCurrentPageReport]="true">
+
+        <!-- Input Filtro -->
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        id="tFiltro" placeholder="Buscar..." />
+                </span>
+                <button pButton pRipple type="button" label="Registrar Servicio" (click)="registerServicio()"></button>
+            </div>
+        </ng-template>
+
+        <!-- Cabecera Tabla -->
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="codigo">Código<p-sortIcon field="codigo"></p-sortIcon>
+                </th>
+                <th pSortableColumn="servicio">Servicio<p-sortIcon field="servicio"></p-sortIcon>
+                </th>
+                <th>Imagen</th>
+                <th pSortableColumn="estado">Estado<p-sortIcon field="estado"></p-sortIcon>
+                </th>
+                <th>Opciones</th>
+            </tr>
+        </ng-template>
+
+        <!-- Cuerpo Tabla -->
+        <ng-template pTemplate="body" let-servicio>
+            <tr>
+                <td><span class="p-column-title">Código</span>{{servicio.idServicio}}</td>
+                <td><span class="p-column-title">Servicio</span>{{servicio.nombre}}</td>
+                <td><span class="p-column-title">Imagen</span>
+                    <img [src]="''+ servicio.imagen" [alt]="servicio.nombre" width="100" class="p-shadow-4" />
+                </td>
+
+                <!-- <td>
+                    <img [src]="'{{servicio.imagen}}'" width="100" class="p-shadow-4" />
+                </td> -->
+                <td><span class="p-column-title">Estado</span>
+                    <span
+                        [class]="'list estado-' + (servicio.isActive == 1 ? 'activo' : 'inactivo')">{{servicio.isActive
+                        == 1 ? 'Activo' : 'Inactivo'}}</span>
+                </td>
+                <td>
+                    <span class="p-column-title">Opciones</span>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
+                        pTooltip="Ver" (click)="verServicio(servicio.idServicio)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
+                        pTooltip="Editar" (click)="editarServicio(servicio.idServicio)"></button>
+                    <button pButton pRipple icon="pi pi-cog" class="p-button-rounded p-button-help"
+                        pTooltip="Cambiar Estado" (click)="actualizarEstadoServicio(servicio.idServicio)"></button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <!-- Registro Total Nro -->
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                Total: {{listaServicio ? listaServicio.length : 0 }} servicio(s)
+            </div>
+        </ng-template>
+
+    </p-table>
+
+</div>

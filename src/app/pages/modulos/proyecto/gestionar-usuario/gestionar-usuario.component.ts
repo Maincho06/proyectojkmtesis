@@ -11,7 +11,7 @@ import { UsuarioUpdateComponent } from './usuario-update/usuario-update.componen
 @Component({
   selector: 'app-gestionar-usuario',
   templateUrl: './gestionar-usuario.component.html',
-  styleUrls: ['./gestionar-usuario.component.scss']
+  // styleUrls: ['./gestionar-usuario.component.scss']
 })
 
 export class GestionarUsuarioComponent implements OnInit {

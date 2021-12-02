@@ -1,7 +1,8 @@
 <p-toast baseZIndex="100000" [showTransitionOptions]="'100ms'"></p-toast>
+
 <div class="layout-sidebar layout-static p-ripple-disabled layout-wrapper layout-menu-light layout-topbar-light">
 
-    <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
+    <app-navbar></app-navbar>
 
     <div class="layout-main">
 
@@ -10,7 +11,6 @@
             <div class="p-grid p-mb-2">
                 <div class="p-col-12">
                     <div class="card">
-
                         <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
                     </div>
                 </div>

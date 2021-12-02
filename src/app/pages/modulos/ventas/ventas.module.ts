@@ -17,10 +17,15 @@ import { ProductosCotizacionComponent } from './gestionar-cotizacion/components/
 import { DetalleVentaComponent } from './gestionar-venta/detalle-venta/detalle-venta.component';
 import { GestionarPedidosComponent } from './gestionar-pedidos/gestionar-pedidos.component';
 import { DetallePedidoComponent } from './gestionar-pedidos/detalle-pedido/detalle-pedido.component';
+import { GestionarCatalogoComponent } from './gestionar-catalogo/gestionar-catalogo.component';
+import { CatalogoRegisterComponent } from './gestionar-catalogo/components/catalogo-register/catalogo-register.component';
+import { CatalogoListComponent } from './gestionar-catalogo/components/catalogo-list/catalogo-list.component';
+import { CatalogoUpdateComponent } from './gestionar-catalogo/components/catalogo-update/catalogo-update.component';
 
 // Dialog
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { GestionarServicioComponent } from './gestionar-catalogo/components/gestionar-servicio/gestionar-servicio.component';
 
 
 
@@ -39,6 +44,11 @@ import { DialogService } from 'primeng/dynamicdialog';
     DetalleVentaComponent,
     GestionarPedidosComponent,
     DetallePedidoComponent,
+    GestionarCatalogoComponent,
+    CatalogoRegisterComponent,
+    CatalogoUpdateComponent,
+    CatalogoListComponent,
+    GestionarServicioComponent,
   ],
   imports: [
     CommonModule,
