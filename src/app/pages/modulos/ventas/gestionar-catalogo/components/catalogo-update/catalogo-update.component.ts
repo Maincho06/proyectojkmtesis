@@ -98,13 +98,9 @@ export class CatalogoUpdateComponent implements OnInit {
 
         // Validacion Formulario
         if (this.formCatalogo.invalid) {
-            toast({
-                title: 'Advertencia',
-                message: 'Revise los campos ingresados',
-                type: 'warn',
-                messageService: this._messageService,
-            });
-            return
+            return Object.values(this.formCatalogo.controls).forEach(control => {
+                control.markAllAsTouched();
+            })
         }
 
         let formCatalogo = this.formCatalogo.value;

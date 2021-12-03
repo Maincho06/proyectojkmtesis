@@ -9,15 +9,13 @@ export interface IServicioModel {
 
 export interface IRegisterServicio {
     Nombre: string;
-    Imagen: string;
+    // Imagen: string;
     Descripcion: string;
-    isActive: number;
 }
 
 export interface IUpdateServicio {
     idServicio: number;
     Nombre: string;
-    Imagen: string;
+    // Imagen: string;
     Descripcion: string;
-    isActive: number;
 }

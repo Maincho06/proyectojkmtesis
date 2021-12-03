@@ -2,16 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ObvsService } from '@services/obvs.service';
-import { CatalogoRegisterComponent } from '../catalogo-register/catalogo-register.component';
-import { CatalogoUpdateComponent } from '../catalogo-update/catalogo-update.component';
 import { ServicioService } from '@services/servicio.service';
 import { IServicioModel } from '@models/serviciomodel';
-import { toast } from '@utils/toast';
+import { ServicioRegisterComponent } from './servicio-register/servicio-register.component';
+import { ServicioUpdateComponent } from './servicio-update/servicio-update.component';
 
 @Component({
     selector: 'app-gestionar-servicio',
     templateUrl: './gestionar-servicio.component.html',
-    // styleUrls: ['./gestionar-catalogo.component.scss'],
     providers: [DialogService, ConfirmationService, MessageService],
 })
 
@@ -38,7 +36,6 @@ export class GestionarServicioComponent implements OnInit {
 
             const data: any = await this._servicioService.getServicioPaginado({ pages: 1, rows: 10 }).toPromise();
             this.listaServicio = data.data;
-            console.log('Catalogo', this.listaServicio);
         }
 
         catch (error) {
@@ -51,7 +48,7 @@ export class GestionarServicioComponent implements OnInit {
     }
 
     registerServicio() {
-        const ref = this._dialogService.open(CatalogoRegisterComponent, {
+        const ref = this._dialogService.open(ServicioRegisterComponent, {
             header: 'Registrar Servicio',
             width: '30rem'
         })
@@ -62,7 +59,7 @@ export class GestionarServicioComponent implements OnInit {
     }
 
     verServicio(idServicio: number) {
-        const ref = this._dialogService.open(CatalogoUpdateComponent, {
+        const ref = this._dialogService.open(ServicioUpdateComponent, {
             header: 'Ver Servicio',
             width: '30rem',
             data: idServicio
@@ -71,7 +68,7 @@ export class GestionarServicioComponent implements OnInit {
     }
 
     editarServicio(idServicio: number) {
-        const ref = this._dialogService.open(CatalogoUpdateComponent, {
+        const ref = this._dialogService.open(ServicioUpdateComponent, {
             header: 'Editar Servicio',
             width: '30rem',
             data: idServicio
@@ -88,14 +85,14 @@ export class GestionarServicioComponent implements OnInit {
             this._obvsService.toogleSpinner();
             const data: any = await this._servicioService.updateEstadoServicio(idServicio)
 
-            // this._messageService.add({ severity: 'success', summary: 'Actualización exitosa', detail: 'Se Actualizó el estado correctamente' })
+            this._messageService.add({ severity: 'success', summary: 'Actualización exitosa', detail: 'Se Actualizó el estado correctamente' })
 
-            toast({ 
-                title: 'Actualización exitosa', 
-                message: 'Se Actualizó el estado correctamente', 
-                type: 'warn', 
-                messageService: this._messageService, 
-            });
+            // toast({ 
+            //     title: 'Actualización exitosa', 
+            //     message: 'Se Actualizó el estado correctamente', 
+            //     type: 'warn', 
+            //     messageService: this._messageService, 
+            // });
 
             this.listarServicios()
         }

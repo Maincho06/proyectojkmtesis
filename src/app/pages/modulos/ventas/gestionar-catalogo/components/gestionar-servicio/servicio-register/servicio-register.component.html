@@ -1,0 +1,34 @@
+<div class="p-grid">
+
+    <!-- Inputs Servicio -->
+    <div class="p-col-12">
+        <form [formGroup]="formServicio" class="p-fluid p-formgrid p-grid">
+
+            <!-- Input Nombre -->
+            <div class="p-field p-col-12">
+                <label>Nombre</label>
+                <input formControlName="nombre" type="text" pInputText>
+                <small
+                    *ngIf="formServicio.get('nombre').hasError('required') && this.formServicio.get('nombre').touched"
+                    class="p-error">El nombre no puede estar vacío</small>
+            </div>
+
+            <!-- Input Descripción -->
+            <div class="p-field p-col-12">
+                <label>Descripción</label>
+                <textarea rows="5" cols="30" formControlName="descripcion" pInputTextarea autoResize="autoResize"></textarea>
+                <small
+                    *ngIf="formServicio.get('descripcion').hasError('required') && this.formServicio.get('descripcion').touched"
+                    class="p-error">La descripción no puede estar vacía</small>
+            </div>
+
+        </form>
+
+        <div class="p-text-right p-mt-3">
+            <button pButton pRipple label="Guardar" (click)="registrarServicio()" class="p-mr-2"></button>
+            <button pButton pRipple label="Cancelar" (click)="cerrarModal()" class="p-button-danger"></button>
+        </div>
+
+    </div>
+
+</div>

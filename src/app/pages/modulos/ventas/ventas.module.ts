@@ -26,6 +26,8 @@ import { CatalogoUpdateComponent } from './gestionar-catalogo/components/catalog
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { GestionarServicioComponent } from './gestionar-catalogo/components/gestionar-servicio/gestionar-servicio.component';
+import { ServicioRegisterComponent } from './gestionar-catalogo/components/gestionar-servicio/servicio-register/servicio-register.component';
+import { ServicioUpdateComponent } from './gestionar-catalogo/components/gestionar-servicio/servicio-update/servicio-update.component';
 
 
 
@@ -49,6 +51,8 @@ import { GestionarServicioComponent } from './gestionar-catalogo/components/gest
     CatalogoUpdateComponent,
     CatalogoListComponent,
     GestionarServicioComponent,
+    ServicioRegisterComponent,
+    ServicioUpdateComponent,
   ],
   imports: [
     CommonModule,

@@ -89,7 +89,8 @@ export class GestionarUsuarioComponent implements OnInit {
 
       this._obvsService.toogleSpinner();
       const data: any = await this._usuariosService.updateEstadoUsuario(idUsuario)
-      console.log(data)
+
+      this._messageService.add({ severity: 'success', summary: 'Actualización exitosa', detail: 'Se Actualizó el estado correctamente' })
       this.listarUsuarios()
     }
 

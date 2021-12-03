@@ -51,13 +51,9 @@ export class UsuarioRegisterComponent implements OnInit {
 
     // Validacion Formulario
     if (this.formUsuarios.invalid) {
-      toast({
-        title: 'Advertencia',
-        message: 'Revise los campos ingresados',
-        type: 'warn',
-        messageService: this._messageService,
-      });
-      return
+      return Object.values(this.formUsuarios.controls).forEach(control => {
+        control.markAllAsTouched();
+      })
     }
 
     let formUsuarios = this.formUsuarios.value;

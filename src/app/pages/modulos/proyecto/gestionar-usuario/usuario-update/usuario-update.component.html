@@ -8,53 +8,71 @@
             <div class="p-field p-col-12">
                 <label>Nombres</label>
                 <input formControlName="nombre" type="text" pInputText [readonly]="!estado">
+                <small
+                    *ngIf="formUsuarios.get('nombre').hasError('required') && this.formUsuarios.get('nombre').touched"
+                    class="p-error">El nombre no puede estar vacío</small>
             </div>
 
             <!-- Input Apellidos -->
             <div class="p-field p-col-12">
                 <label>Apellidos</label>
                 <input formControlName="apellido" type="text" pInputText [readonly]="!estado">
+                <small
+                    *ngIf="formUsuarios.get('apellido').hasError('required') && this.formUsuarios.get('apellido').touched"
+                    class="p-error">El Apellido no puede estar vacío</small>
             </div>
 
             <!-- Input Email -->
             <div class="p-field p-col-12">
                 <label>Email</label>
                 <input formControlName="email" type="text" pInputText [readonly]="!estado">
+                <small *ngIf="formUsuarios.get('email').hasError('required') && this.formUsuarios.get('email').touched"
+                    class="p-error">El Email no puede estar vacío</small>
             </div>
 
             <!-- Input Fecha Nacimiento -->
             <div class="p-field p-col-12">
                 <label>Fecha de Nacimiento</label>
-                <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1700:2030"
-                    [readonlyInput]="true" formControlName="fechaNacimiento"></p-calendar>
+                <p-calendar appendTo="body" [disabled]="!estado" [monthNavigator]="true" [yearNavigator]="true"
+                    yearRange="1700:2030" [readonlyInput]="true" formControlName="fechaNacimiento"></p-calendar>
+                <small
+                    *ngIf="formUsuarios.get('fechaNacimiento').hasError('required') && this.formUsuarios.get('fechaNacimiento').touched"
+                    class="p-error">La fecha de nacimiento no puede estar vacía</small>
             </div>
 
             <!-- Input Nombre Usuario -->
             <div class="p-field p-col-12">
                 <label>Nombre Usuario</label>
                 <input formControlName="username" type="text" pInputText [readonly]="!estado">
+                <small
+                    *ngIf="formUsuarios.get('username').hasError('required') && this.formUsuarios.get('username').touched"
+                    class="p-error">El Nombre de usuario no puede estar vacío</small>
             </div>
 
             <!-- Input Contraseña -->
             <div class="p-field p-col-12">
                 <label>Contraseña</label>
                 <input formControlName="password" type="text" pInputText [readonly]="!estado">
+                <small
+                    *ngIf="formUsuarios.get('password').hasError('required') && this.formUsuarios.get('password').touched"
+                    class="p-error">La contraseña no puede estar vacía</small>
             </div>
 
             <!-- Input Rol-->
             <div class="p-field p-col-12">
                 <label>Rol</label>
                 <p-dropdown appendTo="body" [options]="lRol" formControlName="rol" placeholder="Seleccione un proyecto"
-                    optionLabel="descripcion" optionValue="idRol" [showClear]="true" [readonly]="!estado"></p-dropdown>
+                    optionLabel="descripcion" optionValue="idRol" [showClear]="estado" [readonly]="!estado">
+                </p-dropdown>
+                <small *ngIf="formUsuarios.get('rol').hasError('required') && this.formUsuarios.get('rol').touched"
+                    class="p-error">El Rol no puede estar vacío</small>
             </div>
 
         </form>
 
-        <div class="p-text-right p-mt-3">
-            <button *ngIf="estado" pButton pRipple label="Guardar" (click)="actualizarUsuario()"
-                class="p-mr-2"></button>
-            <button *ngIf="estado" pButton pRipple label="Cancelar" (click)="cerrarModal()"
-                class="p-button-danger"></button>
+        <div *ngIf="estado" class="p-text-right p-mt-3">
+            <button pButton pRipple label="Guardar" (click)="actualizarUsuario()" class="p-mr-2"></button>
+            <button pButton pRipple label="Cancelar" (click)="cerrarModal()" class="p-button-danger"></button>
         </div>
 
     </div>

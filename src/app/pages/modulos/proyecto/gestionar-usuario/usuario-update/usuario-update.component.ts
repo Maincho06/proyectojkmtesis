@@ -70,10 +70,8 @@ export class UsuarioUpdateComponent implements OnInit {
         fechaNacimiento: fecha.toDate(),
         username: data.username,
         password: data.password,
-        rol:  this.lRol.find(item => item.idRol == data.idRol)
+        rol: this.lRol.find(item => item.idRol == data.idRol)
       })
-      // console.log('ID ROL', data.idRol)
-      // this.formUsuarios.controls.rol.setValue(data.idRol)
     }
 
     catch (error) {
@@ -89,13 +87,9 @@ export class UsuarioUpdateComponent implements OnInit {
 
     // Validacion Formulario
     if (this.formUsuarios.invalid) {
-      toast({
-        title: 'Advertencia',
-        message: 'Revise los campos ingresados',
-        type: 'warn',
-        messageService: this._messageService,
-      });
-      return
+      return Object.values(this.formUsuarios.controls).forEach(control => {
+        control.markAllAsTouched();
+      })
     }
 
     let formUsuarios = this.formUsuarios.value;

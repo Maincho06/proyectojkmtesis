@@ -7,28 +7,37 @@
             <!-- Input Producto-->
             <div class="p-field p-col-12">
                 <label>Producto</label>
-                <p-dropdown appendTo="body" [options]="lProducto" formControlName="producto" placeholder="Seleccione un Producto"
-                    optionLabel="nombre" optionValue="idProducto" [showClear]="true"></p-dropdown>
+                <p-dropdown appendTo="body" [options]="lProducto" [readonly]="!estado" formControlName="producto"
+                    placeholder="Seleccione un Producto" optionLabel="nombre" optionValue="idProducto"
+                    [showClear]="estado"></p-dropdown>
+                <small
+                    *ngIf="formCatalogo.get('producto').hasError('required') && this.formCatalogo.get('producto').touched"
+                    class="p-error">El Producto no puede estar vacío</small>
             </div>
 
             <!-- Input Precio -->
             <div class="p-field p-col-12">
                 <label>Precio</label>
-                <p-inputNumber mode="currency" currency="PEN" locale="es-PE" formControlName="precio">
+                <p-inputNumber mode="currency" currency="PEN" locale="es-PE" [disabled]="!estado" formControlName="precio">
                 </p-inputNumber>
+                <small
+                    *ngIf="formCatalogo.get('precio').hasError('required') && this.formCatalogo.get('precio').touched"
+                    class="p-error">El Precio no puede estar vacío</small>
             </div>
 
             <!-- Input Stock -->
             <div class="p-field p-col-12">
                 <label>Stock</label>
-                <input formControlName="stock" type="text" pInputText>
+                <input formControlName="stock" type="number" [readonly]="!estado" pInputText>
+                <small *ngIf="formCatalogo.get('stock').hasError('required') && this.formCatalogo.get('stock').touched"
+                    class="p-error">El Stock no puede estar vacío</small>
             </div>
 
         </form>
 
-        <div class="p-text-right p-mt-3">
-            <button *ngIf="estado" pButton pRipple label="Guardar" (click)="actualizarCatalogo()" class="p-mr-2"></button>
-            <button *ngIf="estado" pButton pRipple label="Cancelar" (click)="cerrarModal()" class="p-button-danger"></button>
+        <div *ngIf="estado" class="p-text-right p-mt-3">
+            <button pButton pRipple label="Guardar" (click)="actualizarCatalogo()" class="p-mr-2"></button>
+            <button pButton pRipple label="Cancelar" (click)="cerrarModal()" class="p-button-danger"></button>
         </div>
 
     </div>

@@ -24,7 +24,9 @@ export class CatalogoListComponent implements OnInit {
     constructor(
         private _dialogService: DialogService,
         private _catalogoService: CatalogoService,
-        private _obvsService: ObvsService
+        private _obvsService: ObvsService,
+        private _messageService: MessageService,
+
     ) { }
 
     ngOnInit() {
@@ -87,7 +89,9 @@ export class CatalogoListComponent implements OnInit {
 
             this._obvsService.toogleSpinner();
             const data: any = await this._catalogoService.updateEstadoCatalogo(idCatalogo)
-            console.log(data)
+            
+            this._messageService.add({ severity: 'success', summary: 'Actualización exitosa', detail: 'Se Actualizó el estado correctamente' })
+
             this.listarCatalogos()
         }
 
