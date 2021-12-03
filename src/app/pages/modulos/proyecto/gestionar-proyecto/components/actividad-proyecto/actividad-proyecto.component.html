@@ -23,7 +23,12 @@
                     <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
                     {{rowData.descripcion}}
                 </td>
-                <td>{{rowData.prioridad}}</td>
+
+                <td>
+                    <!-- {{rowData.prioridad}} -->
+                    <span [class]="'prioridad-badge status-' + (rowData.prioridad ? rowData.prioridad.toLowerCase() : '')">
+                        {{rowData.prioridad}}</span>
+                    </td>
                 <td>{{!rowData.fechaInicio ? ' - ' : (rowData.fechaInicio | date:'dd/MM/yyyy')}}</td>
                 <td>{{ !rowData.fechaFin ? ' - ' : (rowData.fechaFin | date:'dd/MM/yyyy')}}</td>
                 <td>{{rowData.estado.descripcion}}</td>

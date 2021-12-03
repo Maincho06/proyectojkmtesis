@@ -1,0 +1,22 @@
+.prioridad-badge.status-bajo {
+    background: #689F38;
+    color: #ffffff;
+}
+
+.prioridad-badge.status-medio {
+    background: #ecda38;
+    color: #000;
+}
+
+.prioridad-badge.status-alto {
+    background: #D32F2F;
+    color: #ffffff;
+}
+
+.prioridad-badge {
+    border-radius: 13px;
+    padding: 0.4em 0.7rem;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}

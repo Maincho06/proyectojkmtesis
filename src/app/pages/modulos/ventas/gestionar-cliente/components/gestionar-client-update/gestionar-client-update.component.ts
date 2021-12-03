@@ -31,9 +31,9 @@ export class GestionarClientUpdateComponent implements OnInit {
   inicializarForm(cliente: IClienteModel) {
     this.formCliente = this._formBuilder.group({
       idCliente: [cliente.idCliente],
-      ruc: [cliente.ruc, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/), Validators.minLength(11), , Validators.maxLength(11)]],
+      ruc: [cliente.ruc, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/), Validators.minLength(11), Validators.maxLength(11)]],
       razonSocial: [cliente.razonSocial, Validators.required],
-      telefono: [cliente.telefono, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      telefono: [cliente.telefono, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/), Validators.minLength(9), Validators.maxLength(9)]],
     })
   }
 

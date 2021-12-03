@@ -3,6 +3,14 @@
     <div class="p-field p-col-12">
         <label>RUC</label>
         <input formControlName="ruc" type="text" pInputText>
+        <small class="p-error"
+            *ngIf="formCliente.controls.ruc.hasError('required') && formCliente.controls.ruc.touched">Obligatorio</small>
+        <small class="p-error"
+            *ngIf="formCliente.controls.ruc.hasError('pattern') && formCliente.controls.ruc.touched">Solo
+            números</small>
+        <small class="p-error"
+            *ngIf="(formCliente.controls.ruc.hasError('minlength') || formCliente.controls.ruc.hasError('maxlength')) && formCliente.controls.ruc.touched">11
+            caracteres</small>
     </div>
     <div class="p-field p-col-12">
         <label>Razon Social</label>
@@ -12,6 +20,14 @@
     <div class="p-field p-col-12">
         <label>Teléfono</label>
         <input formControlName="telefono" type="text" pInputText>
+        <small class="p-error"
+            *ngIf="formCliente.controls.telefono.hasError('required') && formCliente.controls.telefono.touched">Obligatorio</small>
+        <small class="p-error"
+            *ngIf="formCliente.controls.telefono.hasError('pattern') && formCliente.controls.telefono.touched">Solo
+            números</small>
+        <small class="p-error"
+            *ngIf="(formCliente.controls.telefono.hasError('minlength') || formCliente.controls.telefono.hasError('maxlength')) && formCliente.controls.telefono.touched">9
+            caracteres</small>
     </div>
 </form>
 

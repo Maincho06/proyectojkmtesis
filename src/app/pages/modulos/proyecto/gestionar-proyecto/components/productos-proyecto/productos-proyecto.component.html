@@ -1,0 +1,23 @@
+<div class="card p-mb-4">
+    <p-table [value]="detalleOrden" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-detalleOrden>
+            <tr>
+                <td>{{detalleOrden.codigoProducto}}</td>
+                <td>{{detalleOrden.nombreProducto}}</td>
+                <td>{{detalleOrden.cantidad}}</td>
+                <td>{{detalleOrden.precio | currency:'S/ ':'symbol-narrow':'1.2-2'}}</td>
+                <td>{{detalleOrden.cantidad * detalleOrden.precio | currency:'S/ ':'symbol-narrow':'1.2-2'}}</td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

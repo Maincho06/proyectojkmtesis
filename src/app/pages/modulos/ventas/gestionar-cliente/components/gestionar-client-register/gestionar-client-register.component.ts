@@ -32,7 +32,7 @@ export class GestionarClientRegisterComponent implements OnInit {
     this.formCliente = this._formBuilder.group({
       ruc: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/), Validators.minLength(11), , Validators.maxLength(11)]],
       razonSocial: ['', Validators.required],
-      telefono: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      telefono: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/), Validators.minLength(9), , Validators.maxLength(9)]],
     })
   }
 

@@ -63,6 +63,8 @@ export class TrabajadoresCotizacionComponent implements OnInit {
     try {
       let data = await this._trabajadorService.getTipoTrabajador();
       this.tipoTrabajadores = data;
+      console.log(data);
+
     } catch (error) {
       console.error(error);
       this.tipoTrabajadores = [];
