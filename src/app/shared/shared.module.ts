@@ -53,6 +53,7 @@ const MODULES = [
     ModalContainerComponent,
     MODULES,
     DIRECTIVES,
+    COMPONENTS,
     CardActividadComponent
   ]
 })

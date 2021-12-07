@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div class="button-center">
-    <button pButton type="button" [label]="isRegistrar ?  'Registrar' : 'Actualizar'" (click)="registrarOrUpdateAlmacen()"></button>
-
+<div class="p-text-right">
+    <button pButton class="p-mr-2" type="button" [label]="isRegistrar ?  'Registrar' : 'Actualizar'" (click)="registrarOrUpdateAlmacen()"></button>
+    <button pButton class="p-button-danger" type="button" label="Cancelar" (click)="cerrarModal()"></button>
 </div>

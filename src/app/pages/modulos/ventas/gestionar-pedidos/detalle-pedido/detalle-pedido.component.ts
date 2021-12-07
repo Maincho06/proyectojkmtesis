@@ -5,6 +5,12 @@ import { ObvsService } from '@services/obvs.service';
 import { ActivatedRoute } from '@angular/router';
 import { EstadoGeneral } from '@models/generalmodel';
 import { Identifier } from '@models/identifiermodel';
+import { MessageService } from 'primeng/api';
+import { toast } from '@utils/toast';
+import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { SIZE_MODAL } from '../../../../../utils/general_constants';
+import { ModalContainerComponent } from '@components/modal-container/modal-container.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-detalle-pedido',
@@ -25,7 +31,9 @@ export class DetallePedidoComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _pedidoService: PedidoService,
     private _obvsService: ObvsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public _dialogService: DialogService,
+    private _messageService: MessageService,
   ) {
     this.crearFormPedido();
   }
@@ -59,7 +67,6 @@ export class DetallePedidoComponent implements OnInit {
       fechaEntrega  : pedido.fechaEntregaString !== null ? new Date(pedido.fechaEntrega) : null,
       estado        : pedido.estado
     });
-    // if(!this.isEstadoCreado)  this.formPedido.get('fechaEntrega').disable();
   }
 
   async obtenerPedidoById(id: number) {
@@ -86,6 +93,22 @@ export class DetallePedidoComponent implements OnInit {
   }
 
   async actualizarPedido() {
+
+    if (this.formPedido.invalid) {
+      return Object.values(this.formPedido.controls).forEach(control => {
+        control.markAllAsTouched();
+      })
+    }
+    
+    if(this.validarFechaEntrega()) {
+      toast({
+        title: 'Alerta',
+        message: 'La fecha de entrega no puede ser menor a la fecha actual',
+        type: 'warn',
+        messageService: this._messageService,
+      });
+      return;
+    }
     try {
       this._obvsService.toogleSpinner();
       const idEstado = this.formPedido.get('estado').value.id;
@@ -94,9 +117,14 @@ export class DetallePedidoComponent implements OnInit {
 
       const respEstado = await this._pedidoService.updatePedidoEstado(this.idPedido, idEstado);
       const respEntrega = await this._pedidoService.updatePedidoFechaEntrega(this.idPedido, fechaEntrega);
+      
+      toast({
+        title: 'Se actualizó de manera correcta',
+        message: '',
+        type: 'success',
+        messageService: this._messageService,
+      });
 
-      console.log('RESP ESTADO: ', respEstado);
-      console.log('RESP ENTREGA: ', respEntrega);
     } catch (error) {
       console.error(error);
     } finally {
@@ -104,6 +132,32 @@ export class DetallePedidoComponent implements OnInit {
     }
   }
 
+  verImagen(imagen: string) {
+    const ref = this._dialogService.open(ModalContainerComponent, {
+      width: SIZE_MODAL,
+      data: {
+        'imagen':imagen
+      },
+      dismissableMask: true,
+      showHeader: false
+    })
+  }
 
+  validarFechaEntrega(): boolean {
+    const fechaEntregaForm = this.formPedido.get('fechaEntrega').value;
+    const fechaEntregaString = moment(fechaEntregaForm).format('yyyy-MM-DD');
+    const fechaEntregaM = moment(fechaEntregaString,'yyyy-MM-DD');
+    const fechaHoy = moment(moment().format('yyyy-MM-DD'),'yyyy-MM-DD');
+    if(fechaEntregaM < fechaHoy) return true;
+    if(fechaEntregaM > fechaHoy) return false;
+    return false;
+  }
+
+  // get Validación
+  get getValidarFechaEntrega()  {
+    if(this.validarFechaEntrega()) return true;
+    if(this.formPedido.get('fechaEntrega').invalid && 
+    this.formPedido.get('fechaEntrega').touched) return true;
+  }
 
 }

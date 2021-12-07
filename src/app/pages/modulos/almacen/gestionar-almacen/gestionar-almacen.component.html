@@ -1,9 +1,8 @@
 <div>
     <!-- Almacen Table -->
     <div class="card p-mb-4 p-shadow-6">
-        <p-table #dt [value]="almacen" responsiveLayout="scroll" [rows]="10" [paginator]="true" responsive="stack"
-            [globalFilterFields]="['idAlmacen','nombre','direccion', 'distrito', 'opciones']"
-            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados">
+        <p-table #dt [value]="almacen" responsiveLayout="scroll" [rows]="10" [paginator]="true" responsive="stack" [globalFilterFields]="['idAlmacen','nombre','direccion', 'distrito', 'opciones']" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+            responsiveLayout="scroll">
             <!-- Input Filtro -->
             <ng-template pTemplate="caption">
                 <div class="p-d-flex p-ai-center p-jc-between">
@@ -12,8 +11,7 @@
                         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
                             id="tFiltro" placeholder="Buscar..." />
                     </span>
-                    <button (click)="registerOrUpdateAlmacen(true,null)" pButton pRipple type="button"
-                        label="Registrar Almacen"></button>
+                    <button (click)="registerOrUpdateAlmacen(true,null)" pButton pRipple type="button" label="Registrar"></button>
                 </div>
             </ng-template>
 
@@ -45,8 +43,7 @@
                     <td>{{almacen.direccion}}</td>
                     <td>{{almacen.distrito}}</td>
                     <td>
-                        <button (click)="registerOrUpdateAlmacen(false,almacen)" pButton pRipple icon="pi pi-pencil"
-                            class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
+                        <button (click)="registerOrUpdateAlmacen(false,almacen)" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
                     </td>
                 </tr>
             </ng-template>
