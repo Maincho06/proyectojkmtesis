@@ -3,9 +3,10 @@
 <div>
     <!-- Cotizacion Table -->
     <div class="card p-mb-4">
-        <p-table #dt [rows]="10" [paginator]="true" responsive="stack" 
-        [globalFilterFields]="['nombreProyecto','fechaInicio','fechaFin', 'descripcion','estado.descripcion']" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados" [showCurrentPageReport]="true"
-            [value]="proyectos" responsiveLayout="scroll">
+        <p-table #dt [rows]="10" [paginator]="true" responsive="stack"
+            [globalFilterFields]="['nombreProyecto','fechaInicio','fechaFin', 'descripcion','estado.descripcion']"
+            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+            [showCurrentPageReport]="true" [value]="proyectos" responsiveLayout="scroll">
             <!-- Input Filtro -->
             <ng-template pTemplate="caption">
                 <div class="p-d-flex p-ai-center p-jc-between">
@@ -14,7 +15,6 @@
                         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
                             id="tFiltro" placeholder="Buscar..." />
                     </span>
-                    <button pButton pRipple type="button" label="Registrar" routerLink="crear"></button>
                 </div>
             </ng-template>
 
@@ -35,6 +35,8 @@
                     <th pSortableColumn="estado.descripcion">Estado
                         <p-sortIcon field="estado.descripcion"></p-sortIcon>
                     </th>
+
+                    <th>Porcentaje</th>
                     <th>Opciones</th>
                 </tr>
             </ng-template>
@@ -45,8 +47,12 @@
                     <td>{{proyectos.fechaFin | date: 'dd/MM/yyyy'}}</td>
                     <td>{{proyectos.descripcion}}</td>
                     <td>{{proyectos.estado.descripcion}}</td>
+                    <td>    <p-progressBar [value]="proyectos.porcentajeTareasFinalizadas"></p-progressBar>
+
+                    </td>
                     <td>
-                        <button [routerLink]="[proyectos.idProyecto]" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
+                        <button [routerLink]="[proyectos.idProyecto]" pButton pRipple icon="pi pi-pencil"
+                            class="p-button-rounded p-button-warning p-mr-2" pTooltip="Editar"></button>
                     </td>
                 </tr>
             </ng-template>

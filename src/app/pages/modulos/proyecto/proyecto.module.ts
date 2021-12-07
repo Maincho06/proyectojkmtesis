@@ -24,6 +24,7 @@ import { DatosProyectoComponent } from './gestionar-proyecto/components/datos-pr
 import { TrabajadorProyectoComponent } from './gestionar-proyecto/components/trabajador-proyecto/trabajador-proyecto.component';
 import { ActividadProyectoComponent } from './gestionar-proyecto/components/actividad-proyecto/actividad-proyecto.component';
 import { DetalleGestionarProyectoComponent } from './gestionar-proyecto/components/detalle-gestionar-proyecto/detalle-gestionar-proyecto.component';
+import { ProductosProyectoComponent } from './gestionar-proyecto/components/productos-proyecto/productos-proyecto.component';
 
 const components = [
   GestionarTrabajadorComponent,
@@ -43,7 +44,7 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, ProductosProyectoComponent],
   imports: [CommonModule, ProyectoRoutingModule, SharedModule],
   providers: [DialogService, ConfirmationService, MessageService],
 })
