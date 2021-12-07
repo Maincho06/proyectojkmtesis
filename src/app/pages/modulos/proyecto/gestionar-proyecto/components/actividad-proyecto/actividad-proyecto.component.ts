@@ -63,7 +63,7 @@ export class ActividadProyectoComponent implements OnInit {
       idPadre: [null],
       idActividad: [null],
       estado: [null, Validators.required],
-      fechaInicio: [null],
+      fechaInicio: [null, Validators.required],
       fechaFin: [null]
     })
   }
