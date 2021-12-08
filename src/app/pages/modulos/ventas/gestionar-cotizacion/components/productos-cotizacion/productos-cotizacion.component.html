@@ -46,15 +46,23 @@
             <label>Producto</label>
             <p-dropdown [options]="productos" formControlName="producto" placeholder="Seleccione un producto"
                 optionLabel="nombre" optionValue="idProducto" [showClear]="true"></p-dropdown>
+            <small class="p-error"
+                *ngIf="formProducto.controls.producto.hasError('required') && formProducto.controls.producto.touched">Obligatorio</small>
         </div>
 
         <div class="p-field p-col-6">
             <label>Cantidad</label>
             <input formControlName="cantidad" type="number" pInputText>
+            <small class="p-error"
+                *ngIf="formProducto.controls.cantidad.hasError('required') && formProducto.controls.cantidad.touched">Obligatorio</small>
+
         </div>
         <div class="p-field p-col-6">
             <label>Precio</label>
             <input formControlName="precio" type="number" pInputText>
+            <small class="p-error"
+                *ngIf="formProducto.controls.precio.hasError('required') && formProducto.controls.precio.touched">Obligatorio</small>
+
         </div>
     </form>
 

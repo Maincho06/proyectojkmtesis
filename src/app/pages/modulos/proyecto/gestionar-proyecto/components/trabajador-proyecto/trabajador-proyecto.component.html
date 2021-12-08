@@ -27,8 +27,8 @@
             <button (click)="nuevo()" pButton pRipple type="button" icon="pi pi-plus" style="float: right;"
                 class="boton-table alinear-button p-button-rounded p-button-text"></button>
 
-            <button [ngClass]="this.trabajadoresProyecto.length==0?'sin-trabajadores':''"
-                (click)="mostrarModalRol = true;" pButton pRipple type="button" icon="pi pi-users" style="float: right;"
+            <button [ngClass]="this.faltaTrabajador?'sin-trabajadores':''" (click)="mostrarModalRol = true;" pButton
+                pRipple type="button" icon="pi pi-users" style="float: right;"
                 class="boton-table alinear-button p-button-rounded p-button-text"></button>
         </div>
     </div>

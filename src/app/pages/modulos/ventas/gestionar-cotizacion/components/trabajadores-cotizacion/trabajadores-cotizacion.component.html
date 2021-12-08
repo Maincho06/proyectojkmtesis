@@ -45,15 +45,23 @@
             <label>Rol</label>
             <p-dropdown appendTo="body" [options]="tipoTrabajadores" formControlName="rol"
                 placeholder="Seleccione un rol" optionLabel="nombre" optionValue="id" [showClear]="true"></p-dropdown>
+            <small class="p-error"
+                *ngIf="formRol.controls.rol.hasError('required') && formRol.controls.rol.touched">Obligatorio</small>
+
         </div>
 
         <div class="p-field p-col-6">
             <label>Cantidad</label>
             <input formControlName="cantidad" type="number" pInputText>
+            <small class="p-error"
+            *ngIf="formRol.controls.cantidad.hasError('required') && formRol.controls.cantidad.touched">Obligatorio</small>
+
         </div>
         <div class="p-field p-col-6">
             <label>Precio</label>
             <input formControlName="precio" type="number" pInputText>
+            <small class="p-error"
+            *ngIf="formRol.controls.precio.hasError('required') && formRol.controls.precio.touched">Obligatorio</small>
         </div>
     </form>
 

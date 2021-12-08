@@ -38,8 +38,9 @@ export class TrabajadorProyectoComponent implements OnInit {
   trabajadoresProyecto: TrabajadorProyectoModel[] = [];
   tipoTrabajadoresProyecto: ITipoTrabajadorTable[] = [];
   tipoTrabajadores: ITipoTrabajador[] = [];
-  tipoTrabajador
   modificando = false;
+
+  faltaTrabajador = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -221,11 +222,18 @@ export class TrabajadorProyectoComponent implements OnInit {
 
   contarTrabajadores() {
 
+    this.faltaTrabajador = false;
+
     for (let tipoTrabajador of this.tipoTrabajadoresProyecto) {
       tipoTrabajador.countTrabajadores = 0;
     }
 
     for (let tipoTrabajador of this.tipoTrabajadoresProyecto) {
+
+      if (tipoTrabajador.cantidad > tipoTrabajador.countTrabajadores && !this.faltaTrabajador) {
+        this.faltaTrabajador = true;
+      }
+
       for (let trabajador of this.trabajadoresProyecto) {
         if (tipoTrabajador.idTipoTrabajador == trabajador.tipo.id) {
           tipoTrabajador.countTrabajadores++;
