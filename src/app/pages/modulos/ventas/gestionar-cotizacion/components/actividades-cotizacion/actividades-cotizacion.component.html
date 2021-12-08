@@ -8,7 +8,7 @@
                 <th *ngFor="let col of columns">
                     {{col.header}}
                 </th>
-                <th>
+                <th *ngIf="!bloqueado">
                     Acciones
                 </th>
             </tr>
@@ -19,8 +19,8 @@
                     <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
                     {{rowData[col.field]}}
                 </td>
-                <td>
-                    <button pButton pRipple class="p-button-rounded" *ngIf="rowData.Profundidad!=3" icon="pi pi-plus"
+                <td *ngIf="!bloqueado">
+                    <button pButton pRipple class="p-button-rounded" *ngIf="rowData.Profundidad!=2" icon="pi pi-plus"
                         (click)="nuevo(rowData)" [style]="{'margin-right': '.5em'}">
                     </button>
                     <button class="p-button-rounded p-button-warning p-mr-2" pButton pRipple icon="pi pi-pencil"
@@ -33,10 +33,10 @@
         </ng-template>
     </p-treeTable>
 
-    <div class="p-fluid p-grid">
+    <div *ngIf="!bloqueado" class="p-fluid p-grid">
         <div class="p-field p-col-12">
             <button (click)="nuevo(null)" pButton pRipple type="button" icon="pi pi-plus" style="float: right;"
-                class="alinear-button p-button-rounded p-button-text"></button>
+                class="boton-table alinear-button p-button-rounded p-button-text"></button>
         </div>
     </div>
 

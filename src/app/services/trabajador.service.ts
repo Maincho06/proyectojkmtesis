@@ -69,4 +69,7 @@ export class TrabajadorService extends BaseService {
         return this.http.put<any>(`${TRABAJADOR_URL}/Tipo/${body.id}`, body).toPromise();
     }
 
+    getTrabajadorDisponible(): Observable<any> {
+        return this.http.get<any>(`${TRABAJADOR_URL}/Disponible`, { headers: this.obtenerHeaders() });
+    }
 }

@@ -35,22 +35,14 @@ export class ProductosProyectoComponent implements OnInit {
 
     this._activatedRoute.paramMap.subscribe(async params => {
       this.idProyecto = Number(params.get('id'));
-      await this.listarProyectoById(this.idProyecto);
+      await this.listarProductoPorProyectoId(this.idProyecto);
     })
   }
 
-  async listarProyectoById(idProyecto: number) {
-    try {
-      let data = await this._proyectoService.getProyectoById(idProyecto);
-      this.listarDetallOrdenPorCotizacion(data.idCotizacion);
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
-  async listarDetallOrdenPorCotizacion(idCotizacion: number) {
+  async listarProductoPorProyectoId(idProyecto: number) {
     try {
-      let data = await this._cotizacionService.getDetalleOrdenByCotizacion(idCotizacion);
+      let data = await this._proyectoService.getProductoByIdProyectos(idProyecto);
       this.detalleOrden = data ?? [];
     } catch (error) {
       console.error(error);

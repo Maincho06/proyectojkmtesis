@@ -26,6 +26,8 @@ export class ProductosCotizacionComponent implements OnInit {
 
   modificando = false;
 
+  bloqueado = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private _productoService: ProductoService,
@@ -38,6 +40,10 @@ export class ProductosCotizacionComponent implements OnInit {
   }
 
   async ngOnInit() {
+
+  }
+
+  async ngAfterViewInit(){
     await this.listarProductos();
 
     this._activatedRoute.paramMap.subscribe(async params => {
@@ -60,7 +66,6 @@ export class ProductosCotizacionComponent implements OnInit {
     try {
       let data = await this._productoService.getProducto();
       this.productos = data;
-      console.log(data);
 
     } catch (error) {
       console.error(error);

@@ -71,13 +71,13 @@
         </div>
         <div class="p-field p-col-6">
             <label for="basic">Fecha Inicio</label>
-            <p-calendar appendTo="body" formControlName="fechaInicio" dateFormat="dd/mm/yy" inputId="basic">
+            <p-calendar appendTo="body" [minDate]="fechaInicioPadre" [maxDate]="fechaFinPadre" formControlName="fechaInicio" dateFormat="dd/mm/yy" inputId="basic">
             </p-calendar>
         </div>
 
         <div class="p-field p-col-6">
             <label for="basic">Fecha Fin</label>
-            <p-calendar appendTo="body" [minDate]="formActividad.controls.fechaInicio.value" formControlName="fechaFin"
+            <p-calendar appendTo="body" [minDate]="minDateFechaFin"  [maxDate]="fechaFinPadre" formControlName="fechaFin"
                 dateFormat="dd/mm/yy" inputId="basic"></p-calendar>
         </div>
     </form>
