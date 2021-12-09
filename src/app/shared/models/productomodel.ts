@@ -1,8 +1,8 @@
 export interface IProductoModel {
     idProducto: number;
-    nombre: number;
-    codigo: number;
-    imagen: number;
+    nombre: string;
+    codigo: string;
+    imagen: string;
 }
 
 export interface IRegisterProducto {

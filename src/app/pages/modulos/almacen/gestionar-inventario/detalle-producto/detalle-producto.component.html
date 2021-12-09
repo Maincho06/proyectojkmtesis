@@ -16,12 +16,8 @@
 
                 <div class="p-field p-lg-6">
                     <label>Imagen</label>
-                    <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
-                        <ng-template pTemplate="content">
-                            <ul *ngIf="uploadedFiles.length">
-                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                            </ul>
-                        </ng-template>
+                    <p-fileUpload accept="image/*" maxFileSize="1000000" (uploadHandler)="onUpload($event)"
+                        [files]="uploadedFiles" [auto]="true" customUpload="true">
                     </p-fileUpload>
                 </div>
 
@@ -30,5 +26,6 @@
         </div>
     </div>
 
-    <button pButton type="button" label="Registrar" (click)="registrarProducto()"></button>
+    <button pButton type="button" [label]="idProducto ? 'Actualizar' : 'Registrar'"
+        (click)="registrarProducto()"></button>
 </div>

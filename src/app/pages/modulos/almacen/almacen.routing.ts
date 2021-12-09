@@ -54,6 +54,16 @@ const routes: Routes = [
               },
             },
           },
+          {
+            path: 'editar/:id',
+            component: DetalleProductoComponent,
+            data: {
+              breadcrumb: {
+                label: 'Editar',
+                routerLink: '/almacen/gestionarInventario',
+              },
+            },
+          },
         ],
         data: {
           breadcrumb: {
@@ -70,4 +80,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AlmacenRoutingModule { }
+export class AlmacenRoutingModule {}

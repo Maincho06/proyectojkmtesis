@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IProductoModel, IRegisterProducto } from '@models/productomodel';
 import { ProductoService } from '@services/producto.service';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { base64ToFile, imageToBase64 } from '@utils/form';
+import { toast } from '@utils/toast';
 
 @Component({
   selector: 'app-detalle-producto',
   templateUrl: './detalle-producto.component.html',
-  styleUrls: ['./detalle-producto.component.scss']
+  styleUrls: ['./detalle-producto.component.scss'],
 })
 export class DetalleProductoComponent implements OnInit {
-
   formProducto: FormGroup;
-  isRegistrar: boolean;
   idProducto: number;
   producto: IProductoModel;
   uploadedFiles: any[] = [];
@@ -22,27 +21,23 @@ export class DetalleProductoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private _productoService: ProductoService,
-    private route: ActivatedRoute,
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router,
     private _messageService: MessageService
-  ) { }
+  ) {}
 
   async ngOnInit() {
-    this.route.params.subscribe((params) => {
-      console.log('PARAM: ', params.id);
-      if (params.id === undefined) {
-        this.isRegistrar = true;
-      } else {
-        this.idProducto = params.id;
-        this.isRegistrar = false;
-      }
-
+    this._activatedRoute.params.subscribe((params) => {
+      if (Boolean(params.id)) this.idProducto = params.id;
     });
-    // this.isRegistrar = this.config.data.isRegistrar;
+
     this.crearFormProducto();
 
-    if (!this.isRegistrar) {
-      // this.producto = this.config.data.data;
-      this.inicializarFormulario(this.producto);
+    if (this.idProducto) {
+      const response = await this._productoService.getProductoById(
+        this.idProducto
+      );
+      this.inicializarFormulario(response);
     }
   }
 
@@ -50,16 +45,18 @@ export class DetalleProductoComponent implements OnInit {
     this.formProducto = this.formBuilder.group({
       nombre: [null, [Validators.required]],
       codigo: [null, [Validators.required]],
-      imagen: [null, [Validators.required]]
-    })
+      imagen: [null, [Validators.required]],
+    });
   }
 
   inicializarFormulario(producto: IProductoModel) {
     this.formProducto.reset({
       nombre: producto.nombre,
       codigo: producto.codigo,
-      imagen: producto.imagen
-    })
+      imagen: producto.imagen,
+    });
+    const promises = Promise.all(base64ToFile([producto.imagen]));
+    promises.then((data) => (this.uploadedFiles = data));
   }
 
   async registrarProducto() {
@@ -67,33 +64,34 @@ export class DetalleProductoComponent implements OnInit {
       let model: IRegisterProducto = {
         nombre: this.formProducto.get('nombre').value,
         codigo: this.formProducto.get('codigo').value,
-        imagen: this.formProducto.get('imagen').value
+        imagen: this.formProducto.get('imagen').value,
+      };
 
-      }
       let data: any;
-      if (this.isRegistrar) {
+      if (this.idProducto) {
+        data = await this._productoService.updateProducto(
+          model,
+          this.idProducto
+        );
+      } else {
         data = await this._productoService.registrarProducto(model);
       }
-      else {
-        data = await this._productoService.updateProducto(model, this.producto.idProducto);
-      }
-      // this.ref.close();
-    }
-    catch (error) {
+      toast({
+        title: 'Producto',
+        message: data.message,
+        type: 'success',
+        messageService: this._messageService,
+      });
+      this._router.navigate(['almacen', 'gestionarInventario']);
+    } catch (error) {
       console.log('ERROR: ', error);
     }
   }
 
-  /* onBasicUploadAuto(event) {
-    for (let file of event.files) {
-      this.uploadedFiles.push(file);
-    }
-
-    this._messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
-  } */
-
   onUpload(event) {
-    this._messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode'});
-}
-
+    const promises = imageToBase64(event.files);
+    Promise.all(promises).then((image) =>
+      this.formProducto.get('imagen').setValue(image[0])
+    );
+  }
 }
