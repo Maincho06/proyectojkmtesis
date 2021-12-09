@@ -2,7 +2,7 @@
 
     <!-- Lista de Servicios -->
     <p-table #dt [value]="listaServicio" [rows]="10" [paginator]="true" responsive="stack"
-        [globalFilterFields]="['codigo','servicio','estado']"
+        [globalFilterFields]="['idServicio','nombre']"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
         [showCurrentPageReport]="true">
 
@@ -21,13 +21,11 @@
         <!-- Cabecera Tabla -->
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="codigo">Código<p-sortIcon field="codigo"></p-sortIcon>
+                <th pSortableColumn="idServicio">Código<p-sortIcon field="idServicio"></p-sortIcon>
                 </th>
-                <th pSortableColumn="servicio">Servicio<p-sortIcon field="servicio"></p-sortIcon>
+                <th pSortableColumn="nombre">Servicio<p-sortIcon field="nombre"></p-sortIcon>
                 </th>
-                <th>Imagen</th>
-                <th pSortableColumn="estado">Estado<p-sortIcon field="estado"></p-sortIcon>
-                </th>
+                <th>Estado</th>
                 <th>Opciones</th>
             </tr>
         </ng-template>
@@ -37,13 +35,6 @@
             <tr>
                 <td><span class="p-column-title">Código</span>{{servicio.idServicio}}</td>
                 <td><span class="p-column-title">Servicio</span>{{servicio.nombre}}</td>
-                <td><span class="p-column-title">Imagen</span>
-                    <img [src]="''+ servicio.imagen" [alt]="servicio.nombre" width="100" class="p-shadow-4" />
-                </td>
-
-                <!-- <td>
-                    <img [src]="'{{servicio.imagen}}'" width="100" class="p-shadow-4" />
-                </td> -->
                 <td><span class="p-column-title">Estado</span>
                     <span
                         [class]="'list estado-' + (servicio.isActive == 1 ? 'activo' : 'inactivo')">{{servicio.isActive

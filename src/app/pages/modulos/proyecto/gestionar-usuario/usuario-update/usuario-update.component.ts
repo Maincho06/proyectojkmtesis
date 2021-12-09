@@ -18,6 +18,7 @@ export class UsuarioUpdateComponent implements OnInit {
 
   formUsuarios: FormGroup
   estado: boolean = false
+  hide = true
 
   lRol = [
     { idRol: 1, descripcion: 'MASTER' }

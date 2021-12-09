@@ -2,7 +2,7 @@
 
     <!-- Lista de Catalogo -->
     <p-table #dt [value]="listaCatalogo" [rows]="10" [paginator]="true" responsive="stack"
-        [globalFilterFields]="['codigo','producto','precio','stock','estado']"
+        [globalFilterFields]="['idCatalogo','nombre','precio','stock']"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
         [showCurrentPageReport]="true">
 
@@ -21,16 +21,15 @@
         <!-- Cabecera Tabla -->
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="codigo">Código<p-sortIcon field="codigo"></p-sortIcon>
+                <th pSortableColumn="idCatalogo">Código<p-sortIcon field="idCatalogo"></p-sortIcon>
                 </th>
-                <th pSortableColumn="producto">Producto<p-sortIcon field="producto"></p-sortIcon>
+                <th pSortableColumn="nombre">Producto<p-sortIcon field="nombre"></p-sortIcon>
                 </th>
                 <th pSortableColumn="precio">Precio<p-sortIcon field="precio"></p-sortIcon>
                 </th>
                 <th pSortableColumn="stock">Stock<p-sortIcon field="stock"></p-sortIcon>
                 </th>
-                <th pSortableColumn="estado">Estado<p-sortIcon field="estado"></p-sortIcon>
-                </th>
+                <th>Estado</th>
                 <th>Opciones</th>
             </tr>
         </ng-template>

@@ -2,7 +2,7 @@
 
     <!-- Lista de Usuarios -->
     <p-table #dt [value]="listaUsuarios" [rows]="10" [paginator]="true" responsive="stack"
-        [globalFilterFields]="['usuario','nombres','apellidos','fechaNacimiento','rol']"
+        [globalFilterFields]="['idUsuario','username','nombre','apellido','fechaNacimiento','descripcionRol']"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
         [showCurrentPageReport]="true">
 
@@ -12,7 +12,7 @@
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                        id="tFiltro" placeholder="Buscar..." />
+                        placeholder="Buscar..." />
                 </span>
                 <button pButton pRipple type="button" label="Registrar Usuario" (click)="registerUsuario()"></button>
             </div>
@@ -21,17 +21,23 @@
         <!-- Cabecera Tabla -->
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="codigo">Código<p-sortIcon field="codigo"></p-sortIcon>
+                <th pSortableColumn="idUsuario">Código
+                    <p-sortIcon field="idUsuario"></p-sortIcon>
                 </th>
-                <th pSortableColumn="usuario">Usuario<p-sortIcon field="usuario"></p-sortIcon>
+                <th pSortableColumn="username">Usuario
+                    <p-sortIcon field="username"></p-sortIcon>
                 </th>
-                <th pSortableColumn="nombres">Nombres<p-sortIcon field="nombres"></p-sortIcon>
+                <th pSortableColumn="nombre">Nombres
+                    <p-sortIcon field="nombre"></p-sortIcon>
                 </th>
-                <th pSortableColumn="apellidos">Apellidos<p-sortIcon field="apellidos"></p-sortIcon>
+                <th pSortableColumn="apellido">Apellidos
+                    <p-sortIcon field="apellido"></p-sortIcon>
                 </th>
-                <th pSortableColumn="fechaNacimiento">Fecha Nacimiento<p-sortIcon field="fechaNacimiento"></p-sortIcon>
+                <th pSortableColumn="fechaNacimiento">Fecha Nacimiento
+                    <p-sortIcon field="fechaNacimiento"></p-sortIcon>
                 </th>
-                <th pSortableColumn="rol">Rol<p-sortIcon field="rol"></p-sortIcon>
+                <th pSortableColumn="descripcionRol">Rol
+                    <p-sortIcon field="descripcionRol"></p-sortIcon>
                 </th>
                 <th>Estado</th>
                 <th>Opciones</th>

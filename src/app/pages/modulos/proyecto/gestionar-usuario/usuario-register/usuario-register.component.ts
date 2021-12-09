@@ -16,7 +16,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 export class UsuarioRegisterComponent implements OnInit {
 
   formUsuarios: FormGroup
-
+  hide = true;
+  
   lRol = [
     { idRol: 1, descripcion: 'MASTER' }
   ]

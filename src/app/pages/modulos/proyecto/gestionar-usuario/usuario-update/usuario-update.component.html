@@ -52,7 +52,12 @@
             <!-- Input Contraseña -->
             <div class="p-field p-col-12">
                 <label>Contraseña</label>
-                <input formControlName="password" type="text" pInputText [readonly]="!estado">
+                <!-- <input formControlName="password" type="text" pInputText [readonly]="!estado"> -->
+                <span class="p-input-icon-right">
+                    <i (click)="hide = !hide" class="pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}"></i>
+                    <input pPassword formControlName="password" [type]="hide ? 'password' : 'text'" [feedback]="false" [readonly]="!estado">
+                </span>
+
                 <small
                     *ngIf="formUsuarios.get('password').hasError('required') && this.formUsuarios.get('password').touched"
                     class="p-error">La contraseña no puede estar vacía</small>

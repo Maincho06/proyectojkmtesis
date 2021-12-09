@@ -16,6 +16,7 @@ export class ServicioUpdateComponent implements OnInit {
 
     formServicio: FormGroup
     estado: boolean = false
+    Image: string
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -49,6 +50,8 @@ export class ServicioUpdateComponent implements OnInit {
             this._obvsService.toogleSpinner()
             const data: any = (await this._servicioService.getServicioxID(idServicio).toPromise()) ?? []
 
+            this.Image = data.imagen
+            
             this.formServicio.patchValue({
                 nombre: data.nombre,
                 descripcion: data.descripcion,

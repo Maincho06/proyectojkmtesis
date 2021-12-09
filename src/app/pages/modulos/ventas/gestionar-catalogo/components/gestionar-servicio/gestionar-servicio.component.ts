@@ -61,7 +61,7 @@ export class GestionarServicioComponent implements OnInit {
     verServicio(idServicio: number) {
         const ref = this._dialogService.open(ServicioUpdateComponent, {
             header: 'Ver Servicio',
-            width: '30rem',
+            width: '50rem',
             data: idServicio
         })
 
@@ -70,7 +70,7 @@ export class GestionarServicioComponent implements OnInit {
     editarServicio(idServicio: number) {
         const ref = this._dialogService.open(ServicioUpdateComponent, {
             header: 'Editar Servicio',
-            width: '30rem',
+            width: '50rem',
             data: idServicio
         })
 
