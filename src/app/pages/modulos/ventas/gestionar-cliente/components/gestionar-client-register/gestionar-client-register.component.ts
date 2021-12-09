@@ -30,9 +30,9 @@ export class GestionarClientRegisterComponent implements OnInit {
 
   inicializarForm() {
     this.formCliente = this._formBuilder.group({
-      ruc: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/), Validators.minLength(11), , Validators.maxLength(11)]],
+      ruc: ['', [Validators.required,Validators.pattern(/^(20|10)\d{0,9}/), Validators.minLength(11), , Validators.maxLength(11)]],
       razonSocial: ['', Validators.required],
-      telefono: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/), Validators.minLength(9), , Validators.maxLength(9)]],
+      telefono: ['', [Validators.required, Validators.pattern(/^9\d{8}/), Validators.minLength(9), , Validators.maxLength(9)]],
     })
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TrabajadorService } from '@services/trabajador.service';
 import { toast } from '@utils/toast';
 import { MessageService } from 'primeng/api';
@@ -27,9 +27,12 @@ export class DetalleTipoTrabajadorComponent implements OnInit {
 
   async _initForm() {
     this.formTipoTrabajador = new FormGroup({
-      nombre: new FormControl(null),
-      descripcion: new FormControl(null),
-      precioReferencial: new FormControl(null),
+      nombre: new FormControl(null, [Validators.required]),
+      descripcion: new FormControl(null, [Validators.required]),
+      precioReferencial: new FormControl(null, [
+        Validators.required,
+        Validators.min(0),
+      ]),
     });
     if (this.idTipo > 0) {
       const tipoTrbajdor =
@@ -46,7 +49,9 @@ export class DetalleTipoTrabajadorComponent implements OnInit {
         const data = { ...tipoTrbajdor, id: this.idTipo };
         response = await this._trabajadorService.updateTipoTrabajador(data);
       } else {
-        response = await this._trabajadorService.registrarTipoTrabajador(tipoTrbajdor);
+        response = await this._trabajadorService.registrarTipoTrabajador(
+          tipoTrbajdor
+        );
       }
       if (response) {
         toast({
@@ -59,5 +64,15 @@ export class DetalleTipoTrabajadorComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  get validarNombre() {
+    return this.formTipoTrabajador.get('nombre').invalid && this.formTipoTrabajador.get('nombre').dirty;
+  }
+  get validarDescripcion() {
+    return this.formTipoTrabajador.get('descripcion').invalid && this.formTipoTrabajador.get('descripcion').dirty;
+  }
+  get validarPrecio() {
+    return this.formTipoTrabajador.get('precioReferencial').invalid && this.formTipoTrabajador.get('precioReferencial').dirty;
   }
 }

@@ -2,15 +2,11 @@
 
     <div class="p-field p-col-12">
         <label>RUC</label>
-        <input formControlName="ruc" type="text" pInputText>
+        <input formControlName="ruc" type="text" pInputText maxlength="11">
         <small class="p-error"
-            *ngIf="formCliente.controls.ruc.hasError('required') && formCliente.controls.ruc.touched">Obligatorio</small>
-        <small class="p-error"
-            *ngIf="formCliente.controls.ruc.hasError('pattern') && formCliente.controls.ruc.touched">Solo
-            números</small>
-        <small class="p-error"
-            *ngIf="(formCliente.controls.ruc.hasError('minlength') || formCliente.controls.ruc.hasError('maxlength')) && formCliente.controls.ruc.touched">11
-            caracteres</small>
+            *ngIf="formCliente.get('ruc').hasError('required') && formCliente.get('ruc').touched">Obligatorio</small>
+        <small class="p-error" *ngIf="formCliente.get('ruc').hasError('pattern') && formCliente.get('ruc').touched">El
+            RUC debe comenzar con 10 o 20</small>
     </div>
     <div class="p-field p-col-12">
         <label>Razon Social</label>

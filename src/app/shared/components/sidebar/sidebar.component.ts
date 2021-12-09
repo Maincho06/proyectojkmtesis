@@ -36,7 +36,7 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
 
-    visibleSidebar1 = true;
+    visibleSidebar1 = false;
     public menuItems: any[];
 
     ngOnInit() {
