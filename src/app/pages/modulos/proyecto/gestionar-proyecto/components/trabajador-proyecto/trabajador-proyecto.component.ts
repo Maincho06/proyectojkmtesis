@@ -230,14 +230,18 @@ export class TrabajadorProyectoComponent implements OnInit {
 
     for (let tipoTrabajador of this.tipoTrabajadoresProyecto) {
 
-      if (tipoTrabajador.cantidad > tipoTrabajador.countTrabajadores && !this.faltaTrabajador) {
-        this.faltaTrabajador = true;
-      }
-
       for (let trabajador of this.trabajadoresProyecto) {
         if (tipoTrabajador.idTipoTrabajador == trabajador.tipo.id) {
           tipoTrabajador.countTrabajadores++;
         }
+      }
+    }
+
+
+    for (let tipoTrabajador of this.tipoTrabajadoresProyecto) {
+
+      if (tipoTrabajador.cantidad > tipoTrabajador.countTrabajadores && !this.faltaTrabajador) {
+        this.faltaTrabajador = true;
       }
     }
   }

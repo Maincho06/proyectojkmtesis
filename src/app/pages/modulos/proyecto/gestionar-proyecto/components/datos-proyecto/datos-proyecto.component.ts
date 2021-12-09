@@ -94,11 +94,11 @@ export class DatosProyectoComponent implements OnInit {
 
   guardarProyecto() {
     if (this.idProyecto) {
-      this.actualizarCotizacion()
+      this.actualizarProyecto()
     }
   }
 
-  async actualizarCotizacion() {
+  async actualizarProyecto() {
     if (this.formDatos.invalid) {
       // Mostrar el snackbar
       toast({
@@ -130,6 +130,7 @@ export class DatosProyectoComponent implements OnInit {
         type: 'success',
         messageService: this._messageService
       });
+      this.listarProyectoById(this.idProyecto);
 
     } catch (error) {
       console.error(error);

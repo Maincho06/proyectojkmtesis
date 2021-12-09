@@ -46,11 +46,12 @@ export class GestionarCotizacionDetalleComponent implements OnInit {
 
   ngAfterContentChecked() {
     if (this.bloqueado) {
-      if (this.productos && this.datosCotizacion && this.trabajadores && this.actividades) {
-        this.productos.bloqueado = true;
+      this.productos ? this.productos.bloqueado = true : null;
+      this.trabajadores ? this.trabajadores.bloqueado = true : null;
+      this.actividades ? this.actividades.bloqueado = true : null;
+
+      if (this.datosCotizacion) {
         this.datosCotizacion.bloquear();
-        this.trabajadores.bloqueado = true;
-        this.actividades.bloqueado = true;
       }
     }
   }
