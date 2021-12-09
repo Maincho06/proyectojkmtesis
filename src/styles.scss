@@ -1,184 +1,180 @@
 /* You can add global styles to this file, and also import other style files */
 
 .p-button {
-    background: #221879;
-    border: 1px solid#221879;
+  background: #221879;
+  border: 1px solid#221879;
 }
 
 .button-center {
-    text-align: center;
+  text-align: center;
 }
-
 
 /* ScrollBar  */
 
 ::-webkit-scrollbar {
-    width: 15px;
+  width: 15px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f5f5f5;
-    box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+  background: #f5f5f5;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #271e78;
-    border-radius: 8px;
-    border: 3px solid #f5f5f5;
+  background: #271e78;
+  border-radius: 8px;
+  border: 3px solid #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #1f185e;
+  background: #1f185e;
 }
-
 
 /*---- Float Buttons ----*/
 
 .fab-container {
-    position: fixed;
-    top: 100px;
-    right: 50px;
-    z-index: 150;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: fixed;
+  top: 100px;
+  right: 50px;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.fab-container>div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 5px;
+.fab-container > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
-.fab-container>div>button {
-    margin-top: 10px;
-    outline: none;
+.fab-container > div > button {
+  margin-top: 10px;
+  outline: none;
 }
 
 .p-button.p-button-white,
-.p-buttonset.p-button-white>.p-button,
-.p-splitbutton.p-button-white>.p-button {
-    color: #000000;
-    background: #ffffff;
-    border: 0px;
-    box-shadow: 0 3px 5px -1px #0003, 0 6px 10px 0 #00000024, 0 1px 18px 0 #0000001f;
+.p-buttonset.p-button-white > .p-button,
+.p-splitbutton.p-button-white > .p-button {
+  color: #000000;
+  background: #ffffff;
+  border: 0px;
+  box-shadow: 0 3px 5px -1px #0003, 0 6px 10px 0 #00000024,
+    0 1px 18px 0 #0000001f;
 }
 
 .floatButton {
-    width: 2.6rem !important;
-    height: 2.6rem !important;
+  width: 2.6rem !important;
+  height: 2.6rem !important;
 }
 
 .p-paginator {
-    justify-content: right !important;
+  justify-content: right !important;
 }
 
 .p-inputswitch {
-    position: absolute !important;
+  position: absolute !important;
 }
 
 .p-sidebar-left {
-    width: inherit !important;
+  width: inherit !important;
 }
 
 .p-sidebar-mask.p-component-overlay {
-    background: transparent !important;
-    z-index: inherit !important;
+  background: transparent !important;
+  z-index: inherit !important;
 }
 
 // Estados Lista
 .list.estado-activo {
-    background: #689F38;
-    color: #ffffff;
-}
-
-.list.estado-inactivo {
-    background: #D32F2F;
-    color: #ffffff;
+  background: #689f38;
+  color: #ffffff;
 }
 
 .list {
-.status-activo {
-    background: #689F38;
+  &.estado-activo,
+  &.status-activo {
+    background: #689f38;
     color: #ffffff;
     border-radius: 13px;
     padding: 0.4em 0.7rem;
     font-weight: 700;
     font-size: 12px;
-    letter-spacing: .3px;
-}
+    letter-spacing: 0.3px;
+  }
 
-.status-inactivo {
-    background: #D32F2F;
+  &.status-inactivo,
+  &.estado-inactivo {
+    background: #d32f2f;
     color: #ffffff;
     border-radius: 13px;
     padding: 0.4em 0.7rem;
     font-weight: 700;
     font-size: 12px;
-    letter-spacing: .3px;
-}
+    letter-spacing: 0.3px;
+  }
 
-// @media screen and (max-width: 40rem) {
-//     :host ::ng-deep {
-//         .p-datatable {
-//                 .p-datatable-thead > tr > th,
-//                 .p-datatable-tfoot > tr > td {
-//                     display: none !important;
-//                 }
-//                 .p-breadcrumb ul li:last-child .p-menuitem-text {
-//                     color: #ffffff !important;
-//                 }
-//                 .p-button.p-button-white,
-//                 .p-buttonset.p-button-white>.p-button,
-//                 .p-splitbutton.p-button-white>.p-button {
-//                     color: #000000;
-//                     background: #ffffff;
-//                     border: 0px;
-//                     box-shadow: 0 3px 5px -1px #0003, 0 6px 10px 0 #00000024, 0 1px 18px 0 #0000001f;
-//                 }
-//                 .floatButton {
-//                     width: 2.6rem !important;
-//                     height: 2.6rem !important;
-//                 }
-//                 .p-paginator {
-//                     justify-content: right !important;
-//                 }
-//                 .p-inputswitch {
-//                     position: absolute !important;
-//                 }
-//                 @media screen and (max-width: 40rem) {
-//                      :host ::ng-deep {
-//                         .p-datatable {
-//                             .p-datatable-thead>tr>th,
-//                             .p-datatable-tfoot>tr>td {
-//                                 display: none !important;
-//                             }
-//                             .p-datatable-tbody>tr>td {
-//                                 text-align: left;
-//                                 display: block;
-//                                 width: 100%;
-//                                 float: left;
-//                                 clear: left;
-//                                 border: 0 none;
-//                                 .p-column-title {
-//                                     padding: .4rem;
-//                                     min-width: 30%;
-//                                     display: inline-block;
-//                                     margin: -.4em 1em -.4em -.4rem;
-//                                     font-weight: bold;
-//                                 }
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//             .p-datatable .p-datatable-tbody>tr>td {
-//                 text-align: center !important;
-//             }
-//             .p-datatable .p-datatable-thead>tr>th {
-//                 text-align: center !important;
-//             }
-//         }
-//     }
+  // @media screen and (max-width: 40rem) {
+  //     :host ::ng-deep {
+  //         .p-datatable {
+  //                 .p-datatable-thead > tr > th,
+  //                 .p-datatable-tfoot > tr > td {
+  //                     display: none !important;
+  //                 }
+  //                 .p-breadcrumb ul li:last-child .p-menuitem-text {
+  //                     color: #ffffff !important;
+  //                 }
+  //                 .p-button.p-button-white,
+  //                 .p-buttonset.p-button-white>.p-button,
+  //                 .p-splitbutton.p-button-white>.p-button {
+  //                     color: #000000;
+  //                     background: #ffffff;
+  //                     border: 0px;
+  //                     box-shadow: 0 3px 5px -1px #0003, 0 6px 10px 0 #00000024, 0 1px 18px 0 #0000001f;
+  //                 }
+  //                 .floatButton {
+  //                     width: 2.6rem !important;
+  //                     height: 2.6rem !important;
+  //                 }
+  //                 .p-paginator {
+  //                     justify-content: right !important;
+  //                 }
+  //                 .p-inputswitch {
+  //                     position: absolute !important;
+  //                 }
+  //                 @media screen and (max-width: 40rem) {
+  //                      :host ::ng-deep {
+  //                         .p-datatable {
+  //                             .p-datatable-thead>tr>th,
+  //                             .p-datatable-tfoot>tr>td {
+  //                                 display: none !important;
+  //                             }
+  //                             .p-datatable-tbody>tr>td {
+  //                                 text-align: left;
+  //                                 display: block;
+  //                                 width: 100%;
+  //                                 float: left;
+  //                                 clear: left;
+  //                                 border: 0 none;
+  //                                 .p-column-title {
+  //                                     padding: .4rem;
+  //                                     min-width: 30%;
+  //                                     display: inline-block;
+  //                                     margin: -.4em 1em -.4em -.4rem;
+  //                                     font-weight: bold;
+  //                                 }
+  //                             }
+  //                         }
+  //                     }
+  //                 }
+  //             }
+  //             .p-datatable .p-datatable-tbody>tr>td {
+  //                 text-align: center !important;
+  //             }
+  //             .p-datatable .p-datatable-thead>tr>th {
+  //                 text-align: center !important;
+  //             }
+  //         }
+  //     }
 }
