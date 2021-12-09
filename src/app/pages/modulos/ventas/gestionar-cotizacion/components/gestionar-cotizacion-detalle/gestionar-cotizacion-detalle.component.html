@@ -1,15 +1,15 @@
-<div class="p-grid  p-fluid justify-content-end pb-5">
+<div style="justify-content: end;" class="p-grid  p-fluid pb-5">
     <h5>Precio Referencial: {{precioReferencial | currency:'S/ ':'symbol-narrow':'1.2-2'}}</h5>
 </div>
 <p-tabView>
-    <p-tabPanel header=" Datos cotizacion ">
+    <p-tabPanel header="Datos cotizacion">
         <app-datos-cotizacion #datosCotizacion></app-datos-cotizacion>
     </p-tabPanel>
     <p-tabPanel *ngIf="idCotizacion && datosCotizacion.formDatos.controls.tipoCotizacion.value?.id==1 " header="Trabajadores ">
         <app-trabajadores-cotizacion #trabajadores></app-trabajadores-cotizacion>
     </p-tabPanel>
     <p-tabPanel *ngIf="idCotizacion && datosCotizacion.formDatos.controls.tipoCotizacion.value?.id==1 " header="Actividades ">
-        <app-actividades-cotizacion></app-actividades-cotizacion>
+        <app-actividades-cotizacion #actividades></app-actividades-cotizacion>
     </p-tabPanel>
     <p-tabPanel *ngIf="idCotizacion && (datosCotizacion.formDatos.controls.tipoCotizacion.value?.id==1 || datosCotizacion.formDatos.controls.tipoCotizacion.value?.id==2 ) " header="Producto ">
         <app-productos-cotizacion #productos></app-productos-cotizacion>

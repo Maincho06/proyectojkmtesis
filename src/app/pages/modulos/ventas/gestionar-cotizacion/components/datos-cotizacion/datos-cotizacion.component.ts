@@ -25,6 +25,8 @@ export class DatosCotizacionComponent implements OnInit {
   cotizacion: ICotizacionModel;
   tipos: Identifier[] = [];
 
+  bloqueado = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private _clienteService: ClienteService,
@@ -37,6 +39,9 @@ export class DatosCotizacionComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+  }
+
+  async ngAfterViewInit() {
     await this.listarCliente();
     await this.listarTipos();
 
@@ -49,7 +54,6 @@ export class DatosCotizacionComponent implements OnInit {
       }
     })
   }
-
   async listarCotizacionId(idCotizacion: number) {
     try {
       let data = await this._cotizacionService.getCotizacionById(idCotizacion);
@@ -57,7 +61,6 @@ export class DatosCotizacionComponent implements OnInit {
       this.llenarForm(this.cotizacion);
     } catch (error) {
       console.error(error);
-      this.cliente = [];
     }
   }
 
@@ -84,7 +87,7 @@ export class DatosCotizacionComponent implements OnInit {
   llenarForm(cotizacion: ICotizacionModel) {
 
     let fecha = moment(cotizacion.fechaSolicitudString, 'YYYY-MM-DD');
-    
+
     this.formDatos.patchValue({
       tipoCotizacion: this.tipos.find(item => item.id == cotizacion.tipoCotizacion.id),
       solicitante: cotizacion.solicitante,
@@ -194,5 +197,10 @@ export class DatosCotizacionComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  bloquear() {
+    this.formDatos.disable();
+    this.bloqueado = true;
   }
 }

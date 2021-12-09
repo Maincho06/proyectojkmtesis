@@ -28,6 +28,8 @@ export class ActividadesCotizacionComponent implements OnInit {
   idCotizacion: number;
 
   modificando = false;
+
+  bloqueado = false;
   constructor(
     private formBuilder: FormBuilder,
     private _cotizacionService: CotizacionService,
@@ -38,8 +40,7 @@ export class ActividadesCotizacionComponent implements OnInit {
     this.inicializarForm();
   }
 
-
-  ngOnInit() {
+  async ngAfterViewInit() {
     this.cols = [
       { field: 'Descripcion', header: 'Descripción' },
       { field: 'prioridad', header: 'Prioridad' },
@@ -49,6 +50,8 @@ export class ActividadesCotizacionComponent implements OnInit {
       this.idCotizacion = Number(params.get('id'));
       await this.listarActividadesPorCotizacionId(this.idCotizacion);
     })
+  }
+  ngOnInit() {
   }
 
   inicializarForm() {
@@ -179,7 +182,7 @@ export class ActividadesCotizacionComponent implements OnInit {
   }
 
   deleteActividad(actividad: IActividadCotizacionModel) {
-   this._confirmationService.confirm({
+    this._confirmationService.confirm({
       message: '¿Desea eliminar la actividad?',
       header: 'Alerta',
       acceptLabel: "Si",

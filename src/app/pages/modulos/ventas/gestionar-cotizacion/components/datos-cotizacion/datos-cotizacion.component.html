@@ -3,22 +3,33 @@
         <label>Tipo Cotización</label>
         <p-dropdown appendTo="body" [options]="tipos" formControlName="tipoCotizacion" placeholder="Seleccione un tipo"
             optionLabel="descripcion" optionValue="id"></p-dropdown>
+        <small class="p-error"
+            *ngIf="formDatos.controls.tipoCotizacion.hasError('required') && formDatos.controls.tipoCotizacion.touched">Obligatorio</small>
+
     </div>
 
     <div class="p-field p-col-4">
         <label>Solicitante</label>
         <input formControlName="solicitante" type="text" pInputText>
+        <small class="p-error"
+        *ngIf="formDatos.controls.solicitante.hasError('required') && formDatos.controls.solicitante.touched">Obligatorio</small>
     </div>
 
     <div class="p-field p-col-4">
         <label>Empresa</label>
         <p-dropdown appendTo="body" [options]="cliente" formControlName="empresa" placeholder="Seleccione una empresa"
             optionLabel="razonSocial" optionValue="idCliente" [showClear]="true"></p-dropdown>
+            <small class="p-error"
+            *ngIf="formDatos.controls.empresa.hasError('required') && formDatos.controls.empresa.touched">Obligatorio</small>
+
     </div>
 
     <div class="p-field p-col-3">
         <label for="basic">Fecha de Solicitud</label>
         <p-calendar formControlName="fechaSolicitud" dateFormat="dd/mm/yy" inputId="basic"></p-calendar>
+        <small class="p-error"
+        *ngIf="formDatos.controls.fechaSolicitud.hasError('required') && formDatos.controls.fechaSolicitud.touched">Obligatorio</small>
+
     </div>
 
     <div class="p-field p-col-3">
@@ -29,26 +40,35 @@
     <div class="p-field p-col-3">
         <label>Correo</label>
         <input formControlName="correo" type="text" pInputText>
+        <small class="p-error"
+        *ngIf="formDatos.controls.correo.hasError('required') && formDatos.controls.correo.touched">Obligatorio</small>
+        <small class="p-error"
+        *ngIf="formDatos.controls.correo.hasError('email') && formDatos.controls.correo.touched">Formato incorrecto</small>
+
     </div>
 
     <div class="p-field p-col-3">
         <label>Precio</label>
         <input formControlName="precio" type="number" pInputText>
+        <small class="p-error"
+        *ngIf="formDatos.controls.precio.hasError('required') && formDatos.controls.precio.touched">Obligatorio</small>
     </div>
 
     <div class="p-field p-col-12">
         <label>Descripción</label>
         <textarea formControlName="descripcion" pInputTextarea></textarea>
+        <small class="p-error"
+        *ngIf="formDatos.controls.descripcion.hasError('required') && formDatos.controls.descripcion.touched">Obligatorio</small>
     </div>
 </form>
 
-<div class="p-grid p-fluid justify-content-end">
+<div style="justify-content: end;" class="p-grid p-fluid justify-content-end">
 
     <div class="p-field p-col-2">
         <button pButton type="button" label="Salir" routerLink="/ventas/gestionarCotizacion"
             class="p-button-danger"></button>
     </div>
-    <div class="p-field p-col-2">
+    <div *ngIf="!bloqueado" class="p-field p-col-2">
         <button pButton type="button" (click)="guardarCotizacion()" label="Guardar"></button>
     </div>
 </div>

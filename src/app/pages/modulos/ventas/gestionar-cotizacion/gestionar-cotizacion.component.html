@@ -44,19 +44,26 @@
                 <tr>
                     <td>{{cotizacion.razonSocial}}</td>
                     <td>{{cotizacion.precioCotizacion | currency:'S/ '}}</td>
-                    <td>{{cotizacion.fechaSolicitudString | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{cotizacion.fechaSolicitudString}}</td>
                     <td>{{cotizacion.tipoCotizacion.descripcion}}</td>
                     <td>{{cotizacion.estado.descripcion}}</td>
                     <td>
+
                         <button *ngIf="cotizacion.canCotizar" (click)="aceptarCotizacion(cotizacion)" pButton pRipple
                             icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2"
                             pTooltip="Cotizar"></button>
-                        <!-- <button (click)="aceptarCotizacion(cotizacion)" pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" pTooltip="Cotizar"></button> -->
+
                         <button *ngIf="cotizacion.canEdit" [routerLink]="[cotizacion.idCotizacion]" pButton pRipple
                             icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
                             pTooltip="Editar"></button>
+
+                        <button *ngIf="!cotizacion.canDelete" pButton pRipple
+                            icon="pi pi-eye" [routerLink]="[cotizacion.idCotizacion]"
+                            class="p-button-rounded p-button-success p-mr-2" pTooltip="Ver"></button>
+
                         <button *ngIf="cotizacion.canDelete" (click)="rechazarCotizacion(cotizacion)" pButton pRipple
                             icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Eliminar"></button>
+
                     </td>
                 </tr>
             </ng-template>

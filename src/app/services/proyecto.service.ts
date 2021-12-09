@@ -42,6 +42,13 @@ export class ProyectoService extends BaseService {
         return this.http.get<any>(`${PROYECTO_URL}/${idProyecto}/Actividades`, { headers: this.obtenerHeaders() }).toPromise();
     }
 
+    getProductoByIdProyectos(
+        idProyecto
+    ): Promise<any> {
+
+        return this.http.get<any>(`${PROYECTO_URL}/${idProyecto}/Producto`, { headers: this.obtenerHeaders() }).toPromise();
+    }
+
     getTrabajadoresByProyecto(
         idProyecto: number
     ): Promise<any> {

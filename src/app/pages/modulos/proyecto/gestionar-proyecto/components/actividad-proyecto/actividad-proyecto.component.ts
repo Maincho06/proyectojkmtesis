@@ -37,6 +37,9 @@ export class ActividadProyectoComponent implements OnInit {
 
   modificando = false;
 
+  fechaInicioPadre: Date;
+  fechaFinPadre: Date;
+
   constructor(
     private formBuilder: FormBuilder,
     private _proyectoService: ProyectoService,
@@ -70,6 +73,24 @@ export class ActividadProyectoComponent implements OnInit {
 
   modificar(actividad: ActividadProyectoModel) {
 
+    this.fechaFinPadre = null;
+    this.fechaInicioPadre = null;
+    if (actividad.idPadre != null) {
+      let actividadPadre = this.actividades.find(item => item.data['idActividad'] == actividad.idPadre);
+      if (!actividadPadre.data['fechaInicio'] || !actividadPadre.data['fechaFin']) {
+        // Mostrar el snackbar
+        toast({
+          title: "Advertencia",
+          message: 'Llene la fecha inicio y la fecha fin en la actividad padre',
+          type: 'warn',
+          messageService: this._messageService
+        });
+        return;
+      }
+      this.fechaFinPadre = new Date(actividadPadre.data['fechaFin']);
+      this.fechaInicioPadre = new Date(actividadPadre.data['fechaInicio']);
+
+    }
     this.formActividad.patchValue({
       prioridad: this.prioridades.find(item => item.valor == actividad.peso),
       descripcion: actividad.descripcion,
@@ -164,5 +185,17 @@ export class ActividadProyectoComponent implements OnInit {
 
 
     this.porcentajeTareas = Math.round((pesoActividadesFinalizadas / pesoTotal) * 100)
+  }
+
+  get minDateFechaFin() {
+    let fechaInicioValue = this.formActividad.controls.fechaInicio.value;
+    let fechaReturn = null;
+
+    if (fechaInicioValue && this.fechaInicioPadre) {
+      fechaReturn = this.fechaInicioPadre > fechaInicioValue ? this.fechaInicioPadre : fechaInicioValue;
+    }
+
+
+    return fechaInicioValue ?? fechaReturn;
   }
 }

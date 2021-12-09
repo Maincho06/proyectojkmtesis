@@ -27,6 +27,8 @@ export class TrabajadoresCotizacionComponent implements OnInit {
 
   modificando = false;
 
+  bloqueado = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private _trabajadorService: TrabajadorService,
@@ -39,6 +41,9 @@ export class TrabajadoresCotizacionComponent implements OnInit {
   }
 
   async ngOnInit() {
+  }
+
+  async ngAfterViewInit() {
     await this.listarTipoTrabajadores();
 
     this._activatedRoute.paramMap.subscribe(async params => {
@@ -47,12 +52,10 @@ export class TrabajadoresCotizacionComponent implements OnInit {
     })
   }
 
-
   async listarTrabajadoresPorCotizacionId(idCotizacion: number) {
     try {
       let data = await this._cotizacionService.getTrabajadoresByCotizacion(idCotizacion);
       this.trabajadores = data ?? [];
-      console.log(data);
     } catch (error) {
       console.error(error);
       this.trabajadores = [];
@@ -63,7 +66,6 @@ export class TrabajadoresCotizacionComponent implements OnInit {
     try {
       let data = await this._trabajadorService.getTipoTrabajador();
       this.tipoTrabajadores = data;
-      console.log(data);
 
     } catch (error) {
       console.error(error);
