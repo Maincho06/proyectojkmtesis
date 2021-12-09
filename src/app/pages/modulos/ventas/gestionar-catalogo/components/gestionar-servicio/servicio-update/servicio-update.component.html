@@ -16,12 +16,19 @@
             <!-- Input Descripción -->
             <div class="p-field p-col-12">
                 <label>Descripción</label>
-                <textarea rows="5" cols="30" formControlName="descripcion" [readonly]="!estado" pInputTextarea autoResize="autoResize"></textarea>
+                <textarea rows="5" cols="30" formControlName="descripcion" [readonly]="!estado" pInputTextarea
+                    autoResize="autoResize"></textarea>
                 <small
                     *ngIf="formServicio.get('descripcion').hasError('required') && this.formServicio.get('descripcion').touched"
                     class="p-error">La descripción no puede estar vacía</small>
             </div>
-
+            
+            <div class="p-field p-col-12">
+                <label>Imagen</label>
+                <p-fileUpload accept="image/*" maxFileSize="1000000" (uploadHandler)="onUpload($event)"
+                    [files]="uploadedFiles" [auto]="true" customUpload="true">
+                </p-fileUpload>
+            </div>
         </form>
 
         <div *ngIf="estado" class="p-text-right p-mt-3">

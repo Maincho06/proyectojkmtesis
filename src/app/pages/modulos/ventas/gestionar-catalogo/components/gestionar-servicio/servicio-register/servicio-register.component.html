@@ -22,6 +22,13 @@
                     class="p-error">La descripción no puede estar vacía</small>
             </div>
 
+            <div class="p-field p-col-12">
+                <label>Imagen</label>
+                <p-fileUpload accept="image/*" maxFileSize="1000000" (uploadHandler)="onUpload($event)"
+                    [files]="uploadedFiles" [auto]="true" customUpload="true">
+                </p-fileUpload>
+            </div>
+
         </form>
 
         <div class="p-text-right p-mt-3">

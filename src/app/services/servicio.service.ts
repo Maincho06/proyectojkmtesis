@@ -45,7 +45,6 @@ export class ServicioService extends BaseService {
 
     // Editar Servicio
     editServicio(servicio: IUpdateServicio): Promise<any> {
-
         const url = `${SERVICIO_URL}/${servicio.idServicio}`
         return this.http.put<any>(url, servicio, { headers: this.obtenerHeaders() }).toPromise()
     }
